@@ -33,24 +33,9 @@
 Set up the paper.
 
 \section{Bayesian Data Analysis}
-The steps of a full Bayesian data analysis as describes by Gelman et al (2013) and followed in this paper are as follows:
-\begin{enumerate}
-\item{Set up a full probability model that is a joint probability distribution encompassing all observed and unobserved quantities.  This model should reflect prior knowledge of the problem at hand and should account for the method of data collection.}
-\item{Estimate the posterior distribution conditional on prior knowledge and the observed data.}
-\item{Check the fit of the posterior distribution conditional on prior knowledge and the observed data.}
-\end{enumerate}
-
-In the following three subsections we will discuss each of these steps in some detail and describe how they can be incorporated into the analysis of a randomized experiment.
 
 \subsection{Model development}
-Bayesian data analysis is based on Bayes rule, a simple model that allow us make inferences about \emph{parameters} $\theta$ conditional on \emph{data} $y$.
-\begin{align*}
-p(\theta | y) \propto p(\theta)p(y | \theta)
-\end{align*}
-This abstract model is easily adapted to the analysis of randomized experiments, where we hope to make inferences about \emph{treatment effects} ($\theta$) conditional on \emph{experimental data} ($y$).
-\\
 
-The expression on the left is known as the \emph{posterior distribution} of $\theta$ conditional on $y$.  The two expressions on the right are known as the \emph{prior distribution} of $\theta$ and the \emph{likelihood} of $y$ conditional on $\theta$.  Our goal is a posterior distribution, so we must develop a prior distribution and a likelihood, and combine them.
 
 \subsection{Model estimation}
 Estimate the posterior distribution conditional on prior knowledge and the observed data.
