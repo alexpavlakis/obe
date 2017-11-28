@@ -61,11 +61,13 @@ Bayesian inference involves multiplying these distributions together according t
 p(\theta | y) \sim p(\theta) p(y |\theta)
 \end{align}
 
-The Bayesian approach combines data and prior information in a way that can yield more precise inferences that either on its own.
+The Bayesian approach combines data and prior information in a way that can yield more precise inferences than either on its own.
 
 
 \subsection{Model estimation}
 The goal of model estimation is to calculate the \textit{posterior distribution} of parameters; the conditional distribution of the parameters given the observed data. The posterior distribution is obtained by simply multiplying the prior and likelihood to get joint probabilities and then normalizing to get posterior probabilities. Calculating the posterior analytically is often difficult and leads to intractable integrals with no closed-form solution. Standard practice is to use MCMC sampling methods to approximate the posterior up to a normalizing constant and sample from it. There are some other approaches to calculating the posterior distribution, but those are beyond the scope of this paper. Using these posterior distributions we can now predict and simulate replicated data from our model, which leads us to section 2.3. 
+\\
+
 \subsection{Model checking, comparison and expansion}
 We begin evaluating the performance of our model by ensuring that it converges on robust parameter estimates and that the results make sense given what we know about the observed data and the problem itself. We also need to see how sensitive our results are to the modeling assumptions and the priors. Sometimes using stronger priors can help with convergence and more stable results. We use our posterior distributions of the parameters to check our model by carrying out \textit{posterior predictive checks}. This could be graphical checks where we simulate ``fake" data from our model and compare it graphically to the raw data. We could also use certain test statistics and compare the values of those statistics across models and see how close they are to the ground truth obtained from the observed data itself. Based on the fit of the model, we can either expand the model to include more parameters, predictors or change the model and reevaluate performance. We are not looking to explicitly choose the ``right" model but are interested to learn where each of our approaches and models might be lacking and make these shortcomings explicit while trying to improve them.
 
@@ -115,23 +117,27 @@ Figure X displayes OBEs per week for each individual in both treatment condition
 \caption{\emph{Histograms display the distribution of OBEs in each condition in each week.}}
 \end{figure}
 
-Figure Y displays the distribution of histograms in each condition in each week.  The distributions appear to condense around zero for both conditions over time, and the distributions in the CBT-GSH condition appear to have longer tails than those in the CBB-GSH+Noom condition.  While the distribution
+Figure Y displays the distribution of OBEs in each condition in each week.  We notice three characteristics of the data from these histograms.
+\begin{enumerate}
+\item{The distributions appear to condense around zero for both conditions over time} 
+\item{The distributions in the CBT-GSH condition appear to have longer tails than those in the CBB-GSH+Noom condition}
+\item{OBEs are count data; they must be nonnegative integers.}
+\end{enumerate}
+These three characteristics suggest that the appropriate model for OBEs is the Poisson distribution, because it is restricted to nonnegative integers and can concentrate its density around low numbers with a long tail.
 
 \subsection{Model development}
 
 \begin{table}[t]
 \centering
 \begin{tabular}{r l}
-  Source of Prior Information &  \\
-  \hline
+  Source of Prior Information &  \\ 
+  \hline  \vspace{0.25em}
   Experimental Design & Outcome variable is nonnegative integers \\
-  \\
+  \vspace{0.25em}
   Literature & Effect size is close to zero \\
-    \\
-  					  & Individual effects come from a common distribution \\
-  Exploratory Data Analysis & Time effects come from a common distribution \\
-                                            & Treatment effects come from a common distribution \\
-   \\
+  Exploratory Data Analysis & There is variation in OBEs at the individual level \\
+					  & There is variation in OBEs over time \\
+                                            & Treatment effects may vary over time \\
     \hline
 \end{tabular}
 \caption{\emph{Sources of prior information.}}
@@ -146,8 +152,6 @@ The outcome variable is restricted to be nonnegative integers, so we fit a Poiss
 \begin{align}
 OBE_{i,t} &\sim Poisson(\lambda_{i,t}) \\
 \lambda_{i,t} &= exp(\alpha_i + \beta_t + \gamma_tT_i + X_i\theta) \\
-i &= 1, ..., 66 \\
-t &= 0, 4, 8, 12, 24, 36 \\
 T_i &=
     \begin{cases}
       0, & \text{if}\ CBT-GSH \\
@@ -155,7 +159,7 @@ T_i &=
     \end{cases}
 \end{align}
 
-$\alpha$ is an individual-specific intercept, $\beta$ is a time-specific intercept, $\gamma$ is a time-specific treatment effect, $T$ is a treatment indicator, $X$ is a matrix of individual level covariates (age, sex, race, etc), and $\theta$ is a vector of effects.
+$\alpha$ is an individual-specific intercept, $\beta$ is a time-specific intercept, $\gamma$ is a time-specific treatment effect, $T$ is a treatment indicator, $X$ is a matrix of individual level covariates (age, sex, race, etc), and $\theta$ is a vector of effects. Subscripts $i = 1, ..., 66$ indicate individuals and subscripts $t = 0, 4, 8, 12, 24, 36$ indicate time periods.
 \\
 
 We believe that individual-level intercepts are simultaneously unique to the individual and common to the population; that is, each individual has their own baseline predilection to engage in eating disorder behavior, but their baseline predilections are not drastically different from each other.  We operationalize this concept by modeling all individual-level intercepts as coming from a common distribution, with \emph{hyperparameters} $\mu_{\alpha}$ and $\tau_{\alpha}$.
@@ -171,14 +175,7 @@ Similarly, we believe that time-specific treatment effects may be unique to each
 $\mu_{\gamma}$ is the \emph{grand mean}, the overall treatment effect; $\tau_{\gamma}$ is the variation in treatment effects over time; and each individual $\gamma_t$ is a time-period specific treatment effect.  This approach has a natural smoothing effect: any extreme estimates of $\gamma_t$ will be partially-pooled back toward the grand mean $\mu_{\gamma}$.
 \\
 
-To complete the model we must assign prior distributions to parameters (such as $\theta$) and hyperparameters (such as $\mu$).  These prior distributions will serve three main purposes:
-\begin{enumerate}
-\item{Transparency: priors allow us to be clear about our modeling assumptions.}
-\item{Convergence: priors help the model "know where to look" and converge.}
-\item{Inclusion of Additional Information: We usually have more information about an experiment than is represented by the data.  Priors allow us to include that information explicitly in our model.}
-\end{enumerate}
-
-For this model, we assign the following prior and hyperprior distributions:
+We assign the following prior and hyperprior distributions:
 \begin{align}
 \mu_{\alpha} &\sim Normal(5, 5) \\
 \tau_{\alpha} &\sim Cauchy^+(0, 30) \\
