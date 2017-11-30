@@ -81,17 +81,16 @@ Data does not live only on the spreadsheet. It is contained in the researcher's 
 
 One of the most powerful hyperparameter specifications is to specify a hierarchical model to allow partial pooling. Hierarchical data structures include any data that can be represented in categories. In a non-Bayesian scenario, there are two choices a researcher has: a complete pooling model, and a no pooling model. With complete pooling, the data is treated essentially as exchangeable, thus ignoring the uniqueness of categories. With no pooling, each category is treated as independent of the others, thus ignoring the interrelatedness of each of the categories. Setting a hyperparameter as a distribution allows us to say that our relevant parameters have a common mean, but are each different from one another. This partial pooling is often more accurate as it takes into account both the uniqueness and interrelatedness of categories within a hierarchical model.
 
-The Bayesian approach also allows the researcher to break free from degrees of freedom... Allows us to use interaction variables and stuff
+Unlike traditional approaches, the Bayesian approach does not output a point estimate with confidence intervals. Instead, it outputs a posterior distribution for each parameter being estimated. This has a number of advantages. First 
+
+Something else about degrees of freedom
 
 \subsection{Better Transparency}
 Bayesian Approaches are so transparent that this section is written in transparent digital ink.
 
 \subsection{Risks to a Bayesian Approach}
-There are none. Move on.
-\section{Reproducibility}
-Describe the philosophy and importance of reproducibility.  
+Bayesian analysis is not without its downsides, the obvious being the use of bad priors to generate biased estimates. However, this risk is mitigated substantially by close scrutiny on priors. A more problematic issue is the interpretability of posteriors. While it's possible to generate point estimates and confidence intervals, the posterior itself is difficult to interpret. Aside from this, Bayesian inference inherently stops being an encapsulation of a single dataset, as we begin to input information from other sources including the researcher. What excess information is and is not valid is up for open debate.
 
-Describe the steps of making research reproducible (e.g. sharing code, sharing data, explicitly specifying model, etc.)
 
 \section{Impact of Smartphone App on Eating Behavior}
 
