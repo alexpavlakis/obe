@@ -4,11 +4,11 @@
 \contentsline {subsection}{\numberline {2.2}Model estimation}{4}
 \contentsline {subsection}{\numberline {2.3}Model checking, comparison and expansion}{4}
 \contentsline {section}{\numberline {3}Comparison of Bayesian Data Analysis to Other Methods}{4}
-\contentsline {subsection}{\numberline {3.1}Better Prediction}{4}
+\contentsline {subsection}{\numberline {3.1}Better Prediction}{5}
 \contentsline {subsection}{\numberline {3.2}Better Transparency}{5}
 \contentsline {subsection}{\numberline {3.3}Risks to a Bayesian Approach}{5}
 \contentsline {section}{\numberline {4}Impact of Smartphone App on Eating Behavior}{5}
-\contentsline {subsection}{\numberline {4.1}Experimental design}{5}
+\contentsline {subsection}{\numberline {4.1}Experimental design}{6}
 \contentsline {subsection}{\numberline {4.2}Exploratory data analysis}{6}
 \contentsline {subsection}{\numberline {4.3}Model development}{7}
 \contentsline {subsection}{\numberline {4.4}Model estimation}{9}

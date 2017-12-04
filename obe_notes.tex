@@ -1,3 +1,4 @@
+
 \documentclass[12pt, oneside]{article}   
 \usepackage{textcomp}
 
@@ -30,29 +31,50 @@
 \newpage
 
 \section{Introduction}
-Bayesian methods are gaining popularity in many fields because they allow researchers to incorporate all available information into flexible and transparent statistical models.  Many researchers have begun to incorporate Bayesian methods into medical, pharmaceutical, and social-science research.  The purpose of this paper is to show how Bayesian methods can be the standard in applied research.  We provide a general overview of the approach and an example analysis of Randomized Control Trial (RCT) on the impact of a smartphone application on eating disorder behavior.  
+Set up the paper. This is me learning GitHub.
 
 \section{Bayesian Data Analysis}
-Bayesian data analysis (BDA) and inference is the process of developing and fitting a probability model to data. The result is learning the probability distribution of the parameters of the model and being able to evaluate the fit of the model to the data as well being able to make predictions for new observations [Gelman et. al 2013; Gelman and Hill 2007].\\
-There are three main steps to BDA and these are listed below and explained in detail in section 2.1, 2.2 and 2.3 respectively.
+BDA and inference is the process of developing and fitting a probability model to data. The result is a probability distribution of model parameters from which one can evaluate the fit of the model to  data and make predictions for new observations [Gelman et. al 2013; Gelman and Hill 2007].\\
+\\
+Below we list the three steps to BDA.  Each is explained in detail in section 2.1, 2.2 and 2.3 respectively.
 \begin{enumerate}
-\item{Set up a probability model.}
-\item{Calculate the distribution of the model parameters, given the observed data. This is called the \textit{posterior distribution} of the parameters.}
-\item{Check the fit of the model, whether the conclusions are sensible and how sensitive they are to modeling assumptions. Expand or alter the model if needed and repeat the steps.}
+\item{\textbf{Build a model:} Set up a probability of model of parameters of interest conditional on observed data and all available information about the problem.}
+\item{\textbf{Fit the model:} Calculate the distribution of the model parameters, given the observed data. This is called the \textit{posterior distribution} of the parameters.}
+\item{\textbf{Evaluate the model}: Check the fit of the model, whether the conclusions are sensible and how sensitive they are to modeling assumptions. Expand or alter the model and repeat the steps if needed .}
 \end{enumerate}
 
 \subsection{Model development}
-Developing a probability model means setting up a joint probability distribution in a way that it takes into account all observed data and unobserved quantities. It should include all knowledge of the experiment or data collection process and should be logically consistent with scientific nature of the problem at hand. This involves a \textit{prior distribution} and a \textit{likelihood function}.\\
- Bayesian analysis requires the assignment of a prior distribution that can restrict the set of values that a coefficient or parameter can take. This prior distribution also allows us to make our assumptions about the experiment and actual nature of the problem explicit. For example, if we were dealing with a regression prediction problem, we could assign a completely ``noninformative" prior to our coefficient which is equivalent to saying that the coefficient is a draw from a uniform distribution on the whole real line and moreover that all those values are equally likely. Incidentally this boils down to a maximum likelihood estimate of the coefficient. But statisticians are rarely in a position where they know absolutely nothing about the nature of their model parameters. Perhaps they know it needs to be positive, or, if what is being modeled is a probability then it needs to be between zero and one. Either way, this knowledge about the parameter should be made explicit and incorporated into the problem using an ``informative" prior distribution. In section 3 we discuss some advantages and choices of prior distributions. The likelihood function is the probability distribution of the observed data conditional on the parameters. Again, in a regression problem context, the likelihood function is a Gaussian distribution.\\
-The Bayesian approach combines data and prior information, which coupled with the correct model yield more precise inferences than we could get from either source on its own.
+Model development involves setting up a joint probability distribution that accounts for all observed data and unobserved parameters. The model should include all knowledge of the experiment or data collection process and should be logically consistent with scientific nature of the problem at hand. We approach model development in three steps.
+\begin{enumerate}
+\item{\textbf{Exploratory Data Analysis}: Look at your data.  What stands out?  What \emph{distributions} do different variables appear to take on?  What seems important?  What variables are correlated?  Answers to these questions are essential to specifying a the following two model components.  For most scientific problems there is no one-size-fits all model or reliable automated model choosing program; you have to get your hands dirty.}
+\item{\textbf{Setting up a Likelihood Model}: Choose a model that represents the relationship between your data and parameters of interest.  For instance, if your outcome variable is binary (0 or 1), a logistic regression framework may be appropriate.}
+\item{\textbf{Choosing a prior distribution}: Specify assumptions and knowledge about parameters of interest explicitly in the form of prior distributions.  For instance, if a coefficient of interest \emph{must} be between 0 and 1, you may want to set a \emph{Beta} distribution on that coefficient.  If you believe that a coefficient is close to zero, but may be positive or negative, you may want to assign a \emph{Normal}(0, 1) prior distribution to it.}
+\end{enumerate}
+
+To make this concrete, let $\theta$ be a parameter of interest and $y$ be data from which we want to estimate $\theta$.  Then the prior distribution and likelihood are, respectively:
+\begin{align}
+p(\theta) \\
+p(y | \theta)
+\end{align}
+
+Bayesian inference involves multiplying these distributions together according to a fundamental rule of probability to estimate a \emph{posterior distribution} of parameters conditional on data.
+\begin{align}
+p(\theta | y) \sim p(\theta) p(y |\theta)
+\end{align}
+
+The Bayesian approach combines data and prior information in a way that can yield more precise inferences than either on its own.
+
 
 \subsection{Model estimation}
-The goal of model estimation is to calculate the \textit{posterior distribution} of the parameters. This is the conditional distribution of the parameter given the observed data. The posterior distribution is obtained by simply multiplying the prior and likelihood to get joint probabilities and then normalizing to get posterior probabilities. Calculating the posterior analytically is often difficult and leads to intractable integrals with no closed-form solution. So the standard practice is to use MCMC sampling methods to approximate the posterior up to a normalizing constant and sample from it. There are some other approaches to calculating the posterior distribution, but those are beyond the scope of this paper. Using these posterior distributions we can now predict and simulate replicated data from our model, which leads us to section 2.3. 
+The goal of model estimation is to calculate the \textit{posterior distribution} of parameters; the conditional distribution of the parameters given the observed data. The posterior distribution is obtained by simply multiplying the prior and likelihood to get joint probabilities and then normalizing to get posterior probabilities. Calculating the posterior analytically is often difficult and leads to intractable integrals with no closed-form solution. Standard practice is to use MCMC sampling methods to approximate the posterior up to a normalizing constant and sample from it. There are some other approaches to calculating the posterior distribution, but those are beyond the scope of this paper. Using these posterior distributions we can now predict and simulate replicated data from our model, which leads us to section 2.3. 
+\\
+
 \subsection{Model checking, comparison and expansion}
 We begin evaluating the performance of our model by ensuring that it converges on robust parameter estimates and that the results make sense given what we know about the observed data and the problem itself. We also need to see how sensitive our results are to the modeling assumptions and the priors. Sometimes using stronger priors can help with convergence and more stable results. We use our posterior distributions of the parameters to check our model by carrying out \textit{posterior predictive checks}. This could be graphical checks where we simulate ``fake" data from our model and compare it graphically to the raw data. We could also use certain test statistics and compare the values of those statistics across models and see how close they are to the ground truth obtained from the observed data itself. Based on the fit of the model, we can either expand the model to include more parameters, predictors or change the model and reevaluate performance. We are not looking to explicitly choose the ``right" model but are interested to learn where each of our approaches and models might be lacking and make these shortcomings explicit while trying to improve them.
 
+
 \section{Comparison of Bayesian Data Analysis to Other Methods}
-There are two primary benefits to a Bayesian approach for the analysis of Randomized Controlled Trials. First is the improvement of predictions through the use of a greater amount of information within the models. Second is a greater level of transparency through explicit assumptions. This section will end with a discussion of some of the risks of Bayesian approaches.
+There are two primary benefits to a Bayesian approach for RCT. First is the improvement of predictions through the use of a greater amount of information within the models. Second is a greater level of transparency through explicit assumptions. This section will end with a discussion of some of the risks of Bayesian approaches.
 \subsection{Better Prediction}
 As discussed earlier, the choice of a prior distribution is a critical assumption that directly affects the results of the analysis. Bayesian analysis lends itself well to the infinitely many distributions that can be used. But beyond the choice of a distribution, the specifications of hyper-paramaters of these distributions allow for the usage of data that exists beyond that which was collected within the study. 
 
@@ -244,9 +266,9 @@ Figure R displays modeled OBE for both treatment groups (upper plot) and smoothe
 
 
 \section{Conclusion}
-
+So awesome
 
 \section{Appendix}
-
+All the math goes here
 
 \end{document}
