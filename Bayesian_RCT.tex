@@ -16,8 +16,10 @@
 \setlength{\parindent}{0pt}
 
 \title{Bayesian Analysis of Randomized Controlled Trials}
-\author{Julian Bautista, Alex Pavlakis, Advait Rajagopal}
+\author{Julian Bautista*, Alex Pavlakis*, Advait Rajagopal\footnote{The New School for Social Research}}
 %\date{\today}		
+
+\setlength{\parindent}{0pt}
 			
 \begin{document}
 \maketitle
@@ -42,9 +44,23 @@ There are three main steps to BDA and these are listed below and explained in de
 \end{enumerate}
 
 \subsection{Model development}
+\iffalse
 Developing a probability model means setting up a joint probability distribution in a way that it takes into account all observed data and unobserved quantities. It should include all knowledge of the experiment or data collection process and should be logically consistent with scientific nature of the problem at hand. This involves a \textit{prior distribution} and a \textit{likelihood function}.\\
  Bayesian analysis requires the assignment of a prior distribution that can restrict the set of values that a coefficient or parameter can take. This prior distribution also allows us to make our assumptions about the experiment and actual nature of the problem explicit. For example, if we were dealing with a regression prediction problem, we could assign a completely ``noninformative" prior to our coefficient which is equivalent to saying that the coefficient is a draw from a uniform distribution on the whole real line and moreover that all those values are equally likely. Incidentally this boils down to a maximum likelihood estimate of the coefficient. But statisticians are rarely in a position where they know absolutely nothing about the nature of their model parameters. Perhaps they know it needs to be positive, or, if what is being modeled is a probability then it needs to be between zero and one. Either way, this knowledge about the parameter should be made explicit and incorporated into the problem using an ``informative" prior distribution. In section 3 we discuss some advantages and choices of prior distributions. The likelihood function is the probability distribution of the observed data conditional on the parameters. Again, in a regression problem context, the likelihood function is a Gaussian distribution.\\
 The Bayesian approach combines data and prior information, which coupled with the correct model yield more precise inferences than we could get from either source on its own.
+\fi
+Model development involves setting up a joint probability distribution that accounts for all observed data and unobserved parameters. The model should include all knowledge of the experiment or data collection process and should be logically consistent with scientific nature of the problem at hand. We approach model development in three steps.
+ \begin{enumerate}
+ \item{\textbf{Exploratory Data Analysis}: Look at your data.  What stands out?  What \emph{distributions} do different variables appear to take on?  What seems important?  What variables are correlated?  Answers to these questions are essential to specifying a the following two model components.  For most scientific problems there is no one-size-fits all model or reliable automated model choosing program; you have to get your hands dirty.}
+ \item{\textbf{Setting up a Likelihood Model}: Choose a model that represents the relationship between your data and parameters of interest.  For instance, if your outcome variable is binary (0 or 1), a logistic regression framework may be appropriate.}
+ \item{\textbf{Choosing a prior distribution}: Specify assumptions and knowledge about parameters of interest explicitly in the form of prior distributions.  For instance, if a coefficient of interest \emph{must} be between 0 and 1, you may want to set a \emph{Beta} distribution on that coefficient.  If you believe that a coefficient is close to zero, but may be positive or negative, you may want to assign a \emph{Normal}(0, 1) prior distribution to it.}
+ \end{enumerate}
+  To make this concrete, let $\theta$ be a parameter of interest and $y$ be data from which we want to estimate $\theta$.  Then the prior distribution is represented as $p(\theta)$ and the likelihood is $p(y | \theta)$.
+ Bayesian inference involves multiplying these distributions together according to Bayes' rule to estimate a \emph{posterior distribution} of parameters conditional on data. The product of the prior and likelihood, the posterior distribution is denoted by $ p(\theta | y)$.
+ \begin{align*}
+ p(\theta | y) \propto p(\theta) p(y |\theta)
+ \end{align*}
+The Bayesian approach combines data and prior information in a way that can yield more precise inferences that either on its own.
 
 \subsection{Model estimation}
 The goal of model estimation is to calculate the \textit{posterior distribution} of the parameters. This is the conditional distribution of the parameter given the observed data. The posterior distribution is obtained by simply multiplying the prior and likelihood to get joint probabilities and then normalizing to get posterior probabilities. Calculating the posterior analytically is often difficult and leads to intractable integrals with no closed-form solution. So the standard practice is to use Markov Chain Monte Carlo sampling methods to approximate the posterior up to a normalizing constant and sample from it. There are some other approaches to calculating the posterior distribution, but those are beyond the scope of this paper. Using these posterior distributions we can now predict and simulate replicated data from our model, which leads us to section 2.3. 
@@ -62,12 +78,12 @@ One of the most powerful hyperparameter specifications is to specify a hierarchi
 
 Unlike traditional approaches, the Bayesian approach does not output a point estimate with confidence intervals. Instead, it generates a unique distribution for each parameter being estimated. This distribution contains all the information from the prior and the model, and has its own behavior separate from the canned distributions embedded in classical statistics models.  This is particularly advantageous for the purposes of simulation, because the researcher can sample from the posterior as part of further analysis. 
 
-\subsection{Better Transparency}
+\subsection{Transparency}
 Bayesian analysis also lends itself to better scientific scrutiny on models overall. This occurs because non-Bayesian techniques make the tacit assumptions of traditional models explicit in the form of a prior. For example, a simple linear regression tacitly assumes that the parameter is normally distributed and has a uniform prior. While this assumption may be appropriate for some problems, in many occassions it does not get scrutinized closely because it is an implied assumption. Meanwhile, the power of a prior to influence estimates puts a magnifying glass on all of these issues that were easily glossed over previously.
 
 Easy scrutiny is a critical component for rich academic discourse. It puts the onus on the researcher to justify the assumptions of their model. It allows for vibrant discussion on what is or isn't an appropriate model for that type of problem. It is through this refinement, debate, and inevitable cross-pollination of ideas that science progresses.
 
-\subsection{Risks to a Bayesian Approach}
+\subsection{Risks of a Bayesian Approach}
 Bayesian analysis is not without its downsides, the obvious being the use of bad priors to generate biased estimates. However, this risk is mitigated substantially by close scrutiny on priors. A more problematic issue is the interpretability of posteriors. While it's possible to generate point estimates and confidence intervals, the posterior itself is difficult to interpret. Aside from this, Bayesian inference inherently stops being an encapsulation of a single dataset, as we begin to input information from other sources including the researcher. What excess information is and is not valid is up for open debate.
 
 
