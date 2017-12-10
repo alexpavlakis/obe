@@ -5,7 +5,7 @@
 \lstset{language=R,literate={<-}{{$\gets$}}1}
 
 \usepackage[a4paper,bindingoffset=0.2in,%
-            left=0.7 in,right= 0.7 in,top= 0.7 in,bottom=0.7in,%
+            left=1 in,right= 1 in,top= 1 in,bottom=1in,%
             footskip=.55in]{geometry}
 
                 		
@@ -72,19 +72,16 @@ We begin evaluating the performance of our model by ensuring that it converges o
 \section{Comparison of Bayesian Data Analysis to Other Methods}
 There are two primary benefits to a Bayesian approach for the analysis of Randomized Controlled Trials. First is the improvement of predictions through the use of a greater amount of information within the models. Second is a greater level of transparency through explicit assumptions. This section will end with a discussion of some of the risks of Bayesian approaches.
 \subsection{Better Prediction}
-As discussed earlier, the choice of a prior distribution is a critical assumption that directly affects the results of the analysis. Bayesian analysis lends itself well to the infinitely many distributions that can be used. But beyond the choice of a distribution, the specifications of hyper-paramaters of these distributions allow for the usage of data that exists beyond that which was collected within the study. 
-\\
+As discussed earlier, the choice of a prior distribution is a critical assumption that directly affects the results of the analysis. Bayesian analysis lends itself well to the infinitely many distributions that can be used. But beyond the choice of a distribution, the specifications of hyper-paramaters of these distributions allow for the usage of data that exists beyond that which was collected within the study.\\
 
-Data does not live only on the spreadsheet. It is contained in the researcher's knowledge of the literature, the data generating process, and anything else that is relevant. This can include common sense knowledge such as the understanding that estimates on ratios will be between 0 and 1, or it could be an expected estimate based on previous studies done. Regardless of the source of the information, knowledge about an estimator can be translated into the prior to improve accuracy. 
-\\
+Data does not live only on the spreadsheet. It is contained in the researcher's knowledge of the literature, the data generating process, and anything else that is relevant. This can include common sense knowledge such as the understanding that estimates on ratios will be between 0 and 1, or it could be an expected estimate based on previous studies done. Regardless of the source of the information, knowledge about an estimator can be translated into the prior to improve accuracy. \\
 
-One of the most powerful hyperparameter specifications is to specify a hierarchical model to allow partial pooling. Hierarchical data structures include any data that can be represented in categories. In a non-Bayesian scenario, there are two choices a researcher has: a complete pooling model, and a no pooling model. With complete pooling, the data is treated essentially as exchangeable, thus ignoring the uniqueness of categories. With no pooling, each category is treated as independent of the others, thus ignoring the interrelatedness of each of the categories. Setting a hyperparameter as a distribution allows us to say that our relevant parameters have a common mean, but are each different from one another. This partial pooling is often more accurate as it takes into account both the uniqueness and interrelatedness of categories within a hierarchical model.
-\\
+One of the greatest advantages of specifying prior distributions in a hierarchical or multilevel model is to allow for partial pooling. Hierarchical data structures include any data that can be represented in categories. In a non-Bayesian scenario, there are two choices a researcher has: a complete pooling model, and a no pooling model. With complete pooling, the categories in data are completely interchangeable, thus ignoring the uniqueness of categories. With no pooling, each category is treated as independent of the others, thus ignoring the interrelatedness of each of the categories. Setting up a prior distribution allows us to say that our relevant parameters have a common mean, but are each different from one another. This partial pooling is often more accurate as it takes into account both the uniqueness and interrelatedness of categories within a hierarchical model.\\
 
-Unlike traditional approaches, the Bayesian approach does not output a point estimate with confidence intervals. Instead, it generates a unique distribution for each parameter being estimated. This distribution contains all the information from the prior and the model, and has its own behavior separate from the canned distributions embedded in classical statistics models.  This is particularly advantageous for the purposes of simulation, because the researcher can sample from the posterior as part of further analysis. 
+Unlike traditional approaches, the Bayesian approach does not output a point estimate with confidence intervals. Instead it estimates a joint posterior distribution (correct up to a normalizing constant) for the parameters conditional on data. This distribution contains all the information from the prior and the model. From this joint posterior we can obtain the marginal distribution of each parameter with credible posterior intervals. This provides an accurate account of the inherent uncertainty in the estimation of the parameters. Generating a posterior also allows for simulation using posterior draws from this distribution. This is helpful for model checking, expansion and further analysis.
 
 \subsection{Transparency}
-Bayesian analysis also lends itself to better scientific scrutiny on models overall. This occurs because non-Bayesian techniques make the tacit assumptions of traditional models explicit in the form of a prior. For example, a simple linear regression tacitly assumes that the parameter is normally distributed and has a uniform prior. While this assumption may be appropriate for some problems, in many occassions it does not get scrutinized closely because it is an implied assumption. Meanwhile, the power of a prior to influence estimates puts a magnifying glass on all of these issues that were easily glossed over previously.  Close scrutiny is a critical component for rich academic discourse. It puts the onus on researchers to justify the assumptions of their model and allows for vibrant discussion. 
+Bayesian analysis also lends itself to better scientific scrutiny on models overall. This occurs because non-Bayesian techniques and traditional frequentist models make tacit assumptions. Bayesian methods make underlying modeling assumptions explicit in the form of a prior. For example, a simple linear regression tacitly assumes that the parameter is normally distributed and has a uniform prior. While this assumption may be appropriate for some problems, in many occasions it does not get scrutinized closely because it is an implied assumption. Meanwhile, the power of a prior to influence estimates puts a magnifying glass on all of these issues that were easily glossed over previously.  Close scrutiny is a critical component for rich academic discourse. It puts the onus on researchers to justify the assumptions of their model and allows for vibrant discussion. 
 
 \subsection{Risks of a Bayesian Approach}
 Bayesian analysis is not without its downsides, the obvious being the use of bad priors to generate biased estimates. However, this risk is mitigated substantially by close scrutiny on priors. A more problematic issue is the interpretability of posteriors. While it's possible to generate point estimates and confidence intervals, the posterior itself is difficult to interpret. Aside from this, Bayesian inference inherently stops being an encapsulation of a single dataset, as we begin to input information from other sources including the researcher. What excess information is and is not valid is up for open debate.
@@ -104,7 +101,7 @@ Hildebrandt et all (2017) conducted an experiment to test whether the Noom Monit
 
 \subsection{Exploratory data analysis}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{Noom_paths.png}
 \caption{\emph{Plots display OBEs over time for each individual in the CBT-GHS groups (left panel) and CBT-GHS + Noom group (right panel).}}
@@ -117,9 +114,7 @@ Figure 1 displayes OBEs per week for each individual in both treatment condition
 \item{The primary sources of variation in OBE appear to be \emph{between people} and \emph{over time}.}
 \end{itemize}
 
-\newpage
-
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{noom_hist.png}
 \caption{\emph{Histograms display the distribution of OBEs in each condition in each week.}}
@@ -187,7 +182,7 @@ We assign the following prior and hyperprior distributions:
 \tau_{\alpha} &\sim Cauchy^+(0, 30) \\
 \mu_{\gamma} &\sim Normal(0, 5) \\
 \tau_{\gamma} &\sim Cauchy^+(0, 30) \\
-\theta &\sim Normal(0, 1) \\
+\theta &\sim Normal(0, 1)
 \end{align}
 
 The normal distributions around the individual and treatment effects allow us to guide the model to the appropriate range of parameter values, but with wide enough variance (5 in each case) to let the model find its own way in that range.  Half cauchy priors on the variance parameters are weakly informative, with much of their mass around zero but gentle slopes in their tails, which have been shown to be effective prior distributions for variance parameters (Gelman, 2006).
