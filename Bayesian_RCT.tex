@@ -5,7 +5,7 @@
 \lstset{language=R,literate={<-}{{$\gets$}}1}
 
 \usepackage[a4paper,bindingoffset=0.2in,%
-            left=0.75 in,right= 0.75 in,top= 0.75 in,bottom=0.75in,%
+            left=0.7 in,right= 0.7 in,top= 0.7 in,bottom=0.7in,%
             footskip=.55in]{geometry}
 
                 		
@@ -35,8 +35,10 @@
 Bayesian methods are gaining popularity in many fields because they allow researchers to incorporate all available information into flexible and transparent statistical models.  Many researchers have begun to incorporate Bayesian methods into medical, pharmaceutical, and social-science research.  The purpose of this paper is to show how Bayesian methods can be the standard in applied research.  We provide a general overview of the approach and an example analysis of Randomized Control Trial (RCT) on the impact of a smartphone application on eating disorder behavior.  
 
 \section{Bayesian Data Analysis}
-Bayesian data analysis (BDA) and inference is the process of developing and fitting a probability model to data. The result is learning the probability distribution of the parameters of the model and being able to evaluate the fit of the model to the data as well being able to make predictions for new observations [Gelman et. al 2013; Gelman and Hill 2007].\\
-There are three main steps to BDA and these are listed below and explained in detail in section 2.1, 2.2 and 2.3 respectively.
+Bayesian data analysis (BDA) and inference is the process of developing and fitting a probability model to data. The result is learning the probability distribution of the parameters of the model and being able to evaluate the fit of the model to the data as well being able to make predictions for new observations [Gelman et. al 2013; Gelman and Hill 2007].
+\\
+\\
+There are three main steps to BDA, which are listed below and explained in detail in section 2.1, 2.2 and 2.3 respectively.
 \begin{enumerate}
 \item{Set up a probability model.}
 \item{Calculate the distribution of the model parameters, given the observed data. This is called the \textit{posterior distribution} of the parameters.}
@@ -47,11 +49,11 @@ There are three main steps to BDA and these are listed below and explained in de
 \iffalse
 Developing a probability model means setting up a joint probability distribution in a way that it takes into account all observed data and unobserved quantities. It should include all knowledge of the experiment or data collection process and should be logically consistent with scientific nature of the problem at hand. This involves a \textit{prior distribution} and a \textit{likelihood function}.\\
  Bayesian analysis requires the assignment of a prior distribution that can restrict the set of values that a coefficient or parameter can take. This prior distribution also allows us to make our assumptions about the experiment and actual nature of the problem explicit. For example, if we were dealing with a regression prediction problem, we could assign a completely ``noninformative" prior to our coefficient which is equivalent to saying that the coefficient is a draw from a uniform distribution on the whole real line and moreover that all those values are equally likely. Incidentally this boils down to a maximum likelihood estimate of the coefficient. But statisticians are rarely in a position where they know absolutely nothing about the nature of their model parameters. Perhaps they know it needs to be positive, or, if what is being modeled is a probability then it needs to be between zero and one. Either way, this knowledge about the parameter should be made explicit and incorporated into the problem using an ``informative" prior distribution. In section 3 we discuss some advantages and choices of prior distributions. The likelihood function is the probability distribution of the observed data conditional on the parameters. Again, in a regression problem context, the likelihood function is a Gaussian distribution.\\
-The Bayesian approach combines data and prior information, which coupled with the correct model yield more precise inferences than we could get from either source on its own.
+The Bayesian approach combines data and prior information, which coupled with the correct model yield more precise inferences than either source on its own.
 \fi
 Model development involves setting up a joint probability distribution that accounts for all observed data and unobserved parameters. The model should include all knowledge of the experiment or data collection process and should be logically consistent with scientific nature of the problem at hand. We approach model development in three steps.
  \begin{enumerate}
- \item{\textbf{Exploratory Data Analysis}: Look at your data.  What stands out?  What \emph{distributions} do different variables appear to take on?  What seems important?  What variables are correlated?  Answers to these questions are essential to specifying a the following two model components.  For most scientific problems there is no one-size-fits all model or reliable automated model choosing program; you have to get your hands dirty.}
+ \item{\textbf{Exploratory Data Analysis}: Look at your data.  What distributions do different variables appear to take?  What seems important?  What variables are correlated?  Answers to these questions are essential to specifying a the following two model components.  For most scientific problems there is no one-size-fits all model or reliable automated model choosing program; you have to get your hands dirty.}
  \item{\textbf{Setting up a Likelihood Model}: Choose a model that represents the relationship between your data and parameters of interest.  For instance, if your outcome variable is binary (0 or 1), a logistic regression framework may be appropriate.}
  \item{\textbf{Choosing a prior distribution}: Specify assumptions and knowledge about parameters of interest explicitly in the form of prior distributions.  For instance, if a coefficient of interest \emph{must} be between 0 and 1, you may want to set a \emph{Beta} distribution on that coefficient.  If you believe that a coefficient is close to zero, but may be positive or negative, you may want to assign a \emph{Normal}(0, 1) prior distribution to it.}
  \end{enumerate}
@@ -71,17 +73,18 @@ We begin evaluating the performance of our model by ensuring that it converges o
 There are two primary benefits to a Bayesian approach for the analysis of Randomized Controlled Trials. First is the improvement of predictions through the use of a greater amount of information within the models. Second is a greater level of transparency through explicit assumptions. This section will end with a discussion of some of the risks of Bayesian approaches.
 \subsection{Better Prediction}
 As discussed earlier, the choice of a prior distribution is a critical assumption that directly affects the results of the analysis. Bayesian analysis lends itself well to the infinitely many distributions that can be used. But beyond the choice of a distribution, the specifications of hyper-paramaters of these distributions allow for the usage of data that exists beyond that which was collected within the study. 
+\\
 
 Data does not live only on the spreadsheet. It is contained in the researcher's knowledge of the literature, the data generating process, and anything else that is relevant. This can include common sense knowledge such as the understanding that estimates on ratios will be between 0 and 1, or it could be an expected estimate based on previous studies done. Regardless of the source of the information, knowledge about an estimator can be translated into the prior to improve accuracy. 
+\\
 
 One of the most powerful hyperparameter specifications is to specify a hierarchical model to allow partial pooling. Hierarchical data structures include any data that can be represented in categories. In a non-Bayesian scenario, there are two choices a researcher has: a complete pooling model, and a no pooling model. With complete pooling, the data is treated essentially as exchangeable, thus ignoring the uniqueness of categories. With no pooling, each category is treated as independent of the others, thus ignoring the interrelatedness of each of the categories. Setting a hyperparameter as a distribution allows us to say that our relevant parameters have a common mean, but are each different from one another. This partial pooling is often more accurate as it takes into account both the uniqueness and interrelatedness of categories within a hierarchical model.
+\\
 
 Unlike traditional approaches, the Bayesian approach does not output a point estimate with confidence intervals. Instead, it generates a unique distribution for each parameter being estimated. This distribution contains all the information from the prior and the model, and has its own behavior separate from the canned distributions embedded in classical statistics models.  This is particularly advantageous for the purposes of simulation, because the researcher can sample from the posterior as part of further analysis. 
 
 \subsection{Transparency}
-Bayesian analysis also lends itself to better scientific scrutiny on models overall. This occurs because non-Bayesian techniques make the tacit assumptions of traditional models explicit in the form of a prior. For example, a simple linear regression tacitly assumes that the parameter is normally distributed and has a uniform prior. While this assumption may be appropriate for some problems, in many occassions it does not get scrutinized closely because it is an implied assumption. Meanwhile, the power of a prior to influence estimates puts a magnifying glass on all of these issues that were easily glossed over previously.
-
-Easy scrutiny is a critical component for rich academic discourse. It puts the onus on the researcher to justify the assumptions of their model. It allows for vibrant discussion on what is or isn't an appropriate model for that type of problem. It is through this refinement, debate, and inevitable cross-pollination of ideas that science progresses.
+Bayesian analysis also lends itself to better scientific scrutiny on models overall. This occurs because non-Bayesian techniques make the tacit assumptions of traditional models explicit in the form of a prior. For example, a simple linear regression tacitly assumes that the parameter is normally distributed and has a uniform prior. While this assumption may be appropriate for some problems, in many occassions it does not get scrutinized closely because it is an implied assumption. Meanwhile, the power of a prior to influence estimates puts a magnifying glass on all of these issues that were easily glossed over previously.  Close scrutiny is a critical component for rich academic discourse. It puts the onus on researchers to justify the assumptions of their model and allows for vibrant discussion. 
 
 \subsection{Risks of a Bayesian Approach}
 Bayesian analysis is not without its downsides, the obvious being the use of bad priors to generate biased estimates. However, this risk is mitigated substantially by close scrutiny on priors. A more problematic issue is the interpretability of posteriors. While it's possible to generate point estimates and confidence intervals, the posterior itself is difficult to interpret. Aside from this, Bayesian inference inherently stops being an encapsulation of a single dataset, as we begin to input information from other sources including the researcher. What excess information is and is not valid is up for open debate.
@@ -107,7 +110,7 @@ Hildebrandt et all (2017) conducted an experiment to test whether the Noom Monit
 \caption{\emph{Plots display OBEs over time for each individual in the CBT-GHS groups (left panel) and CBT-GHS + Noom group (right panel).}}
 \end{figure}
 
-Figure X displayes OBEs per week for each individual in both treatment conditions.  A few aspects of the data immediately stand out, which suggest that any model should account for individual-level effects and time-level effects, and should let treatment effects vary over time.  
+Figure 1 displayes OBEs per week for each individual in both treatment conditions.  A few aspects of the data immediately stand out, which suggest that any model should account for individual-level effects and time-level effects, and should let treatment effects vary over time.  
 \begin{itemize}
 \item{The number of OBEs decreases over the course of the treatment for almost all subjects}
 \item{The biggest decreases in OBEs appear to occur in the early stages of treatment}
@@ -122,7 +125,7 @@ Figure X displayes OBEs per week for each individual in both treatment condition
 \caption{\emph{Histograms display the distribution of OBEs in each condition in each week.}}
 \end{figure}
 
-Figure Y displays the distribution of OBEs in each condition in each week.  We notice three characteristics of the data from these histograms.
+Figure 2 displays the distribution of OBEs in each condition in each week.  We notice three characteristics of the data from these histograms.
 \begin{enumerate}
 \item{The distributions appear to condense around zero for both conditions over time} 
 \item{The distributions in the CBT-GSH condition appear to have longer tails than those in the CBB-GSH+Noom condition}
@@ -148,12 +151,10 @@ These three characteristics suggest that the appropriate model for OBEs is the P
 \caption{\emph{Sources of prior information.}}
 \end{table}
 
-
 We analyze RCTs by modeling the outcome of interest (in this case OBE) as a function of the treatment and all available pre-treatment covariates.  The coefficients associated with the treatment reveal the average treatment effects.  Inclusion of all available pre-treatment covariates accounts for variation in the outcome variable, decreasing uncertainly around treatment effects and providing the model with more predictive power.  We conduct \emph{intent-to-treat} analysis, meaning that our inferences will be based on initial treatment assignment, and will not account for mid-experiment dropouts.  
 \\
 
 The outcome variable is restricted to be nonnegative integers, so we fit a Poisson regression model, with hierarchies on individuals, time periods, and treatment effects.  For each individual in each time period, the number of OBEs follows a Poisson distribution, with a mean dependent on the characteristics of the individual and the time period.  
-
 \begin{align}
 OBE_{i,t} &\sim Poisson(\lambda_{i,t}) \\
 \lambda_{i,t} &= exp(\alpha_i + \beta_t + \gamma_tT_i + X_i\theta) \\
@@ -205,10 +206,10 @@ We estimate this model with \emph{Hamilton Monte-Carlo} in Stan.  Model code is 
 Before using our model to make inferences about time-specific treatment effects, we check its fit by comparing model-simulated OBE to data OBE.  If model simulations do not track the data well, we may want to revisit our model's assumptions before trusting its inferences.  If the model's simulations recover patterns in the data, we are more inclined to trust its inferences.  
 \\
 
-Figure Q displays OBEs in each period for each individual in each treatment group, from raw data (upper plots) and model simulations (lowers plots).  Black lines display means for each.  This suggests that the model is broadly able to pick up on the key variables that determine OBE over time for the duration of this experiment.
+Figure 3 displays OBEs in each period for each individual in each treatment group, from raw data (upper plots) and model simulations (lowers plots).  Black lines display means for each.  This suggests that the model is broadly able to pick up on the key variables that determine OBE over time for the duration of this experiment.
 \\
 
-Another way to check the fit of the model is by comparing simulated data directly against the raw data.  Figure P shows this for both treatment conditions.  Simulated data for the Noom condition appears to better track the raw data than simulated data for the no Noom condition.  This is unsurprising, since the no Noom condition tended to have more outliers, which we would not expect (or want) our model to pick up perfectly from such a small sample.  
+Another way to check the fit of the model is by comparing simulated data directly against the raw data.  Figure 4 shows this for both treatment conditions.  Simulated data for the Noom condition appears to better track the raw data than simulated data for the no Noom condition.  This is unsurprising, since the no Noom condition tended to have more outliers, which we would not expect (or want) our model to pick up perfectly from such a small sample.  
 \\
 
 \begin{figure}
@@ -217,7 +218,7 @@ Another way to check the fit of the model is by comparing simulated data directl
 \caption{\emph{Plots display siulated OBEs to raw data for both treatment conditions.  Model simulations appear to match the raw data well, particularly for the Noom condition, which had fewer outliers.}}
 \end{figure}
 
-We conclude our model evaluations by mapping modeled density curves for each condition in each time period over the histograms in figure Y.  Figure BB shows that our model is able to broadly pick up on the patterns in the data over time and between treatment conditions.
+We conclude our model evaluations by mapping modeled density curves for each condition in each time period over the histograms in figure 2  Figure 5 shows that our model is able to broadly pick up on the patterns in the data over time and between treatment conditions.
 
 \begin{figure}[h]
 \centering
@@ -226,10 +227,10 @@ We conclude our model evaluations by mapping modeled density curves for each con
 \end{figure}
 
 \subsection{Results}
-Model results are displayed in table M.  Results suggest that using the Noom Monitor smartphone application during CBT-GSH may slightly decrease OBEs.  There some evidence that the treatment effect varies over time, with the Noom effect being slightly more pronounced during the later stages of therapy.
+Model results are displayed in table 2.  Results suggest that using the Noom Monitor smartphone application during CBT-GSH may slightly decrease OBEs.  There some evidence that the treatment effect varies over time, with the Noom effect being slightly more pronounced during the later stages of therapy.
 \\
 
-Figure R displays modeled OBE for both treatment groups (upper plot) and smoothed treatment effects (lower plot).  In each measurement period, simulated OBE are higher for the No Noom condition than for the Noom condition, with some of the difference likely attributable to use of the Noom Monitor smartphone app.  
+Figure 6 displays modeled OBE for both treatment groups (upper plot) and smoothed treatment effects (lower plot).  In each measurement period, simulated OBE are higher for the No Noom condition than for the Noom condition, with some of the difference likely attributable to use of the Noom Monitor smartphone app.  
 
 \begin{table}[t]
 \centering
