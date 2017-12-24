@@ -1,18 +1,18 @@
 \contentsline {section}{\numberline {1}Introduction}{3}
 \contentsline {section}{\numberline {2}Bayesian Data Analysis}{3}
 \contentsline {subsection}{\numberline {2.1}Model development}{3}
-\contentsline {subsection}{\numberline {2.2}Model estimation}{4}
-\contentsline {subsection}{\numberline {2.3}Model checking, comparison and expansion}{4}
+\contentsline {subsection}{\numberline {2.2}Model estimation}{5}
+\contentsline {subsection}{\numberline {2.3}Model checking, comparison and expansion}{5}
 \contentsline {section}{\numberline {3}Comparison of Bayesian Data Analysis to Other Methods}{5}
-\contentsline {subsection}{\numberline {3.1}Better Prediction}{5}
+\contentsline {subsection}{\numberline {3.1}Better Prediction}{6}
 \contentsline {subsection}{\numberline {3.2}Transparency}{6}
-\contentsline {subsection}{\numberline {3.3}Risks of a Bayesian Approach}{6}
-\contentsline {section}{\numberline {4}Impact of Smartphone App on Eating Behavior}{6}
-\contentsline {subsection}{\numberline {4.1}Experimental design}{6}
+\contentsline {subsection}{\numberline {3.3}Risks of a Bayesian Approach}{7}
+\contentsline {section}{\numberline {4}Impact of Smartphone App on Eating Behavior}{7}
+\contentsline {subsection}{\numberline {4.1}Experimental design}{7}
 \contentsline {subsection}{\numberline {4.2}Exploratory data analysis}{7}
 \contentsline {subsection}{\numberline {4.3}Model development}{8}
-\contentsline {subsection}{\numberline {4.4}Model estimation}{10}
-\contentsline {subsection}{\numberline {4.5}Posterior predictive checking}{10}
+\contentsline {subsection}{\numberline {4.4}Model estimation}{11}
+\contentsline {subsection}{\numberline {4.5}Posterior predictive checking}{11}
 \contentsline {subsection}{\numberline {4.6}Results}{12}
 \contentsline {section}{\numberline {5}Conclusion}{13}
 \contentsline {section}{\numberline {6}Appendix}{13}
