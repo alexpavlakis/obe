@@ -16,7 +16,7 @@
 \setlength{\parindent}{0pt}
 
 \title{Bayesian Analysis of Randomized Controlled Trials}
-\author{Julian Bautista*, Alex Pavlakis*, Advait Rajagopal\footnote{The New School for Social Research}}
+\author{Julian Bautista*, Alex Pavlakis*, Advait Rajagopal\footnote{The New School for Social Research, 6 E 16 St, New York, NY, 10003.}}
 %\date{\today}		
 
 \setlength{\parindent}{0pt}
@@ -33,6 +33,17 @@
 
 \section{Introduction}
 Bayesian methods are gaining popularity in many fields because they allow researchers to incorporate all available information into flexible and transparent statistical models.  Many researchers have begun to incorporate Bayesian methods into medical, pharmaceutical, and social-science research.  The purpose of this paper is to show how Bayesian methods can be the standard in applied research.  We provide a general overview of the approach and an example analysis of Randomized Control Trial (RCT) on the impact of a smartphone application on eating disorder behavior.  
+-----
+\begin{itemize}
+\item Andrew Gelman, chapter 9, RCTs and why Bayes?\item Refer other people who did this\item Tom, MC stuff, accounts for the excess of zeros [mention both Tom's papers here]\\Randomized controlled trials in the context of treating binge-eating disorder and bulimia nervosa have been studied previously. It is important to understand the nature of the variable of interest, objective binge eating (OBE). Grotzinger, Hildebrandt and Yu [2016] have a very clear exposition of the problem. Moreover they address some of the modeling issues that arise due to specific properties of binge eating data. OBE refers to the number of binge eating episodes captured at different stages in the treatment process. That implies that OBE is count data and therefore discrete. Such data is also characterized by a large number of zeros which indicates remission. This makes the data highly positively skewed with an excess of zeros as many participants show remission even early in the treatment process. In Grotzinger, Hildebrandt and Yu [2016] they explore a semi-continuous treatment of the data and discuss a latent variable growth curve model to estimate a growth factor over time. They also suggest zero inflated Poisson (ZIP) and zero inflated negative binomial models (ZINB) to ensure an  appropriate treatment of the positively skewed data with excess zeros. While these approaches are correct for the problem, we believe that using Bayesian hierarchical models to capture treatment effects in RCT's is the best way forward and that is the primary contribution this paper makes to the literature. We use multilevel models, with carefully selected prior distributions to set-up a modeling framework that can be easily adopted for the class of problems with RCT's and clinical trials. We use the dataset studied by Hildebrandt et al. [2017] to test the effectiveness of a smartphone app on eating behavior (explained fully in Section 4).
+
+
+
+
+\item Our improvement, is that we are rigorous, reproducible, open to checking, criticism\item Bayesian mehtods allow us to be transparent with model specs and assumptions (see Section 2)\item heterogenous treatment effects (flexibility and benefits of hierarchical structures)\item Mention benefits of priors and how past studies help with prior info, this is perfect for Bayes\item What does each section do?\\
+The rest of the paper is organized as follows, section 2 explains the process and steps of Bayesian data analysis and inference. 
+
+\end{itemize}
 
 \section{Bayesian Data Analysis}
 Bayesian data analysis (BDA) and inference is the process of developing and fitting a probability model to data. The result is learning the probability distribution of the parameters of the model and being able to evaluate the fit of the model to the data as well as being able to make predictions for new observations [Gelman et. al 2013; Gelman and Hill 2007].
