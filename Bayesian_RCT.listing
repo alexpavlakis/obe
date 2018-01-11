@@ -1,0 +1,14 @@
+generated quantities{
+  real OBE_pred[N];
+  for(i in 1:N) {
+    OBE_pred[i] = poisson_log_rng(alpha[person_id[i]]
+                                  + alpha_sex*sex[i]
+                                  + alpha_black*black[i]
+                                  + alpha_other*other_race[i]
+                                  + alpha_hisp*hisp[i]
+                                  + alpha_bn*bn[i]
+                                  + beta[time_id[i]]
+                                  + alpha_age*age[i]
+                                  + gamma[time_id[i]]*tmt[i]);
+  }
+}

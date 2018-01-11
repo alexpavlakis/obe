@@ -1,19 +1,18 @@
 \contentsline {section}{\numberline {1}Introduction}{3}
 \contentsline {section}{\numberline {2}Bayesian Data Analysis}{4}
 \contentsline {subsection}{\numberline {2.1}Model development}{4}
-\contentsline {subsubsection}{\numberline {2.1.1}Exploratory Data Analysis}{5}
-\contentsline {subsubsection}{\numberline {2.1.2}Setting up a Likelihood Model}{5}
+\contentsline {subsubsection}{\numberline {2.1.1}Exploratory data analysis}{4}
+\contentsline {subsubsection}{\numberline {2.1.2}Setting up a likelihood model}{5}
 \contentsline {subsubsection}{\numberline {2.1.3}Choosing a prior distribution}{5}
 \contentsline {subsection}{\numberline {2.2}Model estimation}{6}
 \contentsline {subsection}{\numberline {2.3}Model checking, comparison and expansion}{7}
-\contentsline {section}{\numberline {3}Comparison of Bayesian Data Analysis to Other Methods}{8}
-\contentsline {subsection}{\numberline {3.1}Better Prediction}{8}
-\contentsline {subsection}{\numberline {3.2}Transparency}{9}
+\contentsline {section}{\numberline {3}Advantages of BDA}{7}
+\contentsline {subsection}{\numberline {3.1}Better prediction}{7}
+\contentsline {subsection}{\numberline {3.2}Transparency}{8}
 \contentsline {section}{\numberline {4}Impact of Smartphone App on Eating Behavior}{9}
-\contentsline {subsection}{\numberline {4.1}Experimental design}{10}
-\contentsline {subsection}{\numberline {4.2}Model development}{10}
-\contentsline {subsection}{\numberline {4.3}Model estimation}{15}
-\contentsline {subsection}{\numberline {4.4}Model checking, comparison, and expansion}{15}
-\contentsline {subsection}{\numberline {4.5}Results}{18}
-\contentsline {section}{\numberline {5}Conclusion}{20}
-\contentsline {section}{\numberline {6}Appendix}{20}
+\contentsline {subsection}{\numberline {4.1}Experimental design}{9}
+\contentsline {subsection}{\numberline {4.2}Model development}{9}
+\contentsline {subsection}{\numberline {4.3}Model estimation and results}{13}
+\contentsline {subsection}{\numberline {4.4}Model checking, comparison, and expansion}{14}
+\contentsline {section}{\numberline {5}Conclusion}{18}
+\contentsline {section}{\numberline {6}Appendix}{19}
