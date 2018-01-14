@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  14 JAN 2018 16:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  14 JAN 2018 17:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1102,13 +1102,18 @@ Package pdftex.def Info: noom_effect.png used on input line 282.
 (pdftex.def)             Requested size: 443.57088pt x 223.7637pt.
 
 [17 <./ppc_hist_dens.png>] [18 <./noom_effect.png>]
+<prior_plot.pdf, id=131, 578.16pt x 216.81pt>
+File: prior_plot.pdf Graphic file (type pdf)
+ <use prior_plot.pdf>
+Package pdftex.def Info: prior_plot.pdf used on input line 296.
+(pdftex.def)             Requested size: 443.57896pt x 166.3421pt.
 \openout4 = `Bayesian_RCT.listing'.
 
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
-LaTeX Font Info:    Try loading font information for OT1+zi4 on input line 325.
+LaTeX Font Info:    Try loading font information for OT1+zi4 on input line 335.
 
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/inconsolata/ot1zi4.fd
@@ -1120,44 +1125,44 @@ LaTeX Font Info:    Font shape `OT1/zi4/bx/n' in size <9> not available
 )
 \openout4 = `Bayesian_RCT.listing'.
 
- (./Bayesian_RCT.listing)
-Overfull \vbox (66.00208pt too high) has occurred while \output is active []
+ (./Bayesian_RCT.listing) [19 <./prior_plot.pdf>]
+Overfull \vbox (60.10208pt too high) has occurred while \output is active []
 
 
-[19]
+[20]
 \openout4 = `Bayesian_RCT.listing'.
 
- (./Bayesian_RCT.listing) [20]
-Underfull \hbox (badness 6268) in paragraph at lines 372--375
+ (./Bayesian_RCT.listing) [21]
+Underfull \hbox (badness 6268) in paragraph at lines 382--385
 []\OT1/cmr/m/n/9 Betancourt M (2017). \OT1/cmr/m/it/9 ``A Con-cep-tual In-tro-d
 uc-tion to Hamil-to-nian Monte Carlo"
  []
 
-[21]
-Underfull \hbox (badness 3579) in paragraph at lines 408--411
+[22]
+Underfull \hbox (badness 3579) in paragraph at lines 418--421
 []\OT1/cmr/m/n/9 Stan De-vel-op-ment Team. 2016. \OT1/cmr/m/it/9 RStan: the R i
 n-ter-face to Stan\OT1/cmr/m/n/9 , Ver-sion 2.10.1.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 413--416
+Underfull \hbox (badness 10000) in paragraph at lines 423--426
 []\OT1/cmr/m/n/9 Stan De-vel-op-ment Team. \OT1/cmr/m/it/9 ``Prior Choice Rec-o
 m-men-da-tions"
  []
 
-[22] (./Bayesian_RCT.aux)
+[23] (./Bayesian_RCT.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 26876 strings out of 493014
- 553373 string characters out of 6133351
- 639718 words of memory out of 5000000
- 29951 multiletter control sequences out of 15000+600000
+ 26881 strings out of 493014
+ 553462 string characters out of 6133351
+ 641875 words of memory out of 5000000
+ 29955 multiletter control sequences out of 15000+600000
  18185 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 63i,16n,101p,10495b,1290s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 63i,16n,101p,10495b,1294s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/inconsolata/i4-ot1-0.enc}
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<
 /usr/local/texlive/2016/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-z
@@ -1182,10 +1187,10 @@ al/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local
 exlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/te
 xlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texl
 ive/2016/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb>
-Output written on Bayesian_RCT.pdf (22 pages, 575044 bytes).
+Output written on Bayesian_RCT.pdf (23 pages, 590652 bytes).
 PDF statistics:
- 218 PDF objects out of 1000 (max. 8388607)
- 134 compressed objects within 2 object streams
+ 228 PDF objects out of 1000 (max. 8388607)
+ 141 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 187 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 192 words of extra memory for PDF output out of 10000 (max. 10000000)
 
