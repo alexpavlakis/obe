@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  14 JAN 2018 15:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  14 JAN 2018 16:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1038,15 +1038,23 @@ LaTeX Font Info:    Try loading font information for U+rsfs on input line 60.
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 ) [1
 
-{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
- [4]
-[5]
-Underfull \hbox (badness 10000) in paragraph at lines 112--117
+{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 68--70
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--72
+
+ []
+
+[2] [3] [4] [5]
+Underfull \hbox (badness 10000) in paragraph at lines 114--119
 
  []
 
 [6]
-Overfull \hbox (2.04843pt too wide) in paragraph at lines 119--120
+Overfull \hbox (2.04843pt too wide) in paragraph at lines 121--122
 \OT1/cmr/m/n/9 cause non-Bayesian tech-niques and tra-di-tional fre-quen-tist m
 od-els make tacit as-sump-tions. Bayesian
  []
@@ -1055,52 +1063,52 @@ od-els make tacit as-sump-tions. Bayesian
 File: Noom_paths.png Graphic file (type png)
 
 <use Noom_paths.png>
-Package pdftex.def Info: Noom_paths.png used on input line 144.
+Package pdftex.def Info: Noom_paths.png used on input line 146.
 (pdftex.def)             Requested size: 443.58273pt x 210.31534pt.
  <noom_hist.png, id=83, 786.94pt x 688.5725pt>
 File: noom_hist.png Graphic file (type png)
 
 <use noom_hist.png>
-Package pdftex.def Info: noom_hist.png used on input line 159.
+Package pdftex.def Info: noom_hist.png used on input line 161.
 (pdftex.def)             Requested size: 443.57726pt x 388.13008pt.
- [9 <./Noom_paths.png>] [10 <./noom_hist.png>] [11]
-Underfull \hbox (badness 10000) in paragraph at lines 225--227
+ [9 <./Noom_paths.png>] [10 <./noom_hist.png>] [11] [12]
+Underfull \hbox (badness 10000) in paragraph at lines 227--229
 
  []
 
-[12] <ppc_sims.png, id=101, 804.00375pt x 575.14874pt>
+[13] <ppc_sims.png, id=105, 804.00375pt x 575.14874pt>
 File: ppc_sims.png Graphic file (type png)
  <use ppc_sims.png>
-Package pdftex.def Info: ppc_sims.png used on input line 255.
+Package pdftex.def Info: ppc_sims.png used on input line 257.
 (pdftex.def)             Requested size: 443.57747pt x 317.3157pt.
 
-[13] <obe_ppcs.png, id=109, 925.4575pt x 459.7175pt>
+[14] <obe_ppcs.png, id=112, 925.4575pt x 459.7175pt>
 File: obe_ppcs.png Graphic file (type png)
  <use obe_ppcs.png>
-Package pdftex.def Info: obe_ppcs.png used on input line 264.
+Package pdftex.def Info: obe_ppcs.png used on input line 266.
 (pdftex.def)             Requested size: 443.5791pt x 220.34622pt.
 
-[14 <./ppc_sims.png>] <ppc_hist_dens.png, id=114, 765.86125pt x 687.56876pt>
+[15 <./ppc_sims.png>] <ppc_hist_dens.png, id=117, 765.86125pt x 687.56876pt>
 File: ppc_hist_dens.png Graphic file (type png)
 
 <use ppc_hist_dens.png>
-Package pdftex.def Info: ppc_hist_dens.png used on input line 273.
+Package pdftex.def Info: ppc_hist_dens.png used on input line 275.
 (pdftex.def)             Requested size: 443.58047pt x 398.23412pt.
- [15 <./obe_ppcs.png>]
-<noom_effect.png, id=119, 1012.78375pt x 510.90875pt>
+ [16 <./obe_ppcs.png>]
+<noom_effect.png, id=122, 1012.78375pt x 510.90875pt>
 File: noom_effect.png Graphic file (type png)
  <use noom_effect.png>
-Package pdftex.def Info: noom_effect.png used on input line 280.
+Package pdftex.def Info: noom_effect.png used on input line 282.
 (pdftex.def)             Requested size: 443.57088pt x 223.7637pt.
 
-[16 <./ppc_hist_dens.png>] [17 <./noom_effect.png>]
+[17 <./ppc_hist_dens.png>] [18 <./noom_effect.png>]
 \openout4 = `Bayesian_RCT.listing'.
 
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
-LaTeX Font Info:    Try loading font information for OT1+zi4 on input line 321.
+LaTeX Font Info:    Try loading font information for OT1+zi4 on input line 325.
 
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/inconsolata/ot1zi4.fd
@@ -1108,45 +1116,45 @@ File: ot1zi4.fd 2014/06/22 OT1/zi4 (Inconsolata)
 )
 (./Bayesian_RCT.listing
 LaTeX Font Info:    Font shape `OT1/zi4/bx/n' in size <9> not available
-(Font)              Font shape `OT1/zi4/b/n' tried instead on input line 2.
+(Font)              Font shape `OT1/zi4/b/n' tried instead on input line 3.
 )
 \openout4 = `Bayesian_RCT.listing'.
 
  (./Bayesian_RCT.listing)
-Overfull \vbox (26.40201pt too high) has occurred while \output is active []
+Overfull \vbox (66.00208pt too high) has occurred while \output is active []
 
 
-[18]
+[19]
 \openout4 = `Bayesian_RCT.listing'.
 
- (./Bayesian_RCT.listing) [19]
-Underfull \hbox (badness 6268) in paragraph at lines 365--368
+ (./Bayesian_RCT.listing) [20]
+Underfull \hbox (badness 6268) in paragraph at lines 372--375
 []\OT1/cmr/m/n/9 Betancourt M (2017). \OT1/cmr/m/it/9 ``A Con-cep-tual In-tro-d
 uc-tion to Hamil-to-nian Monte Carlo"
  []
 
-[20]
-Underfull \hbox (badness 3579) in paragraph at lines 397--400
+[21]
+Underfull \hbox (badness 3579) in paragraph at lines 408--411
 []\OT1/cmr/m/n/9 Stan De-vel-op-ment Team. 2016. \OT1/cmr/m/it/9 RStan: the R i
 n-ter-face to Stan\OT1/cmr/m/n/9 , Ver-sion 2.10.1.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 402--405
+Underfull \hbox (badness 10000) in paragraph at lines 413--416
 []\OT1/cmr/m/n/9 Stan De-vel-op-ment Team. \OT1/cmr/m/it/9 ``Prior Choice Rec-o
 m-men-da-tions"
  []
 
-[21] (./Bayesian_RCT.aux)
+[22] (./Bayesian_RCT.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 26867 strings out of 493014
- 553218 string characters out of 6133351
- 637715 words of memory out of 5000000
- 29942 multiletter control sequences out of 15000+600000
+ 26876 strings out of 493014
+ 553373 string characters out of 6133351
+ 639718 words of memory out of 5000000
+ 29951 multiletter control sequences out of 15000+600000
  18185 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  63i,16n,101p,10495b,1290s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1174,10 +1182,10 @@ al/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local
 exlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/te
 xlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texl
 ive/2016/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb>
-Output written on Bayesian_RCT.pdf (21 pages, 572814 bytes).
+Output written on Bayesian_RCT.pdf (22 pages, 575044 bytes).
 PDF statistics:
- 215 PDF objects out of 1000 (max. 8388607)
- 132 compressed objects within 2 object streams
+ 218 PDF objects out of 1000 (max. 8388607)
+ 134 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  187 words of extra memory for PDF output out of 10000 (max. 10000000)
 

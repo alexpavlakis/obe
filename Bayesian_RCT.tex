@@ -67,8 +67,10 @@
 \section{Introduction}
 Bayesian methods are gaining popularity in many fields because they allow researchers to incorporate all available information into flexible and transparent statistical models.  Many researchers have begun to incorporate Bayesian methods into medical, pharmaceutical, and social-science research.  The purpose of this paper is to show how Bayesian methods can be the standard in applied research.  We provide a general overview of the approach and an example analysis of Randomized Control Trial (RCT) on the impact of a smartphone application on eating disorder behavior. \\
 Regression models are well-suited for analyzing RCTs because they allow researchers to identify causal effects precisely by controlling for all available covariates [Gelman and Hill, 2007].  The Bayesian approach to regression models is advantageous because it allows researchers to include relevant prior information, to fit flexible models, and to naturally estimate varying treatment effects among subgroups of the population.\\
+
 Randomized controlled trials (RCTs) designed to test the efficacy of treatments for binge eating and/or purging for binge eating disorder (BED), bulimia nervosa (BN), or subthreshold variants are an essential methodological tool for clinical researchers in the field.  The primary outcomes for the majority of these RCTs include symptom counts (e.g., objective or subjective binge episodes, vomiting, laxative use, etc.). This data is typically positively skewed and often include inflation of zeros representing achievement of abstinence or symptom remission.  Grotzinger, Hildebrandt, and Yu [2016] summarize some of these issues and their implications for analyzing RCTs.  Specifically, they used simulated data to examine the value of several different models of positively skewed data including latent growth zero inflated Poisson (ZIP), zero inflated negative binomial (ZINB), and semi-continuous models.  The results suggest that semi-continuous models have some desirable analytic properties, including greater statistical power in most situations over traditional continuous models.  In this paper, we present a robust alternative to these latent growth models in the form of Bayesian hierarchical model.  We aim for this paper to be an introduction to the method with a focus on providing guidelines for executing this method in a rigorous way and with enough information to facilitate replication of these methods.  To achieve this goal, we use the data from recently published RCT examining the efficacy of cognitive behavioral therapy version of guided self-help (CBT-GSH) with the addition of a smartphone app designed for the intervention [Hildebrandt et al., 2017]. \\
-The main contribution of this paper is a demonstration of the Bayesian method. We believe these methods are rigorous, easily reproducible and are open to checking. Bayesian analysis also makes modeling assumptions explicit with the use of priors. The rest of the paper is organized as follows, section 2 explains the process and steps of Bayesian data analysis and inference. Section 3 compares Bayesian analysis to other methods, section 4 explains the experiment, modeling and results. Section 5 concludes and section 6 has the Stan code used for this model.
+
+The main contribution of this paper is a demonstration of Bayesian methods. We believe these methods are rigorous, easily reproducible and are open to checking. Bayesian analysis also makes modeling assumptions explicit with the use of prior distributions of underlying parameter values which consider all  problems for which the model could apply.  The rest of the paper is organized as follows, section 2 explains the process and steps of Bayesian data analysis and inference. Section 3 compares Bayesian analysis to other methods, section 4 explains the experiment, modeling and results. Section 5 concludes and section 6 has the Stan code used for this model.
 
 \section{Bayesian Data Analysis}
 Bayesian data analysis (BDA) and inference is the process of developing and fitting a probability model to data. The result is learning the probability distribution of the parameters of the model and being able to evaluate the fit of the model to the data as well as being able to make predictions for new observations [Gelman et. al 2013; Gelman and Hill 2007].
@@ -196,7 +198,7 @@ Table 1 has a list of different sources from which prior information has been ob
 \caption{\emph{Sources of prior information.}}
 \end{table}
 %
-We believe that individual-level intercepts are simultaneously unique to the individual and common to the population; that is, each individual has their own baseline predilection to engage in eating disorder behavior, but their baseline predilections are not drastically different from each other.  We operationalize this concept by modeling all individual-level intercepts as coming from a common distribution, with \emph{hyperparameters} $\mu_{\alpha}$ and $\tau_{\alpha}$.
+We believe that individual-level intercepts are simultaneously unique to the individual and common to the population; that is, each individual has their own baseline predilection to engage in eating disorder behavior, but their baseline predilections are not drastically different from each other.  We operationalize this concept by modeling all individual-level intercepts as coming from a common distribution, with \emph{hyperparameters} $\mu_{\alpha}$ and $\tau_{\alpha}$.  In Bayesian statistics, hyperparameters are parameters of prior distributions.  In hierarchical models, we model hyperparameters explicitly.
 %
 \begin{align}
 \alpha_i \sim Normal(\mu_{\alpha}, \tau_{\alpha}) \ \forall \ i \in 1,...,66
@@ -282,13 +284,14 @@ Figure 6 displays the simulated OBE for both treatment groups (upper plot) and s
 \end{center}
 \end{figure}
 
-
 \section{Conclusion}
+Bayesian Data Analysis is a powerful tool for incorporating data and prior information into complex and flexible models.  It is well-suited to analyzing RCTs, where effects are small and data has complicated hierarchical structures.  In this paper, we have explained the steps of Bayesian Data Analysis and shown how they can be used to analyze an RCT in psychiatry.  We hope that researchers will use this as a template and extend it to their analyses.  
 
 \newpage
 \section{Appendix}
 \begin{sexylisting}{Stan code}
 data{
+  \\ Declare data
   int N;
   int N_time;
   int N_ppl;
@@ -304,6 +307,7 @@ data{
   int bn[N];
 }
 parameters{
+  \\ Declare parameters for estimation
   real alpha[N_ppl];
   real mu_alpha;
   real<lower = 0> tau_alpha;
@@ -321,6 +325,7 @@ parameters{
 \end{sexylisting}
 \begin{sexylisting}{Stan code contd.}
 model{
+  \\ Define likelihood
   for(i in 1:N) {
     OBE[i] ~ poisson_log(alpha[person_id[i]] + alpha_sex*sex[i] 
                          + alpha_black*black[i] 
@@ -329,6 +334,7 @@ model{
                          + beta[time_id[i]] + alpha_age*age[i]
                          + gamma[time_id[i]]*tmt[i]);
   }
+  \\ Define priors
   alpha ~ normal(mu_alpha, tau_alpha);
   mu_alpha ~ normal(5, 2);
   tau_alpha ~ cauchy(0, 50);
@@ -344,6 +350,7 @@ model{
 \end{sexylisting}
 \begin{sexylisting}{Stan code contd.}
 generated quantities{
+  \\ Simulate data through the model
   real OBE_pred[N];
   for(i in 1:N) {
     OBE_pred[i] = poisson_log_rng(alpha[person_id[i]] 
@@ -380,6 +387,10 @@ Gelman A (2006).
 Gelman A, Hill J (2007).
 \textit{``Data Analysis Using Regression and Multilevel/Hierarchical Models"}
 ISBN-13 978-0-521-68689-1, Published in the United States of America by Cambridge University Press, New York
+
+\bibitem{Benefits and limitations of randomized controlled trials}
+Gelman A (2017).
+\textit{``Data Analysis Using Regression and Multilevel/Hierarchical Models"}
 
 \bibitem{The benefits of using semi-continuous and continuous models to analyze binge eating data: A Monte Carlo investigation}
 Grotzinger, A, Hildebrandt, T, and Yu, J. (2015). 

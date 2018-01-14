@@ -1,4 +1,5 @@
 generated quantities{
+  \\ Simulate data through the model
   real OBE_pred[N];
   for(i in 1:N) {
     OBE_pred[i] = poisson_log_rng(alpha[person_id[i]]
