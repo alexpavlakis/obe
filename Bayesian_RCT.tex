@@ -55,8 +55,6 @@
 %   Document starts   %
 %%%%%%%%%%%%
 
-
-
 			
 \begin{document}
 \maketitle
@@ -64,9 +62,6 @@
 
 \abstract{}	
 
-\newpage 
-
-\tableofcontents
 \newpage
 
 \section{Introduction}
@@ -117,7 +112,8 @@ There are two primary benefits to a Bayesian approach for the analysis of Random
 As discussed earlier, the choice of a prior distribution is a critical assumption that directly affects the results of the analysis. Bayesian analysis lends itself well to the infinitely many distributions that can be used. But beyond the choice of a distribution, the specifications of hyper-paramaters of these distributions allow for the usage of data that exists beyond that which was collected within the study.\\
 Data does not live only on the spreadsheet. It is contained in the researcher's knowledge of the literature, the data generating process, and anything else that is relevant. This can include common sense knowledge such as the understanding that estimates on ratios will be between 0 and 1, or it could be an expected estimate based on previous studies done. Regardless of the source of the information, knowledge about an estimator can be translated into the prior to improve accuracy. \\ \\
 One of the greatest advantages of specifying prior distributions in a hierarchical or multilevel model is to allow for partial pooling. Hierarchical data structures include any data that can be represented in categories. In a non-Bayesian scenario, there are two choices a researcher has: a complete pooling model, and a no pooling model. With complete pooling, the categories in data are completely interchangeable, thus ignoring the uniqueness of categories. With no pooling, each category is treated as independent of the others, thus ignoring the interrelatedness of each of the categories. Setting up a prior distribution allows us to say that our relevant parameters have a common mean, but are each different from one another. This partial pooling is often more accurate as it takes into account both the uniqueness and interrelatedness of categories within a hierarchical model.\\
-Unlike traditional approaches, the Bayesian approach does not output a point estimate with confidence intervals. Instead it estimates a joint posterior distribution (correct up to a normalizing constant) for the parameters conditional on data. This distribution contains all the information from the prior and the model. From this joint posterior we can obtain the marginal distribution of each parameter with credible posterior intervals. This provides an accurate account of the inherent uncertainty in the estimation of the parameters. Generating a posterior also allows for simulation using posterior draws from this distribution. This is helpful for model checking, expansion and further analysis.
+Unlike traditional approaches, the Bayesian approach does not output a point estimate with confidence intervals. Instead it estimates a joint posterior distribution (correct up to a normalizing constant) for the parameters conditional on data. This distribution contains all the information from the prior and the model. From this joint posterior we can obtain the marginal distribution of each parameter with credible posterior intervals. This provides an accurate account of the inherent uncertainty in the estimation of the parameters. Generating a posterior also allows for simulation using posterior draws from this distribution. This is helpful for model checking, expansion and further analysis. \\
+By embracing the uncertainty inherent in statistical estimators, the Bayesian approach leaves little need for the p-values that are often used as thresholds in classical statistics.  Intuitively, p-values represent the probability of the data conditional on the null hypothesis, under hypothetical replications.  However, since researchers have many opportunities to choose how data is coded, which data is included, and what comparisons are made, it is easy to obtain "statistically significant" p-values even if there are no "true" effects (Gelman, 2017).  In the Bayesian approach, we focus on the posterior distribution of parameters, leaving no need for worrying about hypothetical replications or the issue of multiple comparisons.
 
 \subsection{Transparency}
 Bayesian analysis also lends itself to better scientific scrutiny on models overall. This occurs because non-Bayesian techniques and traditional frequentist models make tacit assumptions. Bayesian methods make underlying modeling assumptions explicit in the form of a prior. For example, a simple linear regression tacitly assumes that the parameter is normally distributed and has a uniform prior. While this assumption may be appropriate for some problems, in many occasions it does not get scrutinized closely because it is an implied assumption. Meanwhile, the power of a prior to influence estimates puts a magnifying glass on all of these issues that were easily glossed over previously.  Close scrutiny is a critical component for rich academic discourse. It puts the onus on researchers to justify the assumptions of their model and allows for vibrant discussion. 
@@ -385,6 +381,10 @@ Gelman A, Hill J (2007).
 \textit{``Data Analysis Using Regression and Multilevel/Hierarchical Models"}
 ISBN-13 978-0-521-68689-1, Published in the United States of America by Cambridge University Press, New York
 
+\bibitem{Benefits and limitations of randomized controlled trials}
+Gelman A (2017).
+\textit{``Data Analysis Using Regression and Multilevel/Hierarchical Models"}
+http://www.stat.columbia.edu/~gelman/research/published/causal_ssm.pdf
 
 \bibitem{The benefits of using semi-continuous and continuous models to analyze binge eating data: A Monte Carlo investigation}
 Grotzinger, A, Hildebrandt, T, and Yu, J. (2015). 
@@ -397,7 +397,6 @@ Hildebrandt T, Michaelides A, Mackinnon D, Greif R, DeBar L, Sysko R (2017)
 \textit{``Randomized controlled trial comparing smartphone assisted
 versus traditional guided self-help for adults with binge eating"}
 Int J Eat Disord. 2017 Nov;50(11):1313-1322. doi: 10.1002/eat.22781.
-
 
 \bibitem{Stan}
 Stan Development Team. 2016. 
