@@ -143,7 +143,7 @@ Furthermore, models that use priors have access to information beyond what was c
 Bayesian Data Analysis is particularly useful for Randomized Control Trials. Data from RCT's often have hieararchical structures, which means that attributes of the observations can be represented in categories such as gender of the participant, treatment/control, or education. Specifying prior distributions in a hierarchical or multilevel model is allows for \textit{partial pooling}. In a non-Bayesian method, there are two choices a researcher has: a complete pooling model, and a no pooling model. With complete pooling, the categories in data are completely interchangeable, thus ignoring the uniqueness of categories. With no pooling, each category is treated as independent of the others, thus ignoring the interrelatedness of each of the categories.  For example, if an RCT was conducted in multiple locations by different staff, the researcher must assume that the treatments are entirely identical in a complete pooling model, ignoring the differences in execution that may have taken place by differing staff. In the no pooling model, the RCT would assume that each treatment would be entirely different across locations, despite having close similarities in how the treatments were applied. Setting up a prior distribution allows researchers to solve this problem by saying that the treatment effects across the locations have a common mean, but vary based on location. This partial pooling is often more accurate as it takes into account both the uniqueness and interrelatedness of categories within a hierarchical model.
 
 \subsection{Transparency}
-Bayesian analysis also lends itself to better scientific scrutiny on models overall. This occurs because non-Bayesian techniques and traditional frequentist models make tacit assumptions. Bayesian methods make underlying modeling assumptions explicit in the form of a prior. For example, a simple linear regression tacitly assumes that the parameter is normally distributed and has a uniform prior. While this assumption may be appropriate for some problems, in many occasions it does not get scrutinized closely because it is an implied assumption. Meanwhile, the power of a prior to influence estimates puts a magnifying glass on all of these issues that were easily glossed over previously.  Close scrutiny is a critical component for rich academic discourse. It puts the onus on researchers to justify the assumptions of their model and allows for vibrant discussion. 
+Bayesian analysis also lends itself to better scientific scrutiny on models overall. This occurs because non-Bayesian techniques and traditional frequentist models make tacit assumptions. Bayesian methods make underlying modeling assumptions explicit in the form of a prior. For example, a simple linear regression tacitly assumes that the parameter is normally distributed and has a uniform prior. While this assumption may be appropriate for some problems, in many occasions it does not get scrutinized closely because it is an implied assumption. Meanwhile, the power of a prior to influence estimates puts a magnifying glass on model selection issues that are easily glossed over in frequentist methods.  Close scrutiny is a critical component for rich academic discourse. It puts the onus on researchers to justify the assumptions of their model and allows for vibrant discussion. 
 
 \section{Impact of Smartphone App on Eating Behavior}
 
@@ -191,7 +191,7 @@ These three characteristics suggest that the appropriate model for OBEs is the P
 \subsection*{Setting up a likelihood}
 
 We analyze RCTs by modeling the outcome of interest (in this case OBE) as a function of the treatment and all available pre-treatment covariates.  The coefficients associated with the treatment reveal the average treatment effects.  Inclusion of all available pre-treatment covariates accounts for variation in the outcome variable, decreasing uncertainly around treatment effects and providing the model with more predictive power.  We conduct \emph{intent-to-treat} analysis, meaning that our inferences will be based on initial treatment assignment, and will not account for mid-experiment dropouts. \\
-The outcome variable is restricted to be nonnegative integers, so we fit a Poisson regression model, with hierarchies on individuals, time periods, and treatment effects.  For each individual in each time period, the number of OBEs follows a Poisson distribution, with a mean dependent on the characteristics of the individual and the time period.  
+The outcome variable is restricted to be nonnegative integers, so we fit a Poisson regression model, with hierarchies on individuals, time periods, and treatment effects. [expound here and compare to ZIP] For each individual in each time period, the number of OBEs follows a Poisson distribution, with a mean dependent on the characteristics of the individual and the time period.  
 \begin{align}
 OBE_{i,t} &\sim Poisson(\lambda_{i,t}) \\
 \lambda_{i,t} &= exp(\alpha_i + \beta_t + \gamma_tT_i + X_i\theta) \\
@@ -249,24 +249,25 @@ We assign the following prior and hyperprior distributions:
 The normal distributions around the individual and treatment effects allow us to guide the model to the appropriate range of parameter values, but with wide enough variance (5 in each case) to let the model find its own way in that range.  Half cauchy priors on the variance parameters are weakly informative, with much of their mass around zero but gentle slopes in their tails, which have been shown to be effective prior distributions for variance parameters [Gelman, 2006].
 
 \subsection{Model estimation and results}
-We estimate this model with \emph{Hamilton Monte-Carlo} in Stan.  Model code is appended to this document. This is a particular algorithm from a larger class of Markov Chain Monte Carlo algorithms, for more examples see Gelman et. al [2013]. We find that the model converges with four chains of 2000 iterations each (see Table 2).
+We estimate this model with \emph{Hamilton Monte-Carlo} in Stan.  Model code is appended to this document. This is a particular algorithm from a larger class of Markov Chain Monte Carlo algorithms, for more examples see Gelman et. al [2013].
+
 Model results are displayed in Table 2.  Results suggest that using the Noom Monitor smartphone application during CBT-GSH may slightly decrease OBEs.  There is evidence that the treatment effect varies over time, with the Noom effect being slightly more pronounced during stages 4, 8, 12 and 24 of therapy but decreasing by week 36.\\
 
 \begin{table}[H]
 \centering
 \begin{tabular}{r c c c c c}
   \hline
- & mean & 25\% & 50\% & 75\% & R-hat\\ 
+ & mean & 25\% & 50\% & 75\%\\ 
   \hline
-  $\gamma_0$ & 0.18 & -0.45 & 0.15 & 0.78 & 1   \\ 
-  $\gamma_4$ & -0.43 & -1.05 & -0.46 & 0.16 & 1   \\ 
-  $\gamma_8$ & -0.70 & -1.33 & -0.71 & -0.10   & 1\\  
-  $\gamma_{12}$ & -0.65 & -1.28 & -0.68 & -0.04   & 1\\  
-  $\gamma_{24}$ & -0.72 & -1.34 & -0.75 & -0.11  & 1\\  
-  $\gamma_{36}$ & 0.21 & -0.42 & 0.19 & 0.82 & 1 \\ 
+  $\gamma_0$ & 0.18 & -0.45 & 0.15 & 0.78  \\ 
+  $\gamma_4$ & -0.43 & -1.05 & -0.46 & 0.16 \\ 
+  $\gamma_8$ & -0.70 & -1.33 & -0.71 & -0.10 \\  
+  $\gamma_{12}$ & -0.65 & -1.28 & -0.68 & -0.04 \\  
+  $\gamma_{24}$ & -0.72 & -1.34 & -0.75 & -0.11 \\  
+  $\gamma_{36}$ & 0.21 & -0.42 & 0.19 & 0.82 \\ 
   \hline \hline
-  $\mu_{\gamma}$ & -0.34 & -0.98 & -0.36 & 0.26  & 1\\ 
-  $\tau_{\gamma}$ & 0.64 & 0.43 & 0.56 & 0.77  & 1\\ 
+  $\mu_{\gamma}$ & -0.34 & -0.98 & -0.36 & 0.26 \\ 
+  $\tau_{\gamma}$ & 0.64 & 0.43 & 0.56 & 0.77 \\ 
    \hline
 \end{tabular}
 \caption{\emph{Table displays model results for Noom effects in all six time periods and grand mean and variance parameters.}}
