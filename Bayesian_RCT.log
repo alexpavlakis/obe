@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  29 MAR 2018 20:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  1 APR 2018 22:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1129,13 +1129,13 @@ uc-tion to Hamil-to-nian Monte Carlo"
  []
 
 [23]
-Underfull \hbox (badness 3579) in paragraph at lines 436--439
+Underfull \hbox (badness 2809) in paragraph at lines 450--453
 []\OT1/cmr/m/n/9 Stan De-vel-op-ment Team. 2016. \OT1/cmr/m/it/9 RStan: the R i
 n-ter-face to Stan\OT1/cmr/m/n/9 , Ver-sion 2.10.1.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 441--444
+Underfull \hbox (badness 10000) in paragraph at lines 455--458
 []\OT1/cmr/m/n/9 Stan De-vel-op-ment Team. \OT1/cmr/m/it/9 ``Prior Choice Rec-o
 m-men-da-tions"
  []
@@ -1146,10 +1146,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 26881 strings out of 493014
- 553462 string characters out of 6133351
- 641875 words of memory out of 5000000
- 29955 multiletter control sequences out of 15000+600000
+ 26885 strings out of 493014
+ 553615 string characters out of 6133351
+ 641890 words of memory out of 5000000
+ 29959 multiletter control sequences out of 15000+600000
  18185 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  63i,16n,101p,10495b,1294s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1177,7 +1177,7 @@ al/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local
 exlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/te
 xlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texl
 ive/2016/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb>
-Output written on Bayesian_RCT.pdf (24 pages, 597856 bytes).
+Output written on Bayesian_RCT.pdf (24 pages, 598846 bytes).
 PDF statistics:
  231 PDF objects out of 1000 (max. 8388607)
  143 compressed objects within 2 object streams

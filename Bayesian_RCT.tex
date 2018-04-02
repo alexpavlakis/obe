@@ -84,21 +84,21 @@ There are three main steps to BDA which are listed below and explained in detail
 \subsection{Probability notation and Bayes' rule}
 In Bayesian Data Analysis, assumptions are specified mathematically as \textit{prior distributions}.  Data is represented through a \textit{likelihood model}. Bayes' Rule combines prior distribution and data likelihood into a \textit{posterior distribution}.  A formal expression of the Bayes' Rule is as follows;
 \begin{align}
-{p(\theta|x, y) = \frac{ p(\theta) p(x, y|\theta)}{p(x, y)}}
+{p(\theta| y, x) = \frac{ p(\theta) p(y|\theta, x)}{p(y)}}
 \end{align}
-$\theta$ is the estimated parameter, $y$ is the data. In the context of an RCT, $\theta$ is the effect of the treatment $x$ on dependent variable $y$. $p(\theta)$ is the prior distribution of the treatment effect, which captures the researcher's beliefs about the model parameter prior to any analysis. $p(x, y | \theta)$ is the likelihood function and is the probability of the observed data given the parameter.  $p(x, y)$ is a normalizing constant with respect to $\theta$ that ensures the left hand side $p(\theta | x, y)$ is a proper probability distribution that integrates to 1. For a full treatment of proper distributions and normalizing constants see BDA[CITE SOURCE]. \\
-For our purpose, we can ignore this denominator and equivalently rewrite the expression for the posterior $p(\theta | y)$ (equation 1) as ;
+$\theta$ is the estimated parameter. In the context of an RCT, $\theta$ is the effect of the treatment $x$ on dependent variable $y$. $p(\theta)$ is the prior distribution of the treatment effect, which captures the researcher's beliefs about the model parameter prior to any analysis. $p(y | \theta, x)$ is the likelihood function and is the probability of the observed data given the parameter.  $p(y)$ is a normalizing constant with respect to $\theta$ that ensures the left hand side $p(\theta |y, x)$ is a proper probability distribution that integrates to 1. For a full treatment of proper distributions and normalizing constants see Gelman et. al [2013]. \\
+For our purpose, we can ignore this denominator and rewrite the expression for the posterior $p(\theta | y)$ (equation 1) as ;
  \begin{align}
- p(\theta |x, y) \propto p(\theta) p(x, y |\theta)
+ p(\theta | y, x) \propto p(\theta) p(y |\theta, x)
  \end{align}
-The posterior distribution is proportional to the product of the prior and the likelihood. Ultimately the goal of our modeling exercise is to learn the posterior distribution $p(\theta|x, y)$ and summarize it accurately. Based on this we can make inferences and predictions.
+The posterior distribution is proportional to the product of the prior and the likelihood. Ultimately the goal of our modeling exercise is to learn the posterior distribution $p(\theta|y, x)$ and summarize it accurately [Gelman et. al. 2013]. Based on this we can make inferences and predictions.
 
 \subsection{Model development}
 Model development involves setting up a joint probability distribution that accounts for all observed data and unobserved parameters. The model should include all knowledge of the experiment or data collection process and should be logically consistent with scientific nature of the problem at hand. We approach model development in three steps.
 
 \subsubsection{Exploratory data analysis}
 Summarizing the initial results from data through visualizations and summary statistics is a critical model building step. We look at summary statistics of our relevant variables to understand their distribution. We explore the data through univariate analyses, such as histograms to visualize distributions, and bivariate analyses, such as scatter plots of potential dependent and independent variables against each other to see if there are meaningful linear or non linear relationships. This exploratory process informs us of the distribution of individual variables, their correlations, and other relevant information for modeling. \\
-Exploratory analysis helps us to choose an appropriate likelihood model to describe the data. For example, if our variables are normally distributed and linearly correlated, we might choose a simple linear regression model. If the relationship between variables is not so straightforward we might choose more complicated models.  It allows the researcher to explore and solidify intuition about the problem at hand and the nature of the data. [[An introductory treatment of exploratory data analysis can be found in Tukey 1977....]] [[More advanced EDA J Gabry, M Betancourt]]
+Exploratory analysis helps us to choose an appropriate likelihood model to describe the data. For example, if our variables are normally distributed and linearly correlated, we might choose a simple linear regression model. If the relationship between variables is not so straightforward we might choose more complicated models.  It allows the researcher to explore and solidify intuition about the problem at hand and the nature of the data. An introductory treatment of exploratory data analysis can be found in Tukey [1977]. A more advanced explanation of exploratory data analysis, particularly in the context of Bayesian statistics, is available in Gabry et. al [2018] and Betancourt [2018].
 
 
 \subsubsection{Setting up a likelihood model}
@@ -122,13 +122,13 @@ Based on the fit of the model, we can engage in model comparison. We are not exp
 In this section we discuss some of the major benefits of using a Bayesian approach to the analysis of Randomized Control Trials.
 
 \subsection{Heterogenous Treatment Effects}
-Perhaps the greatest advantage of Bayesian modeling is its ability to capture heterogeneity in the sample and provide treatment effects that account for this heterogeneity. For example in our study, we control for variation in demographic variables and, importantly, variation in the treatment across the time . This type of approach is commonly known as a varying slope - varying intercept model [CITE GELMAN HILL CH 23, bottom page 506]. Our approach of hierarchical modeling and partial pooling allows us to accomplish this naturally, which is among of the greatest advantages of BDA as a method. \\
-Hierarchical (multilevel) modeling has two closely related meanings [Feller and Gelman, 2015 INCLUDE THIS CITATION]. Hierarchies can explain a hierarchical data structure like spatial or temporal variation. In the RCT we consider in this paper, each treatment period is treated as a level and so we obtain different treatment effects for each period. Hierarchies also describe how parameters are modeled. We model our treatment effects for each level or category in the data, to come from a common underlying prior distribution [CITATION HERE]. This is the idea of \textit{partially pooled} estimates of treatment effects. Partial pooling in a Bayesian context is different than traditional complete pooling or no pooling approaches.  In a non-Bayesian method, there are two choices a researcher has: a complete pooling model, and a no pooling model. With complete pooling, the categories in data are completely interchangeable, thus ignoring the uniqueness of categories. With no pooling, each category is treated as independent of the others, thus ignoring the interrelatedness of each of the categories.  For example, if an RCT was conducted in multiple locations by different staff, the researcher must assume that the treatments are entirely identical in a complete pooling model, ignoring the differences in execution that may have taken place by differing staff. In the no pooling model, the RCT would assume that each treatment would be entirely different across locations, despite having close similarities in how the treatments were applied. Setting up a prior distribution allows researchers to solve this problem by saying that the treatment effects across the locations have a common mean, but vary based on location. This partial pooling is often more accurate as it takes into account both the uniqueness and interrelatedness of categories within a hierarchical model.
+Perhaps the greatest advantage of Bayesian modeling is its ability to capture heterogeneity in the sample and provide treatment effects that account for this heterogeneity. For example in our study, we control for variation in demographic variables and, importantly, variation in the treatment across the time . This type of approach is commonly known as a varying slope - varying intercept model [Gelman and Hill, 2007]. Our approach of hierarchical modeling and partial pooling allows us to accomplish this naturally, which is among of the greatest advantages of BDA as a method. \\
+Hierarchical (multilevel) modeling has two closely related meanings [Feller and Gelman, 2015]. Hierarchies can explain a hierarchical data structure like spatial or temporal variation. In the RCT we consider in this paper, each treatment period is treated as a level and so we obtain different treatment effects for each period. Hierarchies also describe how parameters are modeled. We model our treatment effects for each level or category in the data, to come from a common underlying prior distribution [CITATION HERE]. This is the idea of \textit{partially pooled} estimates of treatment effects. Partial pooling in a Bayesian context is different than traditional complete pooling or no pooling approaches.  In a non-Bayesian method, there are two choices a researcher has: a complete pooling model, and a no pooling model. With complete pooling, the categories in data are completely interchangeable, thus ignoring the uniqueness of categories. With no pooling, each category is treated as independent of the others, thus ignoring the interrelatedness of each of the categories.  For example, if an RCT was conducted in multiple locations by different staff, the researcher must assume that the treatments are entirely identical in a complete pooling model, ignoring the differences in execution that may have taken place by differing staff. In the no pooling model, the RCT would assume that each treatment would be entirely different across locations, despite having close similarities in how the treatments were applied. Setting up a prior distribution allows researchers to solve this problem by saying that the treatment effects across the locations have a common mean, but vary based on location. This partial pooling is often more accurate as it takes into account both the uniqueness and interrelatedness of categories within a hierarchical model.
 
 
 
 \subsection{Making uncertainty explicit}
-Bayesian Data Analysis has fundamentally different assumptions compared to frequentist approaches. The classical frequentist paradigm states that if an experiment were to be repeated infinite times, estimates would fall within the 95\% interval 95\% of the time. Thus error in the models represent sampling error, not genuine uncertainty. Meanwhile, Bayesians start out with a prediction of the parameters to be estimated based on certain assumptions encapsulated in the prior and iteratively update these estimates mathematically using the new information contained in the data. This is a superior estimate because it does not constrain the estimates to move asymptotically towards a specific, pre-defined distribution. Instead, it allows the assumptions and data to meet together to form a unique distribution that captures the uniqueness of the specific scientific problem. This is often a more accurate representation of uncertainty.\\
+Bayesian Data Analysis has fundamentally different assumptions compared to frequentist approaches. The classical frequentist paradigm states that if an experiment were to be repeated infinite times, estimates would fall within the 95\% interval with a probability of 0.95. Thus error in the models represent sampling error, not genuine uncertainty. Meanwhile, Bayesians start out with a prediction of the parameters to be estimated based on certain assumptions encapsulated in the prior and iteratively update these estimates mathematically using the new information contained in the data. This is a superior estimate because it does not constrain the estimates to move asymptotically towards a specific, pre-defined distribution. Instead, it allows the assumptions and data to meet together to form a unique distribution that captures the uniqueness of the specific scientific problem. This is often a more accurate representation of uncertainty.\\
 Furthermore, models that use priors have access to information beyond what was collected within the study. Data does not live only on the spreadsheet. It is contained in the researcher's knowledge of the literature, the data generating process, and the specific scientific problem. This can include common sense knowledge such as the understanding that estimates on ratios will be between 0 and 1, or it could be an expected estimate based on previous studies done. Regardless of the source of the information, knowledge about an estimator can be translated into the prior to improve accuracy. \\ 
 By embracing the uncertainty inherent in statistical estimators, the Bayesian approach leaves little need for the p-values that are often used as thresholds in classical statistics.  Intuitively, p-values represent the probability of the data conditional on the null hypothesis, under hypothetical replications.  However, since researchers have many opportunities to choose how data is coded, which data is included, and what comparisons are made, it is easy to obtain "statistically significant" p-values even if there are no "true" effects [Gelman, 2017].  In the Bayesian approach, we focus on the posterior distribution of parameters, leaving no need for worrying about hypothetical replications or the issue of multiple comparisons.
 
@@ -168,7 +168,7 @@ Figure 1 displays OBEs per week for each individual in both treatment conditions
 Figure 2 displays the distribution of OBEs in each condition in each week.  We notice three characteristics of the data from these histograms.
 \begin{enumerate}
 \item{The distributions appear to condense around zero for both conditions over time} 
-\item{The distributions in the CBT-GSH condition appear to have longer tails than those in the CBB-GSH+Noom condition}
+\item{The distributions in the CBT-GSH condition appear to have longer tails than those in the CBT-GSH+Noom condition}
 \item{OBEs are count data; they must be nonnegative integers.}
 \end{enumerate}
 These three characteristics suggest that the appropriate model for OBEs is the Poisson distribution, because it is restricted to nonnegative integers and can concentrate its density around low numbers with a long tail.
@@ -401,6 +401,20 @@ Betancourt M (2017).
 \textit{``A Conceptual Introduction to Hamiltonian Monte Carlo"} 
 arXiv:1701.02434 [stat.ME]
 
+\bibitem{Calibrating Model-Based Inferences and Decisions}
+Betancourt M (2018).
+\textit{``Calibrating Model-Based Inferences and Decisions"} 
+arXiv:1803.08393v1 [stat.ME]
+
+\bibitem{Hierarchical Models for Causal Effects}
+Feller, A and Gelman, A (2015) \textit{``Hierarchical Models for Causal Effects".}
+Emerging Trends in the Social and Behavioral Sciences. Edited by Robert Scott and Stephen Kosslyn. ISBN 978-1-118-90077-2.
+
+\bibitem{Visualization in Bayesian workflow}
+Gabry J., Simpson D., Vehtari A., Betancourt M., Gelman A. (2018).
+\textit{``Visualization in Bayesian workflow"} 
+arXiv:1709.01449v4 [stat.ME]
+
 \bibitem{Bayesian Data Analysis}
 Gelman A, Carlin J.B, Stern H.S, Rubin D.B (2013).
 \textit{``Bayesian Data Analysis"}
@@ -441,6 +455,13 @@ Stan Development Team. 2016.
 Stan Development Team.
 \textit{``Prior Choice Recommendations"}
 \texttt{https://github.com/stan-dev/stan/wiki/Prior-Choice-Recommendations}
+
+\bibitem{Exploratory Data Analysis}
+Tukey J. (1977),
+\textit{``Exploratory Data Analysis"}
+ISBN-13: 978-0201076165.
+
+
 
 \end{thebibliography}
 
