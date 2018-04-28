@@ -1,0 +1,480 @@
+\begin{thebibliography}{}
+
+\bibitem [\protect \citeauthoryear {%
+Betancourt%
+}{%
+Betancourt%
+}{%
+{\protect \APACyear {2017}}%
+}]{%
+betancourt2017conceptual}
+\APACinsertmetastar {%
+betancourt2017conceptual}%
+\begin{APACrefauthors}%
+Betancourt, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A conceptual introduction to Hamiltonian Monte Carlo} {A
+  conceptual introduction to hamiltonian monte carlo}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{arXiv preprint arXiv:1701.02434}{}{}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Betancourt%
+}{%
+Betancourt%
+}{%
+{\protect \APACyear {2018}}%
+}]{%
+betancourt2018calibrating}
+\APACinsertmetastar {%
+betancourt2018calibrating}%
+\begin{APACrefauthors}%
+Betancourt, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2018}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Calibrating Model-Based Inferences and Decisions}
+  {Calibrating model-based inferences and decisions}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{arXiv preprint arXiv:1803.08393}{}{}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Carpenter%
+\ \protect \BOthers {.}}{%
+Carpenter%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2017}}%
+}]{%
+carpenter2017stan}
+\APACinsertmetastar {%
+carpenter2017stan}%
+\begin{APACrefauthors}%
+Carpenter, B.%
+, Gelman, A.%
+, Hoffman, M\BPBI D.%
+, Lee, D.%
+, Goodrich, B.%
+, Betancourt, M.%
+\BDBL {}Riddell, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Stan: A probabilistic programming language} {Stan: A
+  probabilistic programming language}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of statistical software}{76}{1}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Feller%
+\ \BBA {} Gelman%
+}{%
+Feller%
+\ \BBA {} Gelman%
+}{%
+{\protect \APACyear {2015}}%
+}]{%
+feller2015hierarchical}
+\APACinsertmetastar {%
+feller2015hierarchical}%
+\begin{APACrefauthors}%
+Feller, A.%
+\BCBT {}\ \BBA {} Gelman, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Hierarchical models for causal effects} {Hierarchical
+  models for causal effects}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Emerging Trends in the Social and Behavioral Sciences:
+  An interdisciplinary, searchable, and linkable resource}{}{}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Gabry%
+, Simpson%
+, Vehtari%
+, Betancourt%
+\BCBL {}\ \BBA {} Gelman%
+}{%
+Gabry%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2017}}%
+}]{%
+gabry2017visualization}
+\APACinsertmetastar {%
+gabry2017visualization}%
+\begin{APACrefauthors}%
+Gabry, J.%
+, Simpson, D.%
+, Vehtari, A.%
+, Betancourt, M.%
+\BCBL {}\ \BBA {} Gelman, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Visualization in Bayesian workflow} {Visualization in
+  bayesian workflow}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{arXiv preprint arXiv:1709.01449}{}{}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Gelman%
+}{%
+Gelman%
+}{%
+{\protect \APACyear {2006}}%
+}]{%
+gelman2006prior}
+\APACinsertmetastar {%
+gelman2006prior}%
+\begin{APACrefauthors}%
+Gelman, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2006}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Prior distributions for variance parameters in
+  hierarchical models (comment on article by Browne and Draper)} {Prior
+  distributions for variance parameters in hierarchical models (comment on
+  article by browne and draper)}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Bayesian analysis}{1}{3}{515--534}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Gelman%
+}{%
+Gelman%
+}{%
+{\protect \APACyear {2013}}%
+}]{%
+gelman2013commentary}
+\APACinsertmetastar {%
+gelman2013commentary}%
+\begin{APACrefauthors}%
+Gelman, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2013}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Commentary: P values and statistical practice}
+  {Commentary: P values and statistical practice}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Epidemiology}{24}{1}{69--72}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Gelman%
+}{%
+Gelman%
+}{%
+{\protect \APACyear {2017}}%
+}]{%
+WinNT}
+\APACinsertmetastar {%
+WinNT}%
+\begin{APACrefauthors}%
+Gelman, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{}{}.
+\newblock
+\APACrefbtitle {Benefits and limitations of randomized controlled trials.}
+  {Benefits and limitations of randomized controlled trials.}
+\newblock
+\APAChowpublished
+  {\url{http://www.stat.columbia.edu/~gelman/research/published/causal_ssm.pdf}}.
+\newblock
+\APACrefnote{Accessed: 2018-04-27}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Gelman%
+\ \protect \BOthers {.}}{%
+Gelman%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2014}}%
+}]{%
+gelman2014bayesian}
+\APACinsertmetastar {%
+gelman2014bayesian}%
+\begin{APACrefauthors}%
+Gelman, A.%
+, Carlin, J\BPBI B.%
+, Stern, H\BPBI S.%
+, Dunson, D\BPBI B.%
+, Vehtari, A.%
+\BCBL {}\ \BBA {} Rubin, D\BPBI B.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2014}.
+\newblock
+\APACrefbtitle {Bayesian data analysis} {Bayesian data analysis}\ (\BVOL~2).
+\newblock
+\APACaddressPublisher{}{CRC press Boca Raton, FL}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Gelman%
+\ \BBA {} Hill%
+}{%
+Gelman%
+\ \BBA {} Hill%
+}{%
+{\protect \APACyear {2006}}%
+}]{%
+gelman2006data}
+\APACinsertmetastar {%
+gelman2006data}%
+\begin{APACrefauthors}%
+Gelman, A.%
+\BCBT {}\ \BBA {} Hill, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2006}.
+\newblock
+\APACrefbtitle {Data analysis using regression and multilevel/hierarchical
+  models} {Data analysis using regression and multilevel/hierarchical models}.
+\newblock
+\APACaddressPublisher{}{Cambridge university press}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Grotzinger%
+, Hildebrandt%
+\BCBL {}\ \BBA {} Yu%
+}{%
+Grotzinger%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2015}}%
+}]{%
+grotzinger2015benefits}
+\APACinsertmetastar {%
+grotzinger2015benefits}%
+\begin{APACrefauthors}%
+Grotzinger, A.%
+, Hildebrandt, T.%
+\BCBL {}\ \BBA {} Yu, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The benefits of using semi-continuous and continuous
+  models to analyze binge eating data: A Monte Carlo investigation} {The
+  benefits of using semi-continuous and continuous models to analyze binge
+  eating data: A monte carlo investigation}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{International Journal of Eating
+  Disorders}{48}{6}{746--758}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Hildebrandt%
+\ \protect \BOthers {.}}{%
+Hildebrandt%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2017}}%
+}]{%
+hildebrandt2017randomized}
+\APACinsertmetastar {%
+hildebrandt2017randomized}%
+\begin{APACrefauthors}%
+Hildebrandt, T.%
+, Michaelides, A.%
+, Mackinnon, D.%
+, Greif, R.%
+, DeBar, L.%
+\BCBL {}\ \BBA {} Sysko, R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Randomized controlled trial comparing smartphone
+  assisted versus traditional guided self-help for adults with binge eating}
+  {Randomized controlled trial comparing smartphone assisted versus traditional
+  guided self-help for adults with binge eating}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{International Journal of Eating
+  Disorders}{50}{11}{1313--1322}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Kruschke%
+}{%
+Kruschke%
+}{%
+{\protect \APACyear {2014}}%
+}]{%
+kruschke2014doing}
+\APACinsertmetastar {%
+kruschke2014doing}%
+\begin{APACrefauthors}%
+Kruschke, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2014}.
+\newblock
+\APACrefbtitle {Doing Bayesian data analysis: A tutorial with R, JAGS, and
+  Stan} {Doing bayesian data analysis: A tutorial with r, jags, and stan}.
+\newblock
+\APACaddressPublisher{}{Academic Press}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Rouder%
+, Speckman%
+, Sun%
+, Morey%
+\BCBL {}\ \BBA {} Iverson%
+}{%
+Rouder%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2009}}%
+}]{%
+rouder2009bayesian}
+\APACinsertmetastar {%
+rouder2009bayesian}%
+\begin{APACrefauthors}%
+Rouder, J\BPBI N.%
+, Speckman, P\BPBI L.%
+, Sun, D.%
+, Morey, R\BPBI D.%
+\BCBL {}\ \BBA {} Iverson, G.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2009}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Bayesian t tests for accepting and rejecting the null
+  hypothesis} {Bayesian t tests for accepting and rejecting the null
+  hypothesis}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Psychonomic bulletin \& review}{16}{2}{225--237}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+{Stan Development Team}%
+}{%
+{Stan Development Team}%
+}{%
+{\protect \APACyear {2015}}%
+}]{%
+prior-choice}
+\APACinsertmetastar {%
+prior-choice}%
+\begin{APACrefauthors}%
+{Stan Development Team}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+\APACrefbtitle {Prior Choice Recommendations.} {Prior choice recommendations.}
+\newblock
+\APAChowpublished
+  {\url{https://github.com/stan-dev/stan/wiki/Prior-Choice-Recommendations}}.
+\newblock
+\APACrefnote{Accessed: 2018-04-27}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+{Stan Development Team}%
+}{%
+{Stan Development Team}%
+}{%
+{\protect \APACyear {2018}}%
+}]{%
+stan-manual}
+\APACinsertmetastar {%
+stan-manual}%
+\begin{APACrefauthors}%
+{Stan Development Team}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2018}{}{}.
+\newblock
+\APACrefbtitle {{RStan}: the {R} interface to {Stan}.} {{RStan}: the {R}
+  interface to {Stan}.}
+\newblock
+\APAChowpublished {\url{http://mc-stan.org/}}.
+\newblock
+\APACrefnote{R package version 2.17.3}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Tukey%
+}{%
+Tukey%
+}{%
+{\protect \APACyear {1977}}%
+}]{%
+tukey1977exploratory}
+\APACinsertmetastar {%
+tukey1977exploratory}%
+\begin{APACrefauthors}%
+Tukey, J\BPBI W.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{1977}.
+\newblock
+\APACrefbtitle {Exploratory data analysis} {Exploratory data analysis}\
+  (\BVOL~2).
+\newblock
+\APACaddressPublisher{}{Reading, Mass.}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Vehtari%
+, Gelman%
+\BCBL {}\ \BBA {} Gabry%
+}{%
+Vehtari%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2017}}%
+}]{%
+vehtari2017practical}
+\APACinsertmetastar {%
+vehtari2017practical}%
+\begin{APACrefauthors}%
+Vehtari, A.%
+, Gelman, A.%
+\BCBL {}\ \BBA {} Gabry, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Practical Bayesian model evaluation using leave-one-out
+  cross-validation and WAIC} {Practical bayesian model evaluation using
+  leave-one-out cross-validation and waic}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Statistics and Computing}{27}{5}{1413--1432}.
+\PrintBackRefs{\CurrentBib}
+
+\end{thebibliography}
