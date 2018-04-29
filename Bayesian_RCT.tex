@@ -157,7 +157,7 @@ By embracing the uncertainty inherent in statistical estimators, the Bayesian ap
 
 \subsection{Experimental design}
 
-66 men and women with Bulimia Nervosa (BN) or Binge Eating Disorder (BED) were randomly assigned into two treatment conditions: CBT-GSH (N= 33) or CBT-GSH + Noom (N=33).  Therapy lasted for 12 weeks.  Assessments were conducted at weeks 0, 4, 8, 12, 24, and 36.  The primary outcome was Objective Bulimic Episodes (OBE).  For more information about the experiment, choice of dependent (outcome) variable, historical context and past research in this area, see \citeA{hildebrandt2017randomized}. There is a discussion of Bulimia Nervosa and Binge Eating as well as an explanation of the choice of outcome variable OBE.
+66 men and women with Bulimia Nervosa (BN) or Binge Eating Disorder (BED) were randomly assigned into two treatment conditions: CBT-GSH (N= 33) or CBT-GSH + Noom (N=33).  Therapy lasted for 12 weeks.  Assessments were conducted at weeks 0, 4, 8, 12, 24, and 36.  The primary outcome was Objective Bulimic Episodes (OBE).  For more information about the experiment, choice of dependent (outcome) variable, historical context and past research in this area, see \citeA{hildebrandt2017randomized}. There is a discussion of Bulimia Nervosa and Binge Eating as well as an explanation of the choice of outcome variable OBE. Hereafter we refer to CBT-GSH as the control condition/group and CBT-GSH + Noom as the treatment condition/group.
 
 \subsection{Model development}
 \subsection*{Exploratory data analysis}
@@ -173,7 +173,7 @@ We start the analysis by plotting the outcome variable OBE. Figure 1 displays OB
    \begin{center}
 \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{Noom_paths.png}
    \end{center}
-\caption{\emph{Fig.1 (a) and (b) show the OBE measurements for individuals in the CBT-GSH group and CBT-GSH + Noom group respectively. The horizontal axis shows the week and the vertical axis shows the instances of OBE. The gray dots represent OBE readings over time for each individual. }}
+\caption{\emph{This figure shows the OBE measurements for individuals divided into the treatment and control group. Fig.1 (a) and (b) show the OBE measurements for individuals in the CBT-GSH group and CBT-GSH + Noom group respectively. The horizontal axis shows the week and the vertical axis shows the instances of OBE. The gray dots represent OBE readings over time for each individual. }}
 \end{figure}
 %
 
@@ -189,7 +189,7 @@ These three characteristics suggest that the appropriate model for OBEs is the P
 \begin{center}
 \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{noom_hist.png}
 \end{center}
-\caption{\emph{Histograms display the distribution of OBEs in each condition in each stage of the treatment. The orange and light blue histograms show the distribution of OBEs for the CBT-GSH and CBT-GSH  + Noom group respectively.}}
+\caption{\emph{The histograms display the distribution of OBEs in the control and treatment condition in each stage of the treatment. The orange and light blue histograms show the distribution of OBEs for the CBT-GSH and CBT-GSH  + Noom group respectively.}}
 \end{figure}
 %
 \subsection*{Setting up a likelihood}
@@ -284,32 +284,32 @@ Figure 3 displays OBEs in each period for each individual in each treatment grou
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{ppc_sims.png}
-\caption{\emph{Fig.3 (a) and (b) in the upper row show OBEs in each period for each individual in CBT - GSH and CBT-GSH + Noom respectively. Black dots represent mean estimate for each  period. Fig.3 (c) and (d) in the lower row show the simulated OBEs for each individual in CBT - GSH and CBT-GSH + Noom respectively. Black dots represent means from the simulated data for each period. The horizontal axis shows the week and the vertical axis shows the instances of OBE.}}
+\caption{\emph{ Figure 3 displays compares the original data in gray to data simulated from the model in black for the control and treatment condition. Fig.3 (a) and (b) in the upper row show OBEs in each period for each individual in CBT - GSH and CBT-GSH + Noom respectively. Black dots represent mean estimate for each  period. Fig.3 (c) and (d) in the lower row show the simulated OBEs for each individual in CBT - GSH and CBT-GSH + Noom respectively. Black dots represent means from the simulated data for each period. The horizontal axis shows the week and the vertical axis shows the instances of OBE.}}
 \end{center}
 \end{figure}
 %
-Another way to check the fit of the model is by comparing simulated data directly against the raw data.  This is called posterior predictive checking and is our preferred form of model checking. Figure 4 shows this for both treatment conditions.  Simulated data for the Noom condition appears to better track the raw data than simulated data for the no Noom condition.  This is unsurprising, since the no Noom condition tended to have more outliers, which we would not expect (or want) our model to pick up perfectly from such a small sample.  
+Another way to check the fit of the model is by comparing simulated data directly against the raw data.  This is called posterior predictive checking and is our preferred form of model checking. Figure 4 shows this for both treatment conditions.  Simulated data for the Noom condition appears to better track the raw data than simulated data for the no Noom condition.  This is unsurprising, since the no Noom condition tended to have more outliers, which we would not expect (or want) our model to pick up perfectly from such a small sample. If our model worked ``perfectly" all the points would cluster along the sloping 45 degree line.
 %
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{obe_ppcs.png}
-\caption{\emph{Fig. 4(a) and (b) show the predicted OBE vs. the actual OBE data for CBT - GSH and CBT- GSH + Noom respectively. The horizontal axis shows the simulated OBE and the vertical axis shows the actual OBE. The black dots are the points that represent this and the lines around them show 50\% intervals around the predictions. The upward sloping line is the 45 degree line.}}
+\caption{\emph{This figure shows the posterior predictive checks by examining how well the model is able to predict the data. Fig. 4(a) and (b) show the predicted OBE vs. the actual OBE data for CBT - GSH and CBT- GSH + Noom respectively. The horizontal axis shows the simulated OBE and the vertical axis shows the actual OBE. The black dots are the points that represent this and the lines around them show 50\% intervals around the predictions. The upward sloping line is the 45 degree line.}}
 \end{center}
 \end{figure}
 %
-We compare the distributions of OBE for each condition in each time period by plotting density curves over the histograms in figure 2, displayed in figure 5.   Figure 5 shows that our model is able to broadly pick up on the patterns in the data over time and between treatment conditions. We see that the density curves clearly peak at lower values close to zero and have long tails, correctly capturing the pattern in the OBE data.
+We compare the distributions of OBE for each condition in each time period by plotting density curves over the histograms in figure 2, displayed in figure 5. Figure 5 shows that our model is able to broadly pick up on the patterns in the data over time and between treatment conditions. We see that the density curves clearly peak at lower values close to zero and have long tails, correctly capturing the pattern in the OBE data. We recover the pattern of excess zeros and the skewness of the data as well as the long tails of the OBE distribution in each time period.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{ppc_hist_dens.png}
-\caption{\emph{Histograms display the distribution of OBEs in each condition in each stage of the treatment. The orange and light blue histograms show the distribution of OBEs for the CBT-GSH and CBT-GSH  + Noom group respectively. The red and blue lines show the predicted density curves obtained from the simulations.}}
+\caption{\emph{This figure shows the density distribution of the predicted values overlayed on the histograms from figure 2. The histograms display the distribution of OBEs in each condition in each stage of the treatment. The orange and light blue histograms show the distribution of OBEs for the CBT-GSH and CBT-GSH  + Noom group respectively. The red and blue lines show the predicted density curves obtained from the simulations.}}
 \end{figure}
 Figure 6 displays the simulated OBE for both treatment groups (upper plot) and smoothed treatment effects (lower plot).  In each measurement period, simulated OBE are higher for the CBT - GSH condition than for the CBT - GSH + Noom condition, with some of the difference likely attributable to use of the Noom Monitor smartphone app.  This shows that the app has an effect on lowering episodes of binge eating.
 
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{noom_effect.png}
-\caption{\emph{Fig. 6(a) the upper plot shows the simulated OBE in each time period. The CBT - GSH condition is in orange and the CBT - GSH + Noom condition is in orange. The bars around each point show the 95\% interval. Fig. 6(b) the lower plot shows the treatment effect for each period with the bars showing the 50\% interval. The horizontal axis shows the time period and the vertical axis for Fig.6 (a) shows the instances of OBE and for Fig.6 (b) shows the treatment effect of the Noom app.}}
+\caption{\emph{This figure summarizes the treatment effects and the behavior of OBE across the time period under consideration. Fig. 6(a) the upper plot shows the simulated OBE in each time period. The CBT - GSH condition is in orange and the CBT - GSH + Noom condition is in orange. The bars around each point show the 95\% interval. Fig. 6(b) the lower plot shows the treatment effect for each period with the bars showing the 50\% interval. The horizontal axis shows the time period and the vertical axis for Fig.6 (a) shows the instances of OBE and for Fig.6 (b) shows the treatment effect of the Noom app.}}
 \end{center}
 \end{figure}
 

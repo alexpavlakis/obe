@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  29 APR 2018 17:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  29 APR 2018 17:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1117,8 +1117,8 @@ File: noom_effect.png Graphic file (type png)
 Package pdftex.def Info: noom_effect.png used on input line 311.
 (pdftex.def)             Requested size: 443.57088pt x 223.7637pt.
 
-[19 <./ppc_hist_dens.png>] [20 <./noom_effect.png>]
-<prior_plot.pdf, id=139, 578.16pt x 216.81pt>
+[19 <./ppc_hist_dens.png>] [20 <./noom_effect.png>] [21]
+<prior_plot.pdf, id=142, 578.16pt x 216.81pt>
 File: prior_plot.pdf Graphic file (type pdf)
  <use prior_plot.pdf>
 Package pdftex.def Info: prior_plot.pdf used on input line 325.
@@ -1141,19 +1141,19 @@ LaTeX Font Info:    Font shape `OT1/zi4/bx/n' in size <9> not available
 )
 \openout4 = `Bayesian_RCT.listing'.
 
- (./Bayesian_RCT.listing) [21 <./prior_plot.pdf>]
+ (./Bayesian_RCT.listing) [22 <./prior_plot.pdf>]
 Overfull \vbox (20.50201pt too high) has occurred while \output is active []
 
 
-[22]
+[23]
 \openout4 = `Bayesian_RCT.listing'.
 
- (./Bayesian_RCT.listing) (./Bayesian_RCT.bbl [23] [24] [25]) [26]
+ (./Bayesian_RCT.listing) (./Bayesian_RCT.bbl [24] [25] [26]) [27]
 (./Bayesian_RCT.aux) ) 
 Here is how much of TeX's memory you used:
  27451 strings out of 493014
  561113 string characters out of 6133351
- 651519 words of memory out of 5000000
+ 651412 words of memory out of 5000000
  30510 multiletter control sequences out of 15000+600000
  18746 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1184,10 +1184,10 @@ sy9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
 10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9
 .pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/cm-super/sfrm0900.p
 fb>
-Output written on Bayesian_RCT.pdf (26 pages, 622316 bytes).
+Output written on Bayesian_RCT.pdf (27 pages, 623584 bytes).
 PDF statistics:
- 242 PDF objects out of 1000 (max. 8388607)
- 151 compressed objects within 2 object streams
+ 245 PDF objects out of 1000 (max. 8388607)
+ 153 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  192 words of extra memory for PDF output out of 10000 (max. 10000000)
 
