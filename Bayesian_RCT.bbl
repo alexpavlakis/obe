@@ -183,32 +183,6 @@ Gelman, A.%
 
 \bibitem [\protect \citeauthoryear {%
 Gelman%
-}{%
-Gelman%
-}{%
-{\protect \APACyear {2017}}%
-}]{%
-WinNT}
-\APACinsertmetastar {%
-WinNT}%
-\begin{APACrefauthors}%
-Gelman, A.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2017}{}{}.
-\newblock
-\APACrefbtitle {Benefits and limitations of randomized controlled trials.}
-  {Benefits and limitations of randomized controlled trials.}
-\newblock
-\APAChowpublished
-  {\url{http://www.stat.columbia.edu/~gelman/research/published/causal_ssm.pdf}}.
-\newblock
-\APACrefnote{Accessed: 2018-04-27}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Gelman%
 \ \protect \BOthers {.}}{%
 Gelman%
 \ \protect \BOthers {.}}{%
@@ -322,6 +296,35 @@ Hildebrandt, T.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Hoekstra%
+, Morey%
+, Rouder%
+\BCBL {}\ \BBA {} Wagenmakers%
+}{%
+Hoekstra%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2014}}%
+}]{%
+hoekstra2014robust}
+\APACinsertmetastar {%
+hoekstra2014robust}%
+\begin{APACrefauthors}%
+Hoekstra, R.%
+, Morey, R\BPBI D.%
+, Rouder, J\BPBI N.%
+\BCBL {}\ \BBA {} Wagenmakers, E\BHBI J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2014}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Robust misinterpretation of confidence intervals}
+  {Robust misinterpretation of confidence intervals}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Psychonomic bulletin \& review}{21}{5}{1157--1164}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Kruschke%
 }{%
 Kruschke%
@@ -342,6 +345,38 @@ Kruschke, J.%
   Stan} {Doing bayesian data analysis: A tutorial with r, jags, and stan}.
 \newblock
 \APACaddressPublisher{}{Academic Press}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Morey%
+, Hoekstra%
+, Rouder%
+, Lee%
+\BCBL {}\ \BBA {} Wagenmakers%
+}{%
+Morey%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2016}}%
+}]{%
+morey2016fallacy}
+\APACinsertmetastar {%
+morey2016fallacy}%
+\begin{APACrefauthors}%
+Morey, R\BPBI D.%
+, Hoekstra, R.%
+, Rouder, J\BPBI N.%
+, Lee, M\BPBI D.%
+\BCBL {}\ \BBA {} Wagenmakers, E\BHBI J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2016}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The fallacy of placing confidence in confidence
+  intervals} {The fallacy of placing confidence in confidence
+  intervals}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Psychonomic bulletin \& review}{23}{1}{103--123}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
