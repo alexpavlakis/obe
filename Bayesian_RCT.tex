@@ -1,7 +1,11 @@
 \documentclass{article}
 
-\title{Bayesian Analysis of Randomized Controlled Trials}
-\author{Julian Bautista$^\dag$, Alex Pavlakis$^\dag$, Advait Rajagopal$^\dag$}
+\usepackage[pagewise]{lineno}
+\linenumbers
+
+\title{\textbf{Bayesian Analysis of Randomized Controlled Trials}}
+\author{\textbf{Julian Bautista, Alex Pavlakis, Advait Rajagopal} \\ 
+            {The New School for Social Research, 6 E 16 St, New York, NY, 10003}}
 \providecommand{\keywords}[1]{\textbf{Keywords --} #1}
 \date{\today}
 \setlength{\parskip}{1.2ex} % show new paragraphs with a space between lines
@@ -21,7 +25,7 @@
 \usepackage{color}
 \usepackage{url}
 %
-\usepackage[margin=0.8in,bottom=0.8in,top=0.8in]{geometry}
+\usepackage[margin=1in,bottom=1in,top=1in]{geometry}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \usepackage{blindtext}
@@ -56,9 +60,10 @@
 
 			
 \begin{document}
+
+
 \maketitle
-\blfootnote{$\dag$The New School for Social Research, 6 E 16 St, New York, NY, 10003.}
-\blfootnote{Correspondence : rajaa598@newschool.edu}
+%\blfootnote{$\dag$The New School for Social Research, 6 E 16 St, New York, NY, 10003.}
 
 Short Running Title: Bayesian Randomized Controlled Trials
 
@@ -73,6 +78,7 @@ Short Running Title: Bayesian Randomized Controlled Trials
 
 Abstract word count -- 237\\
 Main text word count -- 3,958\\
+
 \textbf{Acknowledgements} -- The authors would like to thank Tom Hildebrandt,  Andreas Michaelides, Diana Mackinnon, Rebecca Greif, Lynn DeBar, and Robyn Sysko, who designed, managed, and analyzed the randomized controlled trial referenced in this paper.  Tom Hildebrandt also provided crucial guidance as the paper was being written; it would not have been possible without him. We also want to thank Prof. Andrew Gelman for connecting us with this project and his contribution to Bayesian statistics.
 
 
@@ -148,18 +154,13 @@ Model checking is a critical step in Bayesian Data Analysis; however, there is n
 \subsection*{Exploratory data analysis}
 We start the analysis by plotting the outcome variable OBE. Figure 1 displays OBEs per week for each individual in both treatment conditions.  A few aspects of the data immediately stand out, which suggest that any model should account for individual-level effects and time-level effects, and should let treatment effects vary over time.  
 
-\begin{itemize}
+\begin{enumerate}
 \item{The number of OBEs decreases over the course of the treatment for almost all subjects.}
 \item{The biggest decreases in OBEs appear to occur in the early stages of treatment.}
 \item{The primary sources of variation in OBE appear to be \emph{between people} and \emph{over time}.}
-\end{itemize}
+\end{enumerate}
 %
-\begin{figure}[H]
-   \begin{center}
-\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{Noom_paths.png}
-   \end{center}
-\caption{\emph{This figure shows the OBE measurements for individuals divided into the treatment and control group. Fig.1 (a) and (b) show the OBE measurements for individuals in the CBT-GSH group and CBT-GSH + Noom group respectively. The horizontal axis shows the week and the vertical axis shows the instances of OBE. The gray dots represent OBE readings over time for each individual. }}
-\end{figure}
+%FIGURE ONE
 %
 
 Figure 2 displays the distribution of OBEs in each condition in each week, aggregating across individuals.  We notice three characteristics of the data from these histograms.
@@ -170,12 +171,7 @@ Figure 2 displays the distribution of OBEs in each condition in each week, aggre
 \end{enumerate}
 These three characteristics suggest that the appropriate model for OBEs is the Poisson distribution, because it is restricted to nonnegative integers and can concentrate its density around low numbers with a long tail.
 %
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{noom_hist.png}
-\end{center}
-\caption{\emph{The histograms display the distribution of OBEs in the control and treatment condition in each stage of the treatment. The orange and light blue histograms show the distribution of OBEs for the CBT-GSH and CBT-GSH  + Noom group respectively.}}
-\end{figure}
+% FIGURE TWO
 %
 \subsection*{Setting up a likelihood}
 
@@ -270,37 +266,22 @@ Model results are displayed in Table 2. The table displays the mean of each of t
 Before using our model to make inferences about time-specific treatment effects, we check its fit by comparing model-simulated OBE to data OBE.  If model simulations do not track the data well, we may want to revisit our model's assumptions before trusting its inferences.  If the model's simulations recover patterns in the data, we are more inclined to trust it. \\
 Figure 3 displays OBEs in each period for each individual in each treatment group, from raw data (upper plots) and model simulations (lower plots).  Black lines display means for each period.  This suggests that the model is able to pick up on the key variables that determine OBE over time for the duration of this experiment.
 %
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{ppc_sims.png}
-\caption{\emph{This figure compares the original data in gray to data simulated from the model in black for the control and treatment condition. Fig.3 (a) and (b) in the upper row show OBEs in each period for each individual in CBT - GSH and CBT-GSH + Noom respectively. Black dots represent mean estimate for each  period. Fig.3 (c) and (d) in the lower row show the simulated OBEs for each individual in CBT - GSH and CBT-GSH + Noom respectively. Black dots represent means from the simulated data for each period. The horizontal axis shows the week and the vertical axis shows the instances of OBE.}}
-\end{center}
-\end{figure}
+% FIGURE THREE
 %
 Another way to check the fit of the model is by comparing simulated data directly against the raw data.  This is called posterior predictive checking and is our preferred form of model checking. Figure 4 shows this for both treatment conditions.  Simulated data for the Noom condition appear to better track the raw data than simulated data for the no Noom condition.  This is unsurprising, since the no Noom condition tended to have more outliers, which we would not expect (or want) our model to pick up perfectly from such a small sample. If our model worked ``perfectly" all the points would cluster along the sloping 45 degree line.
 %
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{obe_ppcs.png}
-\caption{\emph{This figure shows the posterior predictive checks by examining how well the model is able to predict the data. Fig. 4(a) and (b) show the predicted OBE vs. the actual OBE data for CBT - GSH and CBT- GSH + Noom respectively. The horizontal axis shows the simulated OBE and the vertical axis shows the actual OBE. The black dots are the points that represent this and the lines around them show 50\% intervals around the predictions. The upward sloping line is the 45 degree line.}}
-\end{center}
-\end{figure}
+% FIGURE FOUR
 %
 We compare the distributions of OBE for each condition in each time period by plotting density curves over the histograms in figure 2, displayed in figure 5. Figure 5 shows that our model is able to broadly pick up on the patterns in the data over time and between treatment conditions. We see that the density curves clearly peak at lower values close to zero and have long tails, correctly capturing the pattern in the OBE data. We recover the pattern of excess zeros and the skewness of the data as well as the long tails of the OBE distribution in each time period.
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{ppc_hist_dens.png}
-\caption{\emph{This figure shows the density distribution of the predicted values overlayed on the histograms from figure 2. The histograms display the distribution of OBEs in each condition in each stage of the treatment. The orange and light blue histograms show the distribution of OBEs for the CBT-GSH and CBT-GSH  + Noom group respectively. The red and blue lines show the predicted density curves obtained from the simulations.}}
-\end{figure}
+%
+%FIGURE FIVE
+%
 Figure 6 displays the simulated OBE for both treatment groups (upper plot) and smoothed treatment effects (lower plot).  In each measurement period, simulated OBE are higher for the CBT - GSH condition than for the CBT - GSH + Noom condition, with some of the difference likely attributable to use of the Noom Monitor smartphone app.  This shows that the app has an effect on lowering episodes of binge eating.
 
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{noom_effect.png}
-\caption{\emph{This figure summarizes the treatment effects and the OBE patterns across the time period under consideration. Fig. 6(a) the upper plot shows the simulated OBE in each time period. The CBT - GSH condition is in orange and the CBT - GSH + Noom condition is in orange. The bars around each point show the 95\% interval. Fig. 6(b) the lower plot shows the treatment effect for each period with the bars showing the 50\% interval. The horizontal axis shows the time period and the vertical axis for Fig.6 (a) shows the instances of OBE and for Fig.6 (b) shows the treatment effect of the Noom app.}}
-\end{center}
-\end{figure}
+%
+% FIGURE SIX
+%
 
 \section{Discussion}
 %\section{Advantages of BDA for RCT}
@@ -318,13 +299,12 @@ Modeling uncertainty in Bayesian statistics is fundamentally different from othe
 \section{Conclusion}
 Bayesian Data Analysis is a powerful tool for incorporating data and prior information into flexible statistical models.  It is well-suited to analyze RCTs, where effects are small, prior information is plentiful, and data may have hierarchical structures.  In this paper, we have explained the steps of Bayesian Data Analysis and shown how they can be used to analyze an RCT that evaluates treatments for binge-eating disorder (BED) and bulimia nervosa (BN).  We argue that Bayesian methodologies are well suited to analyzing RCTs of eating disorder behavior because they allow researchers to model uncertainty and heterogeneous treatment effects explicitly. We demonstrate our approach by analyzing the impact of a smartphone app on binge eating behavior by fitting a hierarchical Poisson model with individual-level and time-level effects, and time-varying treatment effects.  These unique representations of assumptions can be useful to empirical researchers in general and psychiatrists and clinical psychologists in particular.
  
+ \newpage
+ 
 \section{Appendix}
-\subsection*{Example priors}
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{prior_plot.pdf}
-\caption{\emph{This figure shows some examples of common prior distributions. Fig. 7(a) shows a Uniform (0,1) distribution. Fig. 7(b) shows a Beta (2,1) distribution. Fig. 7(c) shows a Cauchy distribution, where the black line shows the positive half and the gray line shows the negative half.}}
-\end{figure}
+%
+% FIGURE SEVEN
+%
 In Figure 7, we show some sample prior distributions. The Uniform (0,1) distribution (Fig. 7(a)) can be used when we know the quantity of interest is constrained to be between 0 and 1 but believe that all values between 0 and 1 are equally likely. If our quantity of interest is between 0 and 1 but unlikely to take extreme values we can use a Beta (2,1) (Fig. 7(b))  prior as shown.  Cauchy$^{+}$(0,30) is the half-Cauchy distribution with location 0 and scale 30 (Fig. 7(c)) . This is a good prior for variances because along with restricting the distribution to the positive real line it places most of the mass at 0 but allows for long smooth tails that the HMC algorithm can explore. 
 %%%%%%%%%%%%%%%%%
 % OLD BIBLIOGRAPHY - KEEP AS BACKUP
@@ -412,5 +392,54 @@ ISBN-13: 978-0201076165.
 \newpage 
 \bibliographystyle{apacite}
 \bibliography{ref1}
+
+\subsection*{Figures}
+\begin{figure}[H]
+   \begin{center}
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{Noom_paths.png}
+   \end{center}
+\caption{\emph{This figure shows the OBE measurements for individuals divided into the treatment and control group. Fig.1 (a) and (b) show the OBE measurements for individuals in the CBT-GSH group and CBT-GSH + Noom group respectively. The horizontal axis shows the week and the vertical axis shows the instances of OBE. The gray dots represent OBE readings over time for each individual. }}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{noom_hist.png}
+\end{center}
+\caption{\emph{The histograms display the distribution of OBEs in the control and treatment condition in each stage of the treatment. The orange and light blue histograms show the distribution of OBEs for the CBT-GSH and CBT-GSH  + Noom group respectively.}}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{ppc_sims.png}
+\caption{\emph{This figure compares the original data in gray to data simulated from the model in black for the control and treatment condition. Fig.3 (a) and (b) in the upper row show OBEs in each period for each individual in CBT - GSH and CBT-GSH + Noom respectively. Black dots represent mean estimate for each  period. Fig.3 (c) and (d) in the lower row show the simulated OBEs for each individual in CBT - GSH and CBT-GSH + Noom respectively. Black dots represent means from the simulated data for each period. The horizontal axis shows the week and the vertical axis shows the instances of OBE.}}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{obe_ppcs.png}
+\caption{\emph{This figure shows the posterior predictive checks by examining how well the model is able to predict the data. Fig. 4(a) and (b) show the predicted OBE vs. the actual OBE data for CBT - GSH and CBT- GSH + Noom respectively. The horizontal axis shows the simulated OBE and the vertical axis shows the actual OBE. The black dots are the points that represent this and the lines around them show 50\% intervals around the predictions. The upward sloping line is the 45 degree line.}}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{ppc_hist_dens.png}
+\caption{\emph{This figure shows the density distribution of the predicted values overlayed on the histograms from figure 2. The histograms display the distribution of OBEs in each condition in each stage of the treatment. The orange and light blue histograms show the distribution of OBEs for the CBT-GSH and CBT-GSH  + Noom group respectively. The red and blue lines show the predicted density curves obtained from the simulations.}}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{noom_effect.png}
+\caption{\emph{This figure summarizes the treatment effects and the OBE patterns across the time period under consideration. Fig. 6(a) the upper plot shows the simulated OBE in each time period. The CBT - GSH condition is in orange and the CBT - GSH + Noom condition is in orange. The bars around each point show the 95\% interval. Fig. 6(b) the lower plot shows the treatment effect for each period with the bars showing the 50\% interval. The horizontal axis shows the time period and the vertical axis for Fig.6 (a) shows the instances of OBE and for Fig.6 (b) shows the treatment effect of the Noom app.}}
+\end{center}
+\end{figure}
+
+\subsection*{Example priors}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{prior_plot.pdf}
+\caption{\emph{This figure shows some examples of common prior distributions. Fig. 7(a) shows a Uniform (0,1) distribution. Fig. 7(b) shows a Beta (2,1) distribution. Fig. 7(c) shows a Cauchy distribution, where the black line shows the positive half and the gray line shows the negative half.}}
+\end{figure}
 
 \end{document}
