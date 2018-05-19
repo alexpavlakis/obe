@@ -1,15 +1,13 @@
 \documentclass{article}
 
-
-
-
 \title{Bayesian Analysis of Randomized Controlled Trials}
 \author{Julian Bautista$^\dag$, Alex Pavlakis$^\dag$, Advait Rajagopal$^\dag$}
 \providecommand{\keywords}[1]{\textbf{Keywords --} #1}
 \date{\today}
 \setlength{\parskip}{1.2ex} % show new paragraphs with a space between lines
-\setlength{\parindent}{0em} % get rid of indentation for new paragraph
+\setlength{\parindent}{0cm} % get rid of indentation for new paragraph
 
+\usepackage{apacite}
 \usepackage{amsmath}
 \usepackage{latexsym}
 \usepackage{graphicx}
@@ -21,8 +19,9 @@
 \usepackage{booktabs}
 \usepackage{float}
 \usepackage{color}
+\usepackage{url}
 %
-\usepackage[margin=1.1811in,bottom=1in,top=1.1811in]{geometry}
+\usepackage[margin=0.8in,bottom=0.8in,top=0.8in]{geometry}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \usepackage{blindtext}
@@ -30,14 +29,14 @@
 \lhead{}
 \chead{Bautista, Pavlakis, Rajagopal}
 \rhead{}
-%\lfoot{\textit{STATGR6103 Final Project}}
+%\lfoot{}
 \cfoot{}
 \rfoot{\thepage}
 \renewcommand{\headrulewidth}{1pt}
 %\renewcommand{\footrulewidth}{1pt}
 %
 \DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
-\linespread{1.8}
+\linespread{1.6}
 \usepackage{listings}
 \usepackage[most]{tcolorbox}
 \usepackage{inconsolata}
@@ -59,70 +58,80 @@
 \begin{document}
 \maketitle
 \blfootnote{$\dag$The New School for Social Research, 6 E 16 St, New York, NY, 10003.}
+\blfootnote{Correspondence : rajaa598@newschool.edu}
 
-\abstract{Bayesian Data Analysis is a powerful tool for incorporating data and prior information into complex and flexible models.  It is well-suited to analyze Randomized Control Trials, where effects are small and data has hierarchical structures.  In this paper, we summarize the approach and methods of Bayesian Data Analysis, and demonstrate how they can be applied to a Randomized Control Trial measuring the effect of a smartphone application on binge eating behavior.  We fit a hierarchical Poisson model, which accounts for individual level and time level effects, allowing us to model treatment effects over time.  Our analysis suggests that the smartphone application may cause a small reduction in the number of Objective Bulimic Episodes in some stages.  Bayesian methods allow us to account for the structure of the data, obtain heterogenous treatment effects for different stages of the therapy, and incorporate uncertainty in our parameter estimates. We conclude that Bayesian methods have the potential to improve analyses of Randomized Control Trials in many fields.}	
+Short Running Title: Bayesian Randomized Controlled Trials
+
+\begin{abstract}
+\noindent \underline{Objective} : This paper is an introduction to Bayesian data analysis for empirical researchers in the field of clinical psychology, focusing on applications for the study of eating disorders.  We summarize the intuition and methodology of Bayesian data analysis, and motivate its use for analyzing Randomized Controlled Trials (RCT).  We demonstrate the strengths of the approach through the analysis of a Cognitive Behavioral Therapy RCT on the influence of a smartphone application on binge-eating disorder (BED) and bulimia nervosa.\\
+\noindent \underline{Method} : We fit a multilevel Poisson regression model on outcome variable Objective Bulimic Episodes (OBE) as a function of the treatment and other covariates. OBE is a discrete count variable and the Poisson model fits well. The multilevel structure accounts for individual and time-varying effects.\\
+\noindent \underline{Results} : Our analysis suggests that the smartphone application causes a reduction in the instances of OBE for patients in the initial weeks but the effect may wear off by the end of the treatment period. Bayesian methods allow us to obtain heterogenous treatment effects for different individuals and stages of the therapy while explicitly modeling uncertainty around these effects.\\
+\noindent \underline{Discussion} : We conclude that Bayesian methods are a powerful tool for incorporating data and prior information into models. They have the potential to improve analyses of RCTs in eating disorders given small sample sizes, small effect size, abundant prior information, heterogenous participants, and experimental design. These methods are useful for empirical researchers, particularly clinical psychologists.
+\end{abstract}
+
+\keywords{Methods, Randomized Controlled Trial, Bayesian Analysis, Eating Disorders, Binge Eating Disorders, Statistics}
+
+Abstract word count -- 237\\
+Main text word count -- 3,958\\
+\textbf{Acknowledgements} -- The authors would like to thank Tom Hildebrandt,  Andreas Michaelides, Diana Mackinnon, Rebecca Greif, Lynn DeBar, and Robyn Sysko, who designed, managed, and analyzed the randomized controlled trial referenced in this paper.  Tom Hildebrandt also provided crucial guidance as the paper was being written; it would not have been possible without him. We also want to thank Prof. Andrew Gelman for connecting us with this project and his contribution to Bayesian statistics.
+
 
 \newpage
 
 \section{Introduction}
-Bayesian methods are gaining popularity in many fields because they allow researchers to incorporate all available information into flexible and transparent statistical models.  Many researchers have begun to incorporate Bayesian methods into medical, pharmaceutical, and social-science research.  The purpose of this paper is to show how Bayesian methods can be the standard in applied research.  We provide a general overview of the approach and an example analysis of Randomized Control Trial (RCT) on the impact of a smartphone application on eating disorder behavior. \\
-Regression models are well-suited for analyzing RCTs because they allow researchers to identify causal effects precisely by controlling for all available covariates [Gelman and Hill, 2007].  The Bayesian approach to regression models is advantageous because it allows researchers to include relevant prior information, to fit flexible models, and to naturally estimate varying treatment effects among subgroups of the population.\\
+Bayesian data analysis (BDA) is a method for building statistical models to describe data.  Researchers begin with explicit assumptions about the data generating process based on past research and the scientific nature of the problem. Based on these beliefs and assumptions, they then collect data from designed experiments or observational studies. Using Bayes' rule they combine their assumptions or \textit{prior information} with the actual data into a comprehensive probability model. This model contains information about all known (observed data) and unknown (unobserved parameters) quantities related to the data generating process. Bayesian data analysis is gaining popularity in medical, pharmaceutical, and social-science research because it allows researchers to combine prior information with data to model data generating processes.\\
+The purpose of this paper is to motivate the use of BDA in applied research, especially for analyzing results of Randomized Controlled Trials (RCT). The standard models for analyzing RCTs are regression models because they allow researchers to estimate causal effects precisely by controlling for available pre-treatment covariates \cite{gelman2006data}. The Bayesian approach to regression modeling allows researchers to build statistical models which include relevant prior information, to estimate varying treatment effects for subgroups of the population, and to model the uncertainty in their estimates explicitly.  These improvements in the analysis of treatment effects make Bayesian methods especially valuable for empirical researchers in psychiatry and clinical psychology.   In this paper, we use data from a recently published RCT by \citeA{hildebrandt2017randomized} examining the efficacy of a smartphone application designed to augment the efficacy of cognitive behavioral therapy guided self-help (CBT-GSH) treatment for reducing binge eating episodes. \\
+This paper is an introduction to the Bayesian approach to analyze RCT data. We focus on providing motivation for the usefulness of the approach and guidelines for executing it in a rigorous way, particularly in the context of treating eating disorders. We model data used by \citeA{hildebrandt2017randomized} using a multilevel/hierarchical Poisson model (explained in section 3.2). We use a discrete distribution (Poisson) to account for the non-negative and discrete outcome variable (OBE), that contains a large number of 0's. The innovation in using the Bayesian approach is that we are able to control for pre-treatment covariates while capturing heterogeneity in treatment effects across individuals and over time and explicitly modeling the uncertainty around those effects.  We find that we are able to capture the pattern of excess 0's and positive skew in the data and our model predicts the data well. \\
+The rest of the paper is organized as follows, section 2 explains the process and steps of Bayesian data analysis and inference. Section 3 discusses the advantages of Bayesian analysis, section 4 explains the experiment, modeling and results. Section 5 provides a discussion of the results along with model checks. Section 6 concludes and the Appendix contains some examples of prior distributions.
 
-Randomized controlled trials (RCTs) designed to test the efficacy of treatments for binge eating and/or purging for binge eating disorder (BED), bulimia nervosa (BN), or subthreshold variants are an essential methodological tool for clinical researchers in the field.  The primary outcomes for the majority of these RCTs include symptom counts (e.g., objective or subjective binge episodes, vomiting, laxative use, etc.). This data is typically positively skewed and often include inflation of zeros representing achievement of abstinence or symptom remission.  Grotzinger, Hildebrandt, and Yu [2016] summarize some of these issues and their implications for analyzing RCTs.  Specifically, they used simulated data to examine the value of several different models of positively skewed data including latent growth zero inflated Poisson (ZIP), zero inflated negative binomial (ZINB), and semi-continuous models.  The results suggest that semi-continuous models have some desirable analytic properties, including greater statistical power in most situations over traditional continuous models.  In this paper, we present a robust alternative to these latent growth models in the form of Bayesian hierarchical model.  We aim for this paper to be an introduction to the method with a focus on providing guidelines for executing this method in a rigorous way and with enough information to facilitate replication of these methods.  To achieve this goal, we use the data from recently published RCT examining the efficacy of cognitive behavioral therapy version of guided self-help (CBT-GSH) with the addition of a smartphone app designed for the intervention [Hildebrandt et al., 2017]. \\
 
-The main contribution of this paper is a demonstration of Bayesian methods. We believe these methods are rigorous, easily reproducible and are open to checking. Bayesian analysis also makes modeling assumptions explicit with the use of prior distributions of underlying parameter values which consider all  problems for which the model could apply.  The rest of the paper is organized as follows, section 2 explains the process and steps of Bayesian data analysis and inference. Section 3 compares Bayesian analysis to other methods, section 4 explains the experiment, modeling and results. Section 5 concludes and section 6 has the Stan code used for this model.
-
-\section{Bayesian Data Analysis}
-Bayesian data analysis (BDA) and inference is the process of developing and fitting a probability model to data. The result is learning the probability distribution of the parameters of the model and being able to evaluate the fit of the model to the data as well as being able to make predictions for new observations [Gelman et. al 2013; Gelman and Hill 2007].
-\\
-There are three main steps to BDA, which are listed below and explained in detail in section 2.1, 2.2 and 2.3 respectively.
+\section{Methods}
+\section*{Bayesian Data Analysis}
+There are three main steps to BDA which are listed below and explained in detail in the subsequent sections:
 \begin{enumerate}
-\item{Set up a probability model.}
-\item{Calculate the distribution of the model parameters, given the observed data. This is called the \textit{posterior distribution} of the parameters.}
-\item{Check the fit of the model, whether the conclusions are sensible and how sensitive they are to modeling assumptions. Expand or alter the model if needed and repeat the steps.}
+\item Specify a model based on scientific knowledge of the data generating process.
+\item Estimate model parameters based on observed data.
+\item Evaluate the model's accuracy and expand or alter the model.
 \end{enumerate}
 
+\subsection{Probability notation and Bayes' rule}
+In Bayesian Data Analysis, assumptions are specified mathematically as \textit{prior distributions}.  Data are represented through a \textit{likelihood model}. Bayes' Rule combines prior distribution and data likelihood into a \textit{posterior distribution}.  A formal expression of the Bayes' Rule is as follows;
+\begin{align}
+{p(\theta| y, x) = \frac{ p(\theta) p(y|\theta, x)}{p(y)}}
+\end{align}
+$\theta$ is the estimated parameter. In the context of an RCT, $\theta$ is the effect of the treatment $x$ on dependent variable $y$. $p(\theta)$ is the prior distribution of the treatment effect, which captures the researcher's beliefs about the model parameter prior to any analysis. $p(y | \theta, x)$ is the likelihood function and is the probability of the observed data given the parameter.  $p(y)$ is a normalizing constant with respect to $\theta$ that ensures the left hand side $p(\theta |y, x)$ is a proper probability distribution that integrates to 1. For a full treatment of proper distributions and normalizing constants see \citeA{gelman2014bayesian} . \\
+For our purpose, we can ignore this denominator and rewrite the expression for the posterior $p(\theta | y)$ as;
+ \begin{align}
+ p(\theta | y, x) \propto p(\theta) p(y |\theta, x)
+ \end{align}
+The posterior distribution is proportional to the product of the prior and the likelihood. Ultimately the goal of modeling is to learn the posterior distribution $p(\theta|y, x)$ and summarize it accurately \cite{gelman2014bayesian} . Based on this we can make inferences and predictions.
+
 \subsection{Model development}
-Model development involves setting up a joint probability distribution that accounts for all observed data and unobserved parameters. The model should include all knowledge of the experiment or data collection process and should be logically consistent with scientific nature of the problem at hand. We approach model development in three steps.
+Model development involves specifying a model that accounts for all observed data and unobserved parameters. The model should include all knowledge of the experiment or data collection process and should be logically consistent with scientific nature of the problem. We approach model development in three steps.
 
 \subsubsection{Exploratory data analysis}
- Look at your data.  What distributions do different variables appear to take?  What seems important?  What variables are correlated?  Answers to these questions are essential to specifying a the following two model components.  For most scientific problems there is no one-size-fits all model or reliable automated model choosing program; you have to get your hands dirty. The process of exploratory data analysis and plotting informs the choice of likelihood function and gives insight into what priors are appropriate for the problem. It allows the researcher to explore and solidify intuition about the problem at hand and the nature of the data.
+Summarizing data through visualizations and summary statistics is a critical model building step. We look at summary statistics of our relevant variables to understand their distributions. We explore data through univariate analyses, such as histograms to visualize distributions, and bivariate analyses, such as scatter plots to see if there are meaningful linear or non linear relationships. This exploratory process informs us of the distribution of individual variables, their correlations, and other relevant information for modeling. \\
+Exploratory analysis helps us to choose an appropriate likelihood model to describe the data. For example, if our variables are normally distributed and linearly correlated, we might choose a linear regression model. If the relationship between variables is not straightforward we might choose more complicated models.  It allows researchers to explore and solidify intuition about the problem at hand and the nature of the data. An introductory treatment of exploratory data analysis can be found in \citeA{tukey1977exploratory}. A more advanced explanation of exploratory data analysis in the context of Bayesian statistics is available in \citeA{gabry2017visualization} and \citeA{betancourt2018calibrating}.
+
+
 \subsubsection{Setting up a likelihood model}
-Choose a model that represents the relationship between your data and parameters of interest.  A clear understanding of the type of data is an important prerequisite for picking a likelihood function. Data can be binary, categorical, ordinal, count, or continuous and each of these types of data requires a different kind of treatment. For instance, if your outcome variable is binary (0 or 1), a logistic regression framework may be appropriate. If data is continuous and defined on the entire real line, a normal likelihood function might fit the bill better. In this paper, the dependent variable is count data and thus we employ a Poisson likelihood. Again there may not be one perfect or ``correct" choice of a function and it is common practice in Bayesian analysis to set up different models and compare them and see which performs better.
+The likelihood function is often analogous to a traditional regression equation. The researcher must select independent variables that represent important determinants of the outcome variable. The likelihood represents the distribution of the outcome variable given the independent variables and model parameters. To choose the right likelihood function, it is critical to know the type of data. Data can be binary, categorical, ordinal, count, or continuous and each of these types of data require a different kind of model. In the example in this paper, the outcome variable is non-negative and discrete so we choose a Poisson likelihood function (see section 3.2). 
  
 \subsubsection{Choosing a prior distribution}
- Bayesian analysis requires the assignment of a prior distribution. A prior distribution serves three functions. First, it regularizes the parameter space by specifying what values the parameters can take and more importantly what values it definitely cannot assume. Second, it makes assumptions about the underlying scientific nature of the problem explicit. Third, it facilitates the calculation of a posterior distribution and makes it possible to have posterior simulations or ``draws" from the posterior. \\
- Prior choice depends on the parameter or coefficient of interest.  We could assign a completely ``noninformative" or flat prior to our coefficient which is equivalent to saying that the coefficient is a draw from a uniform distribution on the whole real line. This boils down to a maximum likelihood estimate of the coefficient. But this is rarely a useful approach. Statisticians have information about the parameter and can use ``weakly informative" or ``specific informative priors" to reflect the researcher's knowledge. For instance, if a coefficient of interest \emph{must} be between 0 and 1, we can assign a \emph{Beta} prior distribution to that coefficient.  If we believe that a coefficient is close to zero, but may be positive or negative, we could assign a more informative \emph{Normal}(0, 1) prior distribution to it.  More information about prior choice and considerations for the same can be found on the GitHub page for Stan developers [Stan Developers, 2013].\\
- To make this concrete, let $\theta$ be a parameter of interest (or a vector of parameters) and $y$ be data from which we want to estimate $\theta$.  Then the prior distribution is represented as $p(\theta)$ and the likelihood is $p(y | \theta)$. Our goal is to estimate the \textit{posterior distribution} of the parameter conditional on the data and prior information, denoted by $p(\theta | y)$. Using Bayes' rule we can say that;
-  \begin{align*}
-  p(\theta|y) &= \frac{ p(\theta) p(y |\theta)}{\int_{\theta} p(\theta) p(y |\theta) d\theta}
-  \end{align*}
-  The numerator is a product of the prior and likelihood distributions. The denominator is what we call the ``evidence" and is a constant value when integrated over the range of $\theta$. Thus using proportionality we can approximate the posterior distribution up to a normalizing constant in the following manner.
-   \begin{align*}
- p(\theta | y) \propto p(\theta) p(y |\theta)
- \end{align*}
- We use this approximation to the posterior because calculating the denominator as a closed form integral is very difficult and may not be possible. We address how to deal with these difficulties in section 2.2. The Bayesian approach combines data and prior information in a way that can yield more precise inferences that either on its own [Gelman et. al 2013].
+The prior distribution is a mathematical encoding of researchers' assumptions. A prior distribution serves three functions. First, it makes assumptions about the underlying scientific nature of the problem explicit. Second, it regularizes or constrains the parameter space by specifying likely ranges for parameter values. Third, it facilitates the calculation of a posterior distribution and makes it possible to generate simulations from that distribution. \\
+Prior choice depends on the parameter or coefficient of interest.  We could assign a completely ``noninformative" or flat prior to our coefficient by specifying a uniform distribution as the prior. This is equivalent to saying that our parameter is equally likely to assume any value from negative infinity to positive infinity and we have no more information about it. Using a noninformative uniform prior is the same as carrying out a maximum likelihood estimation of the parameter of interest. \\
+Researchers rarely know nothing about the problem or relevant parameters. They often possess valuable information about the parameter which statisticians can incorporate as informative prior information. For instance, if a coefficient of interest is a proportion, then it \emph{must} be between 0 and 1, and we can assign a \emph{Beta} prior to that coefficient.  If we believe that a coefficient is close to zero, but may be positive or negative, we could assign an informative \emph{Normal}(0, 1) prior distribution to it.  More information about prior choice for the same can be found on the GitHub page for Stan developers \cite{prior-choice}. Some plots displaying common priors can be found in the Appendix. We explain the Bayesian probabilistic programming language, Stan, in section 2.3.\\
 
 \subsection{Model estimation}
-The goal of model estimation is to calculate the \textit{posterior distribution} of the parameters. This is the conditional distribution of the parameter given the observed data. The posterior distribution is obtained by simply multiplying the prior and likelihood to get joint probabilities and then normalizing to get posterior probabilities. Calculating the posterior analytically is often difficult and leads to intractable integrals with no closed-form solution. So the standard practice is to use Markov Chain Monte Carlo sampling methods to approximate the posterior up to a normalizing constant and sample from it. There are some other approaches to calculating the posterior distribution, but those are beyond the scope of this paper. We recommend the use the Bayesian probabilistic modeling language Stan. Stan uses a Hamiltonian Monte Carlo sampling algorithm (from a broader class of MCMC sampling methods) to approximate the posterior distribution. Betancourt [2017] has a clear exposition of how the algorithm works. It is sufficient that Stan returns the joint posterior of all parameters conditional on data from which we can obtain the marginal posteriors of desired parameters. Stan also has the ability to generate posterior simulations while calculating the posterior and these can be used for model checking and validation. Using these posterior distributions we can now predict and simulate replicated data from our model, which leads us to section 2.3. 
-\subsection{Model checking, comparison and expansion}
-We begin evaluating the performance of our model by ensuring that it converges on robust parameter estimates and that the results make sense given what we know about the observed data and the problem itself. We also need to see how sensitive our results are to the modeling assumptions and the priors. Sometimes using stronger priors can help with convergence and more stable results. We use our posterior distributions of the parameters to check our model by carrying out \textit{posterior predictive checks}. This could be graphical checks where we simulate ``fake" data from our model and compare it graphically to the raw data. We could also use certain test statistics (eg. mean, minimum value etc.) and compare the values of those statistics across models and see how close they are to the ground truth obtained from the observed data itself. Based on the fit of the model, we can either expand the model to include more parameters, predictors or change the model and reevaluate performance. We are not looking to explicitly choose the ``right" model but are interested to learn where each of our approaches and models might be lacking and make these shortcomings explicit while trying to improve them.
+Once the likelihood model and prior distribution are specified, the posterior distribution of an outcome variable can be estimated. As discussed in section 2.1, the posterior distribution is obtained by multiplying the prior and likelihood. The distribution obtained by this process is proportional to the true posterior because we can ignore the normalizing constant (the denominator in equation 1). We use an approximation of the posterior as shown in equation 2 because calculating the true posterior analytically may be practically impossible.  A standard practice is to use Markov Chain Monte Carlo (MCMC) sampling methods to approximate the posterior up to a normalizing constant and sample from it \cite{gelman2014bayesian}. There are  other approaches to calculating the posterior distribution, but those are beyond the scope of this paper. Analyses in this paper are carried out with the Bayesian probabilistic modeling language Stan. The R interface of the language can be understood at \citeA{stan-manual} and \citeA{carpenter2017stan} present a clear conceptual overview of the language. Stan uses a Hamiltonian Monte Carlo sampling algorithm (from a broader class of MCMC sampling methods) to approximate the posterior distribution. \citeA{betancourt2017conceptual} has a clear exposition of how the algorithm works. Stan returns the full posterior distribution of the desired parameters. Stan can also predict values based on the specified model which can be used for model checking, validation, and expansion.
 
-\section{Advantages of BDA}
-There are two primary benefits to a Bayesian approach for the analysis of Randomized Controlled Trials. First is the improvement of predictions through the use of a greater amount of information within the models. Second is a greater level of transparency through explicit assumptions. This section will end with a discussion of some of the risks of Bayesian approaches.
-\subsection{Better prediction}
-As discussed earlier, the choice of a prior distribution is a critical assumption that directly affects the results of the analysis. Bayesian analysis lends itself well to the infinitely many distributions that can be used. But beyond the choice of a distribution, the specifications of hyper-paramaters of these distributions allow for the usage of data that exists beyond that which was collected within the study.\\
-Data does not live only on the spreadsheet. It is contained in the researcher's knowledge of the literature, the data generating process, and anything else that is relevant. This can include common sense knowledge such as the understanding that estimates on ratios will be between 0 and 1, or it could be an expected estimate based on previous studies done. Regardless of the source of the information, knowledge about an estimator can be translated into the prior to improve accuracy. \\ \\
-One of the greatest advantages of specifying prior distributions in a hierarchical or multilevel model is to allow for partial pooling. Hierarchical data structures include any data that can be represented in categories. In a non-Bayesian scenario, there are two choices a researcher has: a complete pooling model, and a no pooling model. With complete pooling, the categories in data are completely interchangeable, thus ignoring the uniqueness of categories. With no pooling, each category is treated as independent of the others, thus ignoring the interrelatedness of each of the categories. Setting up a prior distribution allows us to say that our relevant parameters have a common mean, but are each different from one another. This partial pooling is often more accurate as it takes into account both the uniqueness and interrelatedness of categories within a hierarchical model.\\
-Unlike traditional approaches, the Bayesian approach does not output a point estimate with confidence intervals. Instead it estimates a joint posterior distribution (correct up to a normalizing constant) for the parameters conditional on data. This distribution contains all the information from the prior and the model. From this joint posterior we can obtain the marginal distribution of each parameter with credible posterior intervals. This provides an accurate account of the inherent uncertainty in the estimation of the parameters. Generating a posterior also allows for simulation using posterior draws from this distribution. This is helpful for model checking, expansion and further analysis. \\
-By embracing the uncertainty inherent in statistical estimators, the Bayesian approach leaves little need for the p-values that are often used as thresholds in classical statistics.  Intuitively, p-values represent the probability of the data conditional on the null hypothesis, under hypothetical replications.  However, since researchers have many opportunities to choose how data is coded, which data is included, and what comparisons are made, it is easy to obtain "statistically significant" p-values even if there are no "true" effects [Gelman, 2017].  In the Bayesian approach, we focus on the posterior distribution of parameters, leaving no need for worrying about hypothetical replications or the issue of multiple comparisons.
+\subsection{Model checking and expansion}
+We evaluate whether our model explains the data by investigating parameter distributions and posterior predictive checking.  Visualizations of parameter distributions, such as histograms, enable us to summarize estimates and the uncertainty around them.  Posterior predictive checks involve ``simulating replicated data under the fitted model and then comparing these to the observed data" \cite[p. ~158]{gelman2006data}.  While we may not expect our model to generate our data exactly, it should recover important patterns.  Once we have estimated a model and studied its properties, we can \emph{expand} it through reparameterizations, adding parameters, or changing prior distributions. \\
+After we have fit multiple models, we may want to compare their performances. There is wide literature on the most effective ways to compare and assess Bayesian models. These include cross validation methods, Bayes factors, and information criterion. One popular Bayesian approach to model checking, is \textit{leave-one-out-cross validation (loo-cv)}. The process compares models by fitting them on all data points except one, then evaluating how they predict the remaining data point. This process is repeated until all data points have been left out once. There are also several information criterion that can be used. An exhaustive summary of these ``practical" model checking methods can be found in \citeA{vehtari2017practical}. Some model checking methods that are closer to the null-hypothesis significance testing (NHST) framework are the ROPE (region of practical equivalence)\cite{kruschke2014doing} and Bayes factor \cite{rouder2009bayesian} approaches. \\
+Model checking is a critical step in Bayesian Data Analysis; however, there is no one-size-fits-all approach.  We recommend posterior predictive checks because it is a direct way to assess the model fit to various aspects of data. By using posterior predictive checks we neither ``accept" nor ``reject" models but aim to understand their limitations in realistic replications \cite{gelman2014bayesian} .
 
-\subsection{Transparency}
-Bayesian analysis also lends itself to better scientific scrutiny on models overall. This occurs because non-Bayesian techniques and traditional frequentist models make tacit assumptions. Bayesian methods make underlying modeling assumptions explicit in the form of a prior. For example, a simple linear regression tacitly assumes that the parameter is normally distributed and has a uniform prior. While this assumption may be appropriate for some problems, in many occasions it does not get scrutinized closely because it is an implied assumption. Meanwhile, the power of a prior to influence estimates puts a magnifying glass on all of these issues that were easily glossed over previously.  Close scrutiny is a critical component for rich academic discourse. It puts the onus on researchers to justify the assumptions of their model and allows for vibrant discussion. 
-
-\section{Impact of Smartphone App on Eating Behavior}
-
-Hildebrandt et. al [2017] conducted an experiment to test whether the Noom Monitor, a smartphone application, could augment the effect of in-person therapeutic treatment on binge eating behavior.  The treatment, known as \emph{guided self-help treatments based on cognitive-behavior therapy} (CBT-GSH), had been shown in previous research to reduce binge eating behavior by 10-50\%.  The Noom Monitor application was designed to facilitate CBT-GSH.  For this example, we consider two research questions from the experiment:
+\section*{Impact of Smartphone App on Eating Behavior}
+\citeA{hildebrandt2017randomized} conducted an experiment to test whether the Noom Monitor, a smartphone application, could augment the effect of in-person therapeutic treatment on binge eating behavior.  The treatment, known as \emph{guided self-help treatments based on cognitive-behavior therapy} (CBT-GSH), had been shown in previous research to reduce binge eating behavior by 10-50\%.  The Noom Monitor application was designed to facilitate CBT-GSH.  For this example, we consider two research questions from the experiment:
 \begin{enumerate}
 \item{Is CBT-GSH more effective at reducing binge eating behavior when facilitated by the Noom Monitor?}
 \item{Does the effect of the Noom Monitor vary over time?}
@@ -130,11 +139,15 @@ Hildebrandt et. al [2017] conducted an experiment to test whether the Noom Monit
 
 \subsection{Experimental design}
 
-66 men and women with Bulimia Nervosa (BN) or Binge Eating Disorder (BED) were randomly assigned into two treatment conditions: CBT-GSH (N= 33) or CBT-GSH + Noom (N=33).  Therapy lasted for 12 weeks.  Assessments were conducted at weeks 0, 4, 8, 12, 24, and 36.  The primary outcome was Objective Bulimic Episodes (OBE).  
+66 men and women with Bulimia Nervosa (BN) or Binge Eating Disorder (BED) were randomly assigned into two treatment conditions: CBT-GSH (N= 33) or CBT-GSH + Noom (N=33).  Therapy lasted for 12 weeks.  Assessments were conducted at weeks 0, 4, 8, 12, 24, and 36.  The primary outcome was Objective Bulimic Episodes (OBE).  For more information about the experiment, choice of dependent (outcome) variable, historical context and past research in this area, see \citeA{hildebrandt2017randomized}. There is a discussion of Bulimia Nervosa and Binge Eating as well as an explanation of the choice of outcome variable OBE. Hereafter we refer to CBT-GSH as the control condition/group and CBT-GSH + Noom as the treatment condition/group.
+
+
+\section{Results}
 
 \subsection{Model development}
 \subsection*{Exploratory data analysis}
-Figure 1 displays OBEs per week for each individual in both treatment conditions.  A few aspects of the data immediately stand out, which suggest that any model should account for individual-level effects and time-level effects, and should let treatment effects vary over time.  
+We start the analysis by plotting the outcome variable OBE. Figure 1 displays OBEs per week for each individual in both treatment conditions.  A few aspects of the data immediately stand out, which suggest that any model should account for individual-level effects and time-level effects, and should let treatment effects vary over time.  
+
 \begin{itemize}
 \item{The number of OBEs decreases over the course of the treatment for almost all subjects.}
 \item{The biggest decreases in OBEs appear to occur in the early stages of treatment.}
@@ -145,13 +158,14 @@ Figure 1 displays OBEs per week for each individual in both treatment conditions
    \begin{center}
 \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{Noom_paths.png}
    \end{center}
-\caption{\emph{Fig.1 (a) and (b) show the OBE measurements for individuals in the CBT-GSH group and CBT-GSH + Noom group respectively. The horizontal axis shows the week and the vertical axis shows the instances of OBE. The gray dots represent OBE readings over time for each individual. }}
+\caption{\emph{This figure shows the OBE measurements for individuals divided into the treatment and control group. Fig.1 (a) and (b) show the OBE measurements for individuals in the CBT-GSH group and CBT-GSH + Noom group respectively. The horizontal axis shows the week and the vertical axis shows the instances of OBE. The gray dots represent OBE readings over time for each individual. }}
 \end{figure}
 %
-Figure 2 displays the distribution of OBEs in each condition in each week.  We notice three characteristics of the data from these histograms.
+
+Figure 2 displays the distribution of OBEs in each condition in each week, aggregating across individuals.  We notice three characteristics of the data from these histograms.
 \begin{enumerate}
 \item{The distributions appear to condense around zero for both conditions over time} 
-\item{The distributions in the CBT-GSH condition appear to have longer tails than those in the CBB-GSH+Noom condition}
+\item{The distributions in the CBT-GSH condition appear to have longer tails than those in the CBT-GSH+Noom condition}
 \item{OBEs are count data; they must be nonnegative integers.}
 \end{enumerate}
 These three characteristics suggest that the appropriate model for OBEs is the Poisson distribution, because it is restricted to nonnegative integers and can concentrate its density around low numbers with a long tail.
@@ -160,13 +174,15 @@ These three characteristics suggest that the appropriate model for OBEs is the P
 \begin{center}
 \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{noom_hist.png}
 \end{center}
-\caption{\emph{Histograms display the distribution of OBEs in each condition in each stage of the treatment. The orange and light blue histograms show the distribution of OBEs for the CBT-GSH and CBT-GSH  + Noom group respectively.}}
+\caption{\emph{The histograms display the distribution of OBEs in the control and treatment condition in each stage of the treatment. The orange and light blue histograms show the distribution of OBEs for the CBT-GSH and CBT-GSH  + Noom group respectively.}}
 \end{figure}
 %
 \subsection*{Setting up a likelihood}
 
-We analyze RCTs by modeling the outcome of interest (in this case OBE) as a function of the treatment and all available pre-treatment covariates.  The coefficients associated with the treatment reveal the average treatment effects.  Inclusion of all available pre-treatment covariates accounts for variation in the outcome variable, decreasing uncertainly around treatment effects and providing the model with more predictive power.  We conduct \emph{intent-to-treat} analysis, meaning that our inferences will be based on initial treatment assignment, and will not account for mid-experiment dropouts. \\
-The outcome variable is restricted to be nonnegative integers, so we fit a Poisson regression model, with hierarchies on individuals, time periods, and treatment effects.  For each individual in each time period, the number of OBEs follows a Poisson distribution, with a mean dependent on the characteristics of the individual and the time period.  
+We analyze RCTs by modeling the outcome of interest (in this case OBE) as a function of the treatment and all available pre-treatment covariates.  The coefficients associated with the treatment are estimates of average treatment effects.  Inclusion of all available pre-treatment covariates accounts for variation in the outcome variable, decreasing uncertainly around treatment effects and providing the model with more predictive power.  We conduct \emph{intent-to-treat} analysis, meaning that our inferences will be based on initial treatment assignment, and will not account for mid-experiment dropouts. \\
+The outcome variable is restricted to be nonnegative integers, so we fit a Poisson regression model, partially pooling across individuals, time periods, and treatment effects. For each individual in each time period, the number of OBEs follows a Poisson distribution, with a mean dependent on the characteristics of the individual and the time period.  \\
+An important implication of our likelihood function is that unlike previous zero-inflated Poisson (ZIP) and zero-inflated negative binomial models \cite{grotzinger2015benefits, hildebrandt2017randomized} for binge eating data, we have a single generative process. We do not have a different generative process for 0's from abstinence, full remission and the non-0 count data. By accounting for individual level variation across time, in other words partially pooling \cite{gelman2014bayesian} across individuals and time periods, we are able to capture each individual's behavior and model their associated OBEs across time.
+
 \begin{align}
 OBE_{i,t} &\sim Poisson(\lambda_{i,t}) \\
 \lambda_{i,t} &= exp(\alpha_i + \beta_t + \gamma_tT_i + X_i\theta) \\
@@ -176,10 +192,13 @@ T_i &=
       1, & \text{if}\ CBT-GSH + Noom \\
     \end{cases}
 \end{align}
-$\alpha$ is an individual-specific intercept, $\beta$ is a time-specific intercept, $\gamma$ is a time-specific treatment effect, $T$ is a treatment indicator, $X$ is a matrix of individual level covariates (age, sex, race, etc), and $\theta$ is a vector of effects. Subscripts $i = 1, ..., 66$ indicate individuals and subscripts $t = 0, 4, 8, 12, 24, 36$ indicate time periods.
+$\alpha$ is an individual-specific intercept, $\beta$ is a time-specific intercept, $\gamma$ is a time-specific treatment effect, $T$ is a treatment indicator, $X$ is a matrix of individual level covariates (age, sex, race, etc), and $\theta$ is a vector of effects. Subscripts $i = 1, ..., 66$ indicate individuals and subscripts $t = 0, 4, 8, 12, 24, 36$ indicate time periods.\\
+We validate the effectiveness of our probability model using posterior predictive checks (section 5, Fig.5). We are able to capture the trend of inflated zeros for all time periods for both groups of individuals (treatment and control). Our model learns and reproduces the positive skewness and long tails of the OBE distribution.
+
+
 
 \subsection*{Choosing a prior distribution}
-Table 1 has a list of different sources from which prior information has been obtained for this experiment. It aims to summarize the various methods which a researcher can use to incorporate prior information into the modeling process. There is a rich literature on binge-eating disorders and bulimia nervosa studies, implying a large amount of prior information. This makes analysis of similar RCTs amenable to Bayesian methods. For more examples of priors see the Appendix.
+Table 1 has a list of different sources from which prior information has been obtained for this experiment. It aims to summarize the various methods which a researcher can use to incorporate prior information into the modeling process. There is a rich literature on binge-eating disorders and bulimia nervosa studies, implying a large amount of prior information. This makes analysis of similar RCTs amenable to Bayesian methods. For more examples of priors see the Appendix or check the ``Prior Choice Recommendations" GitHub page \cite{prior-choice}.
 %
 \begin{table}[H]
 \centering
@@ -198,7 +217,7 @@ Table 1 has a list of different sources from which prior information has been ob
 \caption{\emph{Sources of prior information.}}
 \end{table}
 %
-We believe that individual-level intercepts are simultaneously unique to the individual and common to the population; that is, each individual has their own baseline predilection to engage in eating disorder behavior, but their baseline predilections are not drastically different from each other.  We operationalize this concept by modeling all individual-level intercepts as coming from a common distribution, with \emph{hyperparameters} $\mu_{\alpha}$ and $\tau_{\alpha}$.  In Bayesian statistics, hyperparameters are parameters of prior distributions.  In hierarchical models, we model hyperparameters explicitly.
+We believe that individual-level intercepts are simultaneously unique to the individual and common to the population; that is, each individual has their own baseline predilection to engage in eating disorder behavior, but those baseline predilections are not drastically different from each other.  We operationalize this concept by modeling all individual-level intercepts as coming from a common distribution, with \emph{hyperparameters} $\mu_{\alpha}$ and $\tau_{\alpha}$.  In Bayesian statistics, hyperparameters are parameters of prior distributions.  In hierarchical models, we model hyperparameters explicitly.
 %
 \begin{align}
 \alpha_i \sim Normal(\mu_{\alpha}, \tau_{\alpha}) \ \forall \ i \in 1,...,66
@@ -221,211 +240,177 @@ We assign the following prior and hyperprior distributions:
 \theta &\sim Normal(0, 1)
 \end{align}
 %
-The normal distributions around the individual and treatment effects allow us to guide the model to the appropriate range of parameter values, but with wide enough variance (5 in each case) to let the model find its own way in that range.  Half cauchy priors on the variance parameters are weakly informative, with much of their mass around zero but gentle slopes in their tails, which have been shown to be effective prior distributions for variance parameters [Gelman, 2006].
+The normal distributions around the individual and treatment effects allow us to guide the model to the appropriate range of parameter values, but with wide enough variance (5 in each case) to let the model find its own way in that range.  Half-Cauchy priors on the variance parameters are weakly informative, with much of their mass around zero but gentle slopes in their tails, which have been shown to be effective prior distributions for variance parameters \cite{gelman2006prior}.
 
 \subsection{Model estimation and results}
-We estimate this model with \emph{Hamilton Monte-Carlo} in Stan.  Model code is appended to this document. This is a particular algorithm from a larger class of Markov Chain Monte Carlo algorithms, for more examples see Gelman et. al [2013]. We find that the model converges with four chains of 2000 iterations each (see Table 2).
-Model results are displayed in Table 2.  Results suggest that using the Noom Monitor smartphone application during CBT-GSH may slightly decrease OBEs.  There is evidence that the treatment effect varies over time, with the Noom effect being slightly more pronounced during stages 4, 8, 12 and 24 of therapy but decreasing by week 36.\\
+We estimate this model with \emph{Hamiltonian Monte-Carlo} in Stan.  Model code is appended to this document. This is a particular algorithm from a larger class of Markov Chain Monte Carlo algorithms, for more examples see \citeA{gelman2014bayesian}.\\
+Model results are displayed in Table 2. The table displays the mean of each of the parameter distributions along with the 50\% posterior interval. Results suggest that using the Noom Monitor smartphone application during CBT-GSH may slightly decrease OBEs.  There is evidence that the treatment effect varies over time, with the Noom effect being slightly more pronounced during stages 4, 8, 12 and 24 of therapy but decreasing by week 36.\\
 
 \begin{table}[H]
 \centering
 \begin{tabular}{r c c c c c}
   \hline
- & mean & 25\% & 50\% & 75\% & R-hat\\ 
+ & mean & 25\% & 50\% & 75\%\\ 
   \hline
-  $\gamma_0$ & 0.18 & -0.45 & 0.15 & 0.78 & 1   \\ 
-  $\gamma_4$ & -0.43 & -1.05 & -0.46 & 0.16 & 1   \\ 
-  $\gamma_8$ & -0.70 & -1.33 & -0.71 & -0.10   & 1\\  
-  $\gamma_{12}$ & -0.65 & -1.28 & -0.68 & -0.04   & 1\\  
-  $\gamma_{24}$ & -0.72 & -1.34 & -0.75 & -0.11  & 1\\  
-  $\gamma_{36}$ & 0.21 & -0.42 & 0.19 & 0.82 & 1 \\ 
+  $\gamma_0$ & 0.18 & -0.45 & 0.15 & 0.78  \\ 
+  $\gamma_4$ & -0.43 & -1.05 & -0.46 & 0.16 \\ 
+  $\gamma_8$ & -0.70 & -1.33 & -0.71 & -0.10 \\  
+  $\gamma_{12}$ & -0.65 & -1.28 & -0.68 & -0.04 \\  
+  $\gamma_{24}$ & -0.72 & -1.34 & -0.75 & -0.11 \\  
+  $\gamma_{36}$ & 0.21 & -0.42 & 0.19 & 0.82 \\ 
   \hline \hline
-  $\mu_{\gamma}$ & -0.34 & -0.98 & -0.36 & 0.26  & 1\\ 
-  $\tau_{\gamma}$ & 0.64 & 0.43 & 0.56 & 0.77  & 1\\ 
+  $\mu_{\gamma}$ & -0.34 & -0.98 & -0.36 & 0.26 \\ 
+  $\tau_{\gamma}$ & 0.64 & 0.43 & 0.56 & 0.77 \\ 
    \hline
 \end{tabular}
 \caption{\emph{Table displays model results for Noom effects in all six time periods and grand mean and variance parameters.}}
 \end{table}
 
-
-\subsection{Model checking, comparison, and expansion}
-Before using our model to make inferences about time-specific treatment effects, we check its fit by comparing model-simulated OBE to data OBE.  If model simulations do not track the data well, we may want to revisit our model's assumptions before trusting its inferences.  If the model's simulations recover patterns in the data, we are more inclined to trust its inferences. \\
-Figure 3 displays OBEs in each period for each individual in each treatment group, from raw data (upper plots) and model simulations (lowers plots).  Black lines display means for each period.  This suggests that the model is able to pick up on the key variables that determine OBE over time for the duration of this experiment.
+\subsection*{Model checking, comparison, and expansion}
+Before using our model to make inferences about time-specific treatment effects, we check its fit by comparing model-simulated OBE to data OBE.  If model simulations do not track the data well, we may want to revisit our model's assumptions before trusting its inferences.  If the model's simulations recover patterns in the data, we are more inclined to trust it. \\
+Figure 3 displays OBEs in each period for each individual in each treatment group, from raw data (upper plots) and model simulations (lower plots).  Black lines display means for each period.  This suggests that the model is able to pick up on the key variables that determine OBE over time for the duration of this experiment.
 %
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{ppc_sims.png}
-\caption{\emph{Fig.3 (a) and (b) in the upper row show OBEs in each period for each individual in CBT - GSH and CBT-GSH + Noom respectively. Black dots represent mean estimate for each  period. Fig.3 (c) and (d) in the lower row show the simulated OBEs for each individual in CBT - GSH and CBT-GSH + Noom respectively. Black dots represent means from the simulated data for each period. The horizontal axis shows the week and the vertical axis shows the instances of OBE.}}
+\caption{\emph{This figure compares the original data in gray to data simulated from the model in black for the control and treatment condition. Fig.3 (a) and (b) in the upper row show OBEs in each period for each individual in CBT - GSH and CBT-GSH + Noom respectively. Black dots represent mean estimate for each  period. Fig.3 (c) and (d) in the lower row show the simulated OBEs for each individual in CBT - GSH and CBT-GSH + Noom respectively. Black dots represent means from the simulated data for each period. The horizontal axis shows the week and the vertical axis shows the instances of OBE.}}
 \end{center}
 \end{figure}
 %
-Another way to check the fit of the model is by comparing simulated data directly against the raw data.  Figure 4 shows this for both treatment conditions.  Simulated data for the Noom condition appears to better track the raw data than simulated data for the no Noom condition.  This is unsurprising, since the no Noom condition tended to have more outliers, which we would not expect (or want) our model to pick up perfectly from such a small sample.  
+Another way to check the fit of the model is by comparing simulated data directly against the raw data.  This is called posterior predictive checking and is our preferred form of model checking. Figure 4 shows this for both treatment conditions.  Simulated data for the Noom condition appear to better track the raw data than simulated data for the no Noom condition.  This is unsurprising, since the no Noom condition tended to have more outliers, which we would not expect (or want) our model to pick up perfectly from such a small sample. If our model worked ``perfectly" all the points would cluster along the sloping 45 degree line.
 %
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{obe_ppcs.png}
-\caption{\emph{Fig. 4(a) and (b) show the predicted OBE vs. the actual OBE data for CBT - GSH and CBT- GSH + Noom respectively. The horizontal axis shows the simulated OBE and the vertical axis shows the actual OBE. The black dots are the points that represent this and the lines around them show 50\% intervals around the predictions. The upward sloping line is the 45 degree line.}}
+\caption{\emph{This figure shows the posterior predictive checks by examining how well the model is able to predict the data. Fig. 4(a) and (b) show the predicted OBE vs. the actual OBE data for CBT - GSH and CBT- GSH + Noom respectively. The horizontal axis shows the simulated OBE and the vertical axis shows the actual OBE. The black dots are the points that represent this and the lines around them show 50\% intervals around the predictions. The upward sloping line is the 45 degree line.}}
 \end{center}
 \end{figure}
 %
-We conclude our model evaluations by mapping modeled density curves for each condition in each time period over the histograms in Figure 2.  Figure 5 shows that our model is able to broadly pick up on the patterns in the data over time and between treatment conditions. We see that the density curves clearly peak at lower values close to zero and have long tails, correctly capturing the pattern in the OBE data.
+We compare the distributions of OBE for each condition in each time period by plotting density curves over the histograms in figure 2, displayed in figure 5. Figure 5 shows that our model is able to broadly pick up on the patterns in the data over time and between treatment conditions. We see that the density curves clearly peak at lower values close to zero and have long tails, correctly capturing the pattern in the OBE data. We recover the pattern of excess zeros and the skewness of the data as well as the long tails of the OBE distribution in each time period.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{ppc_hist_dens.png}
-\caption{\emph{Histograms display the distribution of OBEs in each condition in each stage of the treatment. The orange and light blue histograms show the distribution of OBEs for the CBT-GSH and CBT-GSH  + Noom group respectively. The red and blue lines show the predicted density curves obtained from the simulations.}}
+\caption{\emph{This figure shows the density distribution of the predicted values overlayed on the histograms from figure 2. The histograms display the distribution of OBEs in each condition in each stage of the treatment. The orange and light blue histograms show the distribution of OBEs for the CBT-GSH and CBT-GSH  + Noom group respectively. The red and blue lines show the predicted density curves obtained from the simulations.}}
 \end{figure}
 Figure 6 displays the simulated OBE for both treatment groups (upper plot) and smoothed treatment effects (lower plot).  In each measurement period, simulated OBE are higher for the CBT - GSH condition than for the CBT - GSH + Noom condition, with some of the difference likely attributable to use of the Noom Monitor smartphone app.  This shows that the app has an effect on lowering episodes of binge eating.
 
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{noom_effect.png}
-\caption{\emph{Fig. 6(a) the upper plot shows the simulated OBE in each time period. The CBT - GSH condition is in orange and the CBT - GSH + Noom condition is in orange. The bars around each point show the 95\% interval. Fig. 6(b) the lower plot shows the treatment effect for each period with the bars showing the 50\% interval. The horizontal axis shows the time period and the vertical axis for Fig.6 (a) shows the instances of OBE and for Fig.6 (b) shows the treatment effect of the Noom app.}}
+\caption{\emph{This figure summarizes the treatment effects and the OBE patterns across the time period under consideration. Fig. 6(a) the upper plot shows the simulated OBE in each time period. The CBT - GSH condition is in orange and the CBT - GSH + Noom condition is in orange. The bars around each point show the 95\% interval. Fig. 6(b) the lower plot shows the treatment effect for each period with the bars showing the 50\% interval. The horizontal axis shows the time period and the vertical axis for Fig.6 (a) shows the instances of OBE and for Fig.6 (b) shows the treatment effect of the Noom app.}}
 \end{center}
 \end{figure}
 
+\section{Discussion}
+%\section{Advantages of BDA for RCT}
+In this section we discuss some of the major benefits of using a Bayesian approach to the analysis of Randomized Controlled Trials.
+
+\subsection{Heterogenous Treatment Effects}
+Among the advantages of Bayesian modeling is its ability to capture heterogeneous treatment effects. For example in our study, we control for variation in demographic variables and variation in the treatment across the time. This approach is commonly known as a varying slope - varying intercept model \cite{gelman2006data}. Our approach of hierarchical modeling and partial pooling \cite{gelman2014bayesian} allows us to accomplish this naturally. \\
+Hierarchical modeling has two closely related meanings \cite{feller2015hierarchical}. Hierarchies can explain a hierarchical data structure like spatial or temporal variation. In the RCT we consider in this paper, each treatment period is treated as a level and so we obtain different treatment effects for each period. Hierarchies also describe how parameters are modeled. We model our treatment effects for each level or category in the data, to come from a common underlying prior distribution \cite{gelman2014bayesian}. This is the idea of \textit{partially pooled} estimates of treatment effects. Partial pooling in a Bayesian context is different than traditional complete pooling or no pooling approaches. \\
+In non-Bayesian methods, researchers have two options: complete pooling and no pooling. With complete pooling, the categories in data are completely interchangeable, thus ignoring the uniqueness of categories. With no pooling, each category is treated as independent from the others, ignoring the interrelatedness of each of the categories.  For example, if an RCT was conducted in multiple locations by different staff, the researcher must assume that the treatments are entirely identical in a complete pooling model, ignoring the differences in execution that may have taken place by differing staff. In the no pooling model, the RCT would assume that each treatment would be entirely different across locations, despite having close similarities in how the treatments were applied. Setting up a prior distribution allows researchers to solve this problem by saying that the treatment effects across the locations have a common mean, but vary based on location. Thus partial pooling is often a better representation of data as it takes into account both the uniqueness and interrelatedness of categories within a hierarchical model.
+
+\subsection{Making uncertainty explicit}
+Modeling uncertainty in Bayesian statistics is fundamentally different from other non-Bayesian methods (Classical and frequentist statistics). In frequentist statistics, uncertainty in parameter estimates is commonly represented as a 95\% confidence interval (CI). Under the assumption of a very large number of hypothetical replications of the data, 95\% of the estimated parameter values are expected to fall within the confidence interval. Additionally the frequentist confidence interval relies on many other assumptions and can be misinterpreted \cite{hoekstra2014robust}. In Bayesian statistics, posterior distributions of the parameters are derived by multiplying prior and likelihood distributions. Thus these parameters have full distributions with probabilistic uncertainty, instead of point estimates with confidence intervals. The Bayesian approach does not rely on asymptotics or assumptions about the distribution of error terms; it models uncertainty explicitly.
+
+
 \section{Conclusion}
-Bayesian Data Analysis is a powerful tool for incorporating data and prior information into simple and flexible models.  It is well-suited to analyze RCTs, where effects are small and data has complicated hierarchical structures.  In this paper, we have explained the steps of Bayesian Data Analysis and shown how they can be used to analyze an RCT that evaluates treatments for binge-eating disorder (BED) and bulimia nervosa (BN).  We model the impact of a smartphone app on binge eating behavior by fitting a hierarchical poisson model with individual level and time level effects, and time-varying treatment effects.  We find that the use of the smartphone app may cause a small reduction in Objective Bulimic Episode in some stages of treatment.  We argue that Bayesian methodologies are well suited to analyzing RCTs on eating disorder behavior because they allow researchers to fit flexible models that explicitly include their assumptions and prior beliefs.
-
-
-\newpage
+Bayesian Data Analysis is a powerful tool for incorporating data and prior information into flexible statistical models.  It is well-suited to analyze RCTs, where effects are small, prior information is plentiful, and data may have hierarchical structures.  In this paper, we have explained the steps of Bayesian Data Analysis and shown how they can be used to analyze an RCT that evaluates treatments for binge-eating disorder (BED) and bulimia nervosa (BN).  We argue that Bayesian methodologies are well suited to analyzing RCTs of eating disorder behavior because they allow researchers to model uncertainty and heterogeneous treatment effects explicitly. We demonstrate our approach by analyzing the impact of a smartphone app on binge eating behavior by fitting a hierarchical Poisson model with individual-level and time-level effects, and time-varying treatment effects.  These unique representations of assumptions can be useful to empirical researchers in general and psychiatrists and clinical psychologists in particular.
+ 
 \section{Appendix}
 \subsection*{Example priors}
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{prior_plot.pdf}
-\caption{\emph{Fig. 7(a) shows a Uniform (0,1) distribution. Fig. 7(b) shows a Beta (2,1) distribution. Fig. 7(c) shows a Cauchy distribution, where the black line shows the positive half and the gray line shows the negative half.}}
+\caption{\emph{This figure shows some examples of common prior distributions. Fig. 7(a) shows a Uniform (0,1) distribution. Fig. 7(b) shows a Beta (2,1) distribution. Fig. 7(c) shows a Cauchy distribution, where the black line shows the positive half and the gray line shows the negative half.}}
 \end{figure}
 In Figure 7, we show some sample prior distributions. The Uniform (0,1) distribution (Fig. 7(a)) can be used when we know the quantity of interest is constrained to be between 0 and 1 but believe that all values between 0 and 1 are equally likely. If our quantity of interest is between 0 and 1 but unlikely to take extreme values we can use a Beta (2,1) (Fig. 7(b))  prior as shown.  Cauchy$^{+}$(0,30) is the half-Cauchy distribution with location 0 and scale 30 (Fig. 7(c)) . This is a good prior for variances because along with restricting the distribution to the positive real line it places most of the mass at 0 but allows for long smooth tails that the HMC algorithm can explore. 
-
-\subsection*{Stan Model}
-\begin{sexylisting}{Stan code}
-data{
-  \\ Declare data
-  int N;
-  int N_time;
-  int N_ppl;
-  int OBE[N];
-  vector[N] tmt;
-  int person_id[N];
-  int time_id[N];
-  int sex[N];
-  int age[N];
-  int black[N];
-  int other_race[N];
-  int hisp[N];
-  int bn[N];
-}
-parameters{
-  \\ Declare parameters for estimation
-  real alpha[N_ppl];
-  real mu_alpha;
-  real<lower = 0> tau_alpha;
-  real alpha_sex;
-  real alpha_age;
-  real alpha_black;
-  real alpha_other;
-  real alpha_hisp;
-  real alpha_bn;
-  real beta[N_time];
-  real gamma[N_time];
-  real mu_gamma;
-  real<lower = 0> tau_gamma;
-}
-\end{sexylisting}
-\begin{sexylisting}{Stan code contd.}
-model{
-  \\ Define likelihood
-  for(i in 1:N) {
-    OBE[i] ~ poisson_log(alpha[person_id[i]] + alpha_sex*sex[i] 
-                         + alpha_black*black[i] 
-                         + alpha_other*other_race[i]
-                         + alpha_hisp*hisp[i] + alpha_bn*bn[i]
-                         + beta[time_id[i]] + alpha_age*age[i]
-                         + gamma[time_id[i]]*tmt[i]);
-  }
-  \\ Define priors
-  alpha ~ normal(mu_alpha, tau_alpha);
-  mu_alpha ~ normal(5, 2);
-  tau_alpha ~ cauchy(0, 50);
-  alpha_black ~ normal(0, 1);
-  alpha_sex ~ normal(0, 1);
-  alpha_other ~ normal(0, 1);
-  alpha_hisp ~ normal(0, 1);
-  alpha_bn ~ normal(0, 1);
-  gamma ~ normal(mu_gamma, tau_gamma);
-  mu_gamma ~ normal(0, 2);
-  tau_gamma ~ cauchy(0, 30);
-}
-\end{sexylisting}
-\begin{sexylisting}{Stan code contd.}
-generated quantities{
-  \\ Simulate data through the model
-  real OBE_pred[N];
-  for(i in 1:N) {
-    OBE_pred[i] = poisson_log_rng(alpha[person_id[i]] 
-                                  + alpha_sex*sex[i] 
-                                  + alpha_black*black[i] 
-                                  + alpha_other*other_race[i]
-                                  + alpha_hisp*hisp[i] 
-                                  + alpha_bn*bn[i]
-                                  + beta[time_id[i]] 
-                                  + alpha_age*age[i]
-                                  + gamma[time_id[i]]*tmt[i]);
-  }
-}
-\end{sexylisting}
-
+%%%%%%%%%%%%%%%%%
+% OLD BIBLIOGRAPHY - KEEP AS BACKUP
+%%%%%%%%%%%%%%%%%
+\iffalse
 \begin{thebibliography}{9}
 
-\bibitem{A Conceptual Introduction to Hamiltonian Monte Carlo}
+%\bibitem{A Conceptual Introduction to Hamiltonian Monte Carlo}
 Betancourt M (2017).
 \textit{``A Conceptual Introduction to Hamiltonian Monte Carlo"} 
 arXiv:1701.02434 [stat.ME]
 
-\bibitem{Bayesian Data Analysis}
-Gelman A, Carlin J.B, Stern H.S, Rubin D.B (2013).
+%\bibitem{Calibrating Model-Based Inferences and Decisions}
+Betancourt M (2018).
+\textit{``Calibrating Model-Based Inferences and Decisions"} 
+arXiv:1803.08393v1 [stat.ME]
+
+%\bibitem{Hierarchical Models for Causal Effects}
+Feller, A and Gelman, A (2015) \textit{``Hierarchical Models for Causal Effects".}
+Emerging Trends in the Social and Behavioral Sciences. Edited by Robert Scott and Stephen Kosslyn. ISBN 978-1-118-90077-2.
+
+%\bibitem{Visualization in Bayesian workflow}
+Gabry J., Simpson D., Vehtari A., Betancourt M., Gelman A. (2018).
+\textit{``Visualization in Bayesian workflow"} 
+arXiv:1709.01449v4 [stat.ME]
+
+%\bibitem{Bayesian Data Analysis}
+Gelman A, Carlin J.B, Stern H.S, Rubin D.B (2014).
 \textit{``Bayesian Data Analysis"}
 ISBN 0-412-03991-5, Chapman and Hall, New York
 
-\bibitem{Prior distributions for variance parameters in hierarchical models(Comment on Article by Browne and Draper)}
+%\bibitem{Prior distributions for variance parameters in hierarchical models(Comment on Article by Browne and Draper)}
 Gelman A (2006).
 \textit{``Prior distributions for variance parameters in hierarchical models(Comment on Article by Browne and Draper)"}
 2006, International Society for Bayesian Analysis, Number 3, pp. 515 - 534.
 
-\bibitem{Data Analysis Using Regression and Multilevel/Hierarchical Models}
+%\bibitem{Data Analysis Using Regression and Multilevel/Hierarchical Models}
 Gelman A, Hill J (2007).
 \textit{``Data Analysis Using Regression and Multilevel/Hierarchical Models"}
 ISBN-13 978-0-521-68689-1, Published in the United States of America by Cambridge University Press, New York
 
-\bibitem{Benefits and limitations of randomized controlled trials}
+%\bibitem{Benefits and limitations of randomized controlled trials}
 Gelman A (2017).
 \textit{``Data Analysis Using Regression and Multilevel/Hierarchical Models"}
 
-\bibitem{The benefits of using semi-continuous and continuous models to analyze binge eating data: A Monte Carlo investigation}
+%\bibitem{The benefits of using semi-continuous and continuous models to analyze binge eating data: A Monte Carlo investigation}
 Grotzinger, A, Hildebrandt, T, and Yu, J. (2015). 
 \textit{``The benefits of using semi-continuous and continuous models to analyze binge eating data: A Monte Carlo investigation."}
  Int J Eat Disord, 48(6), 746-758. doi:10.1002/eat.22351.
  
- \bibitem{Randomized controlled trial comparing smartphone assisted
+% \bibitem{Randomized controlled trial comparing smartphone assisted
 versus traditional guided self-help for adults with binge eating}
 Hildebrandt T, Michaelides A, Mackinnon D, Greif R, DeBar L, Sysko R (2017)
 \textit{``Randomized controlled trial comparing smartphone assisted
 versus traditional guided self-help for adults with binge eating"}
 Int J Eat Disord. 2017 Nov;50(11):1313-1322. doi: 10.1002/eat.22781.
 
-\bibitem{Stan}
+%\bibitem{Stan}
 Stan Development Team. 2016. 
 \textit{RStan: the R interface to Stan}, Version 2.10.1.   
 \texttt{http://mc-stan.org}
 
-\bibitem{Stan}
+%\bibitem{Stan}
 Stan Development Team.
 \textit{``Prior Choice Recommendations"}
 \texttt{https://github.com/stan-dev/stan/wiki/Prior-Choice-Recommendations}
 
+%\bibitem{Exploratory Data Analysis}
+Tukey J. (1977),
+\textit{``Exploratory Data Analysis"}
+ISBN-13: 978-0201076165.
+
+
+%Vehtari, A., Gelman, A., & Gabry, J. (2016b). Practical Bayesian model evaluation using leave-one-out cross-validation and WAIC. Retrieved from http://arxiv.org/abs/1507.04544v4 
+
+%Rouder, J. N., Speckman, P. L., Sun, D., Morey, R. D., & Iverson, G. (2009). Bayesian t tests for accepting and rejecting the null hypothesis. Psychonomic Bulletin & Review, 16, 225e237
+
+
+
 \end{thebibliography}
-
-
+\fi
+%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
+\newpage 
+\bibliographystyle{apacite}
+\bibliography{ref1}
 
 \end{document}
