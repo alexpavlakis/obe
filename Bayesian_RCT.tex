@@ -74,7 +74,7 @@ Short Running Title: Bayesian Randomized Controlled Trials
 \noindent \underline{Discussion} : We conclude that Bayesian methods are a powerful tool for incorporating data and prior information into models. They have the potential to improve analyses of RCTs in eating disorders given small sample sizes, small effect size, abundant prior information, heterogenous participants, and experimental design. These methods are useful for empirical researchers, particularly clinical psychologists.
 \end{abstract}
 
-\keywords{Methods, Randomized Controlled Trial, Bayesian Analysis, Eating Disorders, Binge Eating Disorders, Statistics}
+\keywords{Methods, Randomized Controlled Trial, Bayesian Analysis, Eating Disorders, binge-eating Disorders, Statistics}
 
 Abstract word count -- 237\\
 Main text word count -- 3,958\\
@@ -87,7 +87,7 @@ Main text word count -- 3,958\\
 
 \section*{Introduction}
 Bayesian data analysis (BDA) is a method for building statistical models to describe data.  Researchers begin with explicit assumptions about the data generating process based on past research and the scientific nature of the problem. Based on these beliefs and assumptions, they then collect data from designed experiments or observational studies. Using Bayes' rule they combine their assumptions or \textit{prior information} with the actual data into a comprehensive probability model. This model contains information about all known (observed data) and unknown (unobserved parameters) quantities related to the data generating process. Bayesian data analysis is gaining popularity in medical, pharmaceutical, and social-science research because it allows researchers to combine prior information with data to model data generating processes.\\
-The purpose of this paper is to motivate the use of BDA in applied research, especially for analyzing results of Randomized Controlled Trials (RCT). The standard models for analyzing RCTs are regression models because they allow researchers to estimate causal effects precisely by controlling for available pre-treatment covariates \cite{gelman2006data}. The Bayesian approach to regression modeling allows researchers to build statistical models which include relevant prior information, to estimate varying treatment effects for subgroups of the population, and to model the uncertainty in their estimates explicitly.  These improvements in the analysis of treatment effects make Bayesian methods especially valuable for empirical researchers in psychiatry and clinical psychology.   In this paper, we use data from a recently published RCT by \citeA{hildebrandt2017randomized} examining the efficacy of a smartphone application designed to augment the efficacy of cognitive behavioral therapy guided self-help (CBT-GSH) treatment for reducing binge eating episodes. \\
+The purpose of this paper is to motivate the use of BDA in applied research, especially for analyzing results of Randomized Controlled Trials (RCT). The standard models for analyzing RCTs are regression models because they allow researchers to estimate causal effects precisely by controlling for available pre-treatment covariates \cite{gelman2006data}. The Bayesian approach to regression modeling allows researchers to build statistical models which include relevant prior information, to estimate varying treatment effects for subgroups of the population, and to model the uncertainty in their estimates explicitly.  These improvements in the analysis of treatment effects make Bayesian methods especially valuable for empirical researchers in psychiatry and clinical psychology.   In this paper, we use data from a recently published RCT by \citeA{hildebrandt2017randomized} examining the efficacy of a smartphone application designed to augment the efficacy of cognitive behavioral therapy guided self-help (CBT-GSH) treatment for reducing binge-eating episodes. \\
 This paper is an introduction to the Bayesian approach to analyze RCT data. We focus on providing motivation for the usefulness of the approach and guidelines for executing it in a rigorous way, particularly in the context of treating eating disorders. We model data used by \citeA{hildebrandt2017randomized} using a multilevel/hierarchical Poisson model (explained in Results section). We use a discrete distribution (Poisson) to account for the non-negative and discrete outcome variable (OBE), that contains a large number of 0's. The innovation in using the Bayesian approach is that we are able to control for pre-treatment covariates while capturing heterogeneity in treatment effects across individuals and over time and explicitly modeling the uncertainty around those effects.  We find that we are able to capture the pattern of excess 0's and positive skew in the data and our model predicts the data well. \\
 
 \section*{Methods}
@@ -135,14 +135,14 @@ After we have fit multiple models, we may want to compare their performances. Th
 Model checking is a critical step in Bayesian Data Analysis; however, there is no one-size-fits-all approach.  We recommend posterior predictive checks because it is a direct way to assess the model fit to various aspects of data. By using posterior predictive checks we neither ``accept" nor ``reject" models but aim to understand their limitations in realistic replications \cite{gelman2014bayesian}.
 
 \subsection*{Experiment: Impact of Smartphone App on Eating Disorder Behavior}
-\citeA{hildebrandt2017randomized} conducted an experiment to test whether the Noom Monitor, a smartphone application, could augment the effect of in-person therapeutic treatment on binge eating behavior.  The treatment, known as \emph{guided self-help treatments based on cognitive-behavior therapy} (CBT-GSH), had been shown in previous research to reduce binge eating behavior by 10-50\%.  The Noom Monitor application was designed to facilitate CBT-GSH.  For this example, we consider two research questions from the experiment:
+\citeA{hildebrandt2017randomized} conducted an experiment to test whether the Noom Monitor, a smartphone application, could augment the effect of in-person therapeutic treatment on binge-eating behavior.  The treatment, known as \emph{guided self-help treatments based on cognitive-behavior therapy} (CBT-GSH), had been shown in previous research to reduce binge-eating behavior by 10-50\%.  The Noom Monitor application was designed to facilitate CBT-GSH.  For this example, we consider two research questions from the experiment:
 \begin{enumerate}
-\item{Is CBT-GSH more effective at reducing binge eating behavior when facilitated by the Noom Monitor?}
+\item{Is CBT-GSH more effective at reducing binge-eating behavior when facilitated by the Noom Monitor?}
 \item{Does the effect of the Noom Monitor vary over time?}
 \end{enumerate}
 
 \subsection*{Experimental design}
-66 men and women with Bulimia Nervosa (BN) or Binge Eating Disorder (BED) were randomly assigned into two treatment conditions: CBT-GSH (N= 33) or CBT-GSH + Noom (N=33).  Therapy lasted for 12 weeks.  Assessments were conducted at weeks 0, 4, 8, 12, 24, and 36.  The primary outcome was Objective Bulimic Episodes (OBE).  For more information about the experiment, choice of dependent (outcome) variable, historical context and past research in this area, see \citeA{hildebrandt2017randomized}. There is a discussion of Bulimia Nervosa and Binge Eating as well as an explanation of the choice of outcome variable OBE. Hereafter we refer to CBT-GSH as the control condition/group and CBT-GSH + Noom as the treatment condition/group.
+66 men and women with Bulimia Nervosa (BN) or binge-eating Disorder (BED) were randomly assigned into two treatment conditions: CBT-GSH (N= 33) or CBT-GSH + Noom (N=33).  Therapy lasted for 12 weeks.  Assessments were conducted at weeks 0, 4, 8, 12, 24, and 36.  The primary outcome was Objective Bulimic Episodes (OBE).  For more information about the experiment, choice of dependent (outcome) variable, historical context and past research in this area, see \citeA{hildebrandt2017randomized}. There is a discussion of Bulimia Nervosa and binge-eating as well as an explanation of the choice of outcome variable OBE. Hereafter we refer to CBT-GSH as the control condition/group and CBT-GSH + Noom as the treatment condition/group.
 
 \section*{Results}
 \subsection*{Model development}
@@ -172,7 +172,7 @@ These three characteristics suggest that the appropriate model for OBEs is the P
 
 We analyze RCTs by modeling the outcome of interest (in this case OBE) as a function of the treatment and all available pre-treatment covariates.  The coefficients associated with the treatment are estimates of average treatment effects.  Inclusion of all available pre-treatment covariates accounts for variation in the outcome variable, decreasing uncertainly around treatment effects and providing the model with more predictive power.  We conduct \emph{intent-to-treat} analysis, meaning that our inferences will be based on initial treatment assignment, and will not account for mid-experiment dropouts. \\
 The outcome variable is restricted to be nonnegative integers, so we fit a Poisson regression model, partially pooling across individuals, time periods, and treatment effects. For each individual in each time period, the number of OBEs follows a Poisson distribution, with a mean dependent on the characteristics of the individual and the time period.  \\
-An important implication of our likelihood function is that unlike previous zero-inflated Poisson (ZIP) and zero-inflated negative binomial models \cite{grotzinger2015benefits, hildebrandt2017randomized} for binge eating data, we have a single generative process. We do not have a different generative process for 0's from abstinence, full remission and the non-0 count data. By accounting for individual level variation across time, in other words partially pooling \cite{gelman2014bayesian} across individuals and time periods, we are able to capture each individual's behavior and model their associated OBEs across time.
+An important implication of our likelihood function is that unlike previous zero-inflated Poisson (ZIP) and zero-inflated negative binomial models \cite{grotzinger2015benefits, hildebrandt2017randomized} for binge-eating data, we have a single generative process. We do not have a different generative process for 0's from abstinence, full remission and the non-0 count data. By accounting for individual level variation across time, in other words partially pooling \cite{gelman2014bayesian} across individuals and time periods, we are able to capture each individual's behavior and model their associated OBEs across time.
 
 \begin{align}
 OBE_{i,t} &\sim Poisson(\lambda_{i,t}) \\
@@ -271,7 +271,7 @@ We compare the distributions of OBE for each condition in each time period by pl
 %
 %FIGURE FIVE
 %
-Figure 6 displays the simulated OBE for both treatment groups (upper plot) and smoothed treatment effects (lower plot).  In each measurement period, simulated OBE are higher for the CBT - GSH condition than for the CBT - GSH + Noom condition, with some of the difference likely attributable to use of the Noom Monitor smartphone app.  This shows that the app has an effect on lowering episodes of binge eating.
+Figure 6 displays the simulated OBE for both treatment groups (upper plot) and smoothed treatment effects (lower plot).  In each measurement period, simulated OBE are higher for the CBT - GSH condition than for the CBT - GSH + Noom condition, with some of the difference likely attributable to use of the Noom Monitor smartphone app.  This shows that the app has an effect on lowering episodes of binge-eating.
 
 %
 % FIGURE SIX
@@ -291,7 +291,7 @@ Modeling uncertainty in Bayesian statistics is fundamentally different from othe
 
 
 \section*{Conclusion}
-Bayesian Data Analysis is a powerful tool for incorporating data and prior information into flexible statistical models.  It is well-suited to analyze RCTs, where effects are small, prior information is plentiful, and data may have hierarchical structures.  In this paper, we have explained the steps of Bayesian Data Analysis and shown how they can be used to analyze an RCT that evaluates treatments for binge-eating disorder (BED) and bulimia nervosa (BN).  We argue that Bayesian methodologies are well suited to analyzing RCTs of eating disorder behavior because they allow researchers to model uncertainty and heterogeneous treatment effects explicitly. We demonstrate our approach by analyzing the impact of a smartphone app on binge eating behavior by fitting a hierarchical Poisson model with individual-level and time-level effects, and time-varying treatment effects.  These unique representations of assumptions can be useful to empirical researchers in general and psychiatrists and clinical psychologists in particular.
+Bayesian Data Analysis is a powerful tool for incorporating data and prior information into flexible statistical models.  It is well-suited to analyze RCTs, where effects are small, prior information is plentiful, and data may have hierarchical structures.  In this paper, we have explained the steps of Bayesian Data Analysis and shown how they can be used to analyze an RCT that evaluates treatments for binge-eating disorder (BED) and bulimia nervosa (BN).  We argue that Bayesian methodologies are well suited to analyzing RCTs of eating disorder behavior because they allow researchers to model uncertainty and heterogeneous treatment effects explicitly. We demonstrate our approach by analyzing the impact of a smartphone app on binge-eating behavior by fitting a hierarchical Poisson model with individual-level and time-level effects, and time-varying treatment effects.  These unique representations of assumptions can be useful to empirical researchers in general and psychiatrists and clinical psychologists in particular.
  
  \newpage
  
@@ -344,16 +344,16 @@ ISBN-13 978-0-521-68689-1, Published in the United States of America by Cambridg
 Gelman A (2017).
 \textit{``Data Analysis Using Regression and Multilevel/Hierarchical Models"}
 
-%\bibitem{The benefits of using semi-continuous and continuous models to analyze binge eating data: A Monte Carlo investigation}
+%\bibitem{The benefits of using semi-continuous and continuous models to analyze binge-eating data: A Monte Carlo investigation}
 Grotzinger, A, Hildebrandt, T, and Yu, J. (2015). 
-\textit{``The benefits of using semi-continuous and continuous models to analyze binge eating data: A Monte Carlo investigation."}
+\textit{``The benefits of using semi-continuous and continuous models to analyze binge-eating data: A Monte Carlo investigation."}
  Int J Eat Disord, 48(6), 746-758. doi:10.1002/eat.22351.
  
 % \bibitem{Randomized controlled trial comparing smartphone assisted
-versus traditional guided self-help for adults with binge eating}
+versus traditional guided self-help for adults with binge-eating}
 Hildebrandt T, Michaelides A, Mackinnon D, Greif R, DeBar L, Sysko R (2017)
 \textit{``Randomized controlled trial comparing smartphone assisted
-versus traditional guided self-help for adults with binge eating"}
+versus traditional guided self-help for adults with binge-eating"}
 Int J Eat Disord. 2017 Nov;50(11):1313-1322. doi: 10.1002/eat.22781.
 
 %\bibitem{Stan}
